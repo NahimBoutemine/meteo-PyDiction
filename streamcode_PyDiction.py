@@ -78,11 +78,12 @@ if uploaded_file is not None:
   #import: 
   le = preprocessing.LabelEncoder()
 
-  #encodage : 
+  #encodage :     
   for var in df.select_dtypes(include='object').columns:
     df[var] = le.fit_transform(df[var])
-    st.markdown("Voyez par vous-même les créations de variables et l'encodage :")
     st.write(df)
+  st.markdown("Voyez par vous-même les créations de variables et l'encodage :")
+  
 
 
 
