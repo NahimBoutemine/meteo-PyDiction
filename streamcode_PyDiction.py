@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
-pip install matplotlib
+#pip install matplotlib pb pour importer matplotlib à régler
+#import matplotlib.pyplot as plt
+import numpy as np
 
 st.title("PyDiction")
 st.header("PyDiction")
@@ -41,8 +43,7 @@ if uploaded_file is not None:
   st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade afin (selon notre expérience) d'avoir un score de prédiction suffisant, sinon vous devez compléter votre dataset :")
   st.write(len(df))
   
-  import matplotlib.pyplot as plt
-  import numpy as np
+  
 
   
   
