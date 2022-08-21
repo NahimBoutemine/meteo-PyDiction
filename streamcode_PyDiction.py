@@ -5,9 +5,7 @@ import numpy as np
 from sklearn import preprocessing
 import pandas as pd
 import streamlit as st
-#pip install matplotlib pb pour importer matplotlib à régler
-#import matplotlib.pyplot as plt
-#echo "backend: TkAgg" >> ~/.matplotlib/matplotlibrc
+import seaborn as sns
 import numpy as np
 
 st.title("PyDiction")
@@ -83,6 +81,7 @@ if uploaded_file is not None:
     df[var] = le.fit_transform(df[var])
   st.markdown("Voyez par vous-même les créations de variables et l'encodage :")
   st.write(df)
+  sns.countplot(data = df, x = 'RainTomorrow');
 
   
 
