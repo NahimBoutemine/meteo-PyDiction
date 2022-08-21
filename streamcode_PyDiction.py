@@ -24,5 +24,6 @@ if uploaded_file is not None:
   st.markdown("Ainsi, Les valeurs manquantes sont enlevés automatiquement car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   df = df.dropna()
   st.markdown("Vérifions à présent le nombre de données manquantes : ")
+  st.write(df)
 
 
