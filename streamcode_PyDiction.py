@@ -37,7 +37,7 @@ if uploaded_file is not None:
   st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
   percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
   st.write(percentage_dupli)
-  st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade, sinon vous devez compléter votre dataset :")
+  st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade afin (selon notre expérience) d'avoir un score de prédiction suffisant, sinon vous devez compléter votre dataset :")
   st.write(len(df))
 
   
