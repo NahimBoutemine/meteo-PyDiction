@@ -71,15 +71,14 @@ if uploaded_file is not None:
   df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
   #import: 
-  from sklearn import preprocessing
   le = preprocessing.LabelEncoder()
 
-#encodage : 
-for var in df.select_dtypes(include='object').columns:
-  df[var] = le.fit_transform(df[var])
-  st.markdown("Voyez par vous-même les créations de variables et l'encodage :")
-  st.write(df)
+  #encodage : 
+  for var in df.select_dtypes(include='object').columns:
+    df[var] = le.fit_transform(df[var])
+    st.markdown("Voyez par vous-même les créations de variables et l'encodage :")
+    st.write(df)
 
-  
-  
+
+
 
