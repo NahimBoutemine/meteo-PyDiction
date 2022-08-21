@@ -21,12 +21,13 @@ if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
   st.write(df)
   st.markdown("S'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
+  st.markdown("Affichons ces fameuses valeurs manquantes :")
+  percent_missing_df = df.isnull().sum() * 100 / len(df)
+  st.write(percent_missing_df)
   st.markdown("Ainsi, Les valeurs manquantes sont enlevés automatiquement car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   df = df.dropna()
   df = df = df.drop_duplicates()
   st.markdown("Vérifions à présent le nombre de données manquantes : on peut voir à présent qu'il n'y en a plus, ni de doublons!")
-  st.write(df)
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df)
-
-
+  
