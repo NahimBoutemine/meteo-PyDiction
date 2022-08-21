@@ -47,11 +47,22 @@ if uploaded_file is not None:
   st.write(len(df))
   
   
-  fig, x = matplotlib.pyplot.subplots()
-  x.hist(df.RainTomorrow, bins=10)
+  #afficher la répartition des valeurs dans la cible A FAIRE ET DECRIRE
+  
+  #encodage des données
+  
+  ##Traitement de la variable 'date' :
+  #Toutes les variables doivent être encodées et comme la pluie est un péhnomène qui semble dépendant des saisons,
+  # il serait interessant de décomposer Date. Pour cela, nous utilisons la méthode 
+  #dt.datetime pour extraire année, mois, et jour
+  df['year'] = pd.to_datetime(df['Date']).dt.year
+  df['month'] = pd.to_datetime(df['Date']).dt.month
+  df['day'] = pd.to_datetime(df['Date']).dt.day
 
-  #plotting the figure
-  st.pyplot(fig)
+  #réenregistrement des variables year, month, et day, en tant que int.
+  df['year'] = df['year'].astype(int)
+  df['month'] = df['month'].astype(int)
+  df['day'] = df['day'].astype(int)
   
   
 
