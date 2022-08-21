@@ -45,7 +45,7 @@ if uploaded_file is not None:
   st.write(percentage_dupli)
   st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade afin (selon notre expérience) d'avoir un score de prédiction suffisant, sinon vous devez compléter votre dataset :")
   st.write(len(df))
-  st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours").
+  st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
   
   #afficher la répartition des valeurs dans la cible A FAIRE ET DECRIRE
   
@@ -76,7 +76,7 @@ if uploaded_file is not None:
 
 #encodage : 
 for var in df.select_dtypes(include='object').columns:
-    df[var] = le.fit_transform(df[var])
+  df[var] = le.fit_transform(df[var])
   st.markdown("Voyez par vous-même les créations de variables et l'encodage :")
   st.write(df)
 
