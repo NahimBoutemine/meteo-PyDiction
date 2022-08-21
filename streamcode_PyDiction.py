@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import seaborn as sns
 
 st.title("PyDiction")
 st.header("PyDiction")
@@ -28,10 +29,10 @@ if uploaded_file is not None:
   st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df)
-  st.markdown("Ainsi, Les valeurs manquantes sont enlevés automatiquement car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
+  st.markdown("Ainsi, les valeurs manquantes sont enlevés automatiquement car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   df = df.dropna()
   df = df.drop_duplicates()
-  st.markdown("Vérifiez par vous-même à présent le nombre de données manquantes : on peut voir à présent qu'il n'y en a plus, ni de doublons!")
+  st.markdown("Vérifiez par vous-même à présent le nombre de données manquantes : on peut voir à présent qu'il n'y en a plus!")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df)
   st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
@@ -39,5 +40,5 @@ if uploaded_file is not None:
   st.write(percentage_dupli)
   st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade afin (selon notre expérience) d'avoir un score de prédiction suffisant, sinon vous devez compléter votre dataset :")
   st.write(len(df))
-
+  sns.boxplot( data = df, orient="h")
   
