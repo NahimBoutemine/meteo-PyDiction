@@ -81,11 +81,11 @@ if uploaded_file is not None:
     df[var] = le.fit_transform(df[var])
   st.markdown("Voyez par vous-même les créations de variables et l'encodage :")
   st.write(df)
-  def countPlot():
-    fig = plt.figure(figsize=(10, 4))
-    sns.countplot(data = df, x = 'RainTomorrow');
-    st.pyplot(fig)
-  countPlot()
+
+  #heatmap
+  fig, ax = plt.subplots()
+  sns.heatmap(df.corr(), ax=ax)
+  st.write(fig)
 
   
 
