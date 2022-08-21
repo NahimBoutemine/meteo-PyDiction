@@ -19,22 +19,25 @@ st.header("Première partie")
 uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
+  
+  st.markdown("Affichons le nombre de lignes, vous devez en avoir au moins 57 000 après suppression des manquantes :")
+  st.write(len(df))
+
   st.write(df)
   st.markdown("S'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
   st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df)
-  st.markdown("Affichons le pourcentage de valeurs non en doublon :")
-
-  percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
-  st.write(percentage_dupli)
   st.markdown("Ainsi, Les valeurs manquantes sont enlevés automatiquement car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   df = df.dropna()
   df = df.drop_duplicates()
   st.markdown("Vérifiez par vous-même à présent le nombre de données manquantes : on peut voir à présent qu'il n'y en a plus, ni de doublons!")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df)
+  st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
   percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
   st.write(percentage_dupli)
+  st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade, sinon vous devez compléter votre dataset :")
+  st.write(len(df))
 
   
