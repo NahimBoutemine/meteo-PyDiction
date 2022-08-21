@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+pip install matplotlib
 
 st.title("PyDiction")
 st.header("PyDiction")
