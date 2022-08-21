@@ -1,3 +1,8 @@
+
+import streamlit as st
+#import matplotlib.pyplot as plt
+import numpy as np
+from sklearn import preprocessing
 import pandas as pd
 import streamlit as st
 #pip install matplotlib pb pour importer matplotlib à régler
