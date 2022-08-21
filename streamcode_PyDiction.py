@@ -85,6 +85,7 @@ if uploaded_file is not None:
     fig = plt.figure(figsize=(10, 4))
     sns.countplot(data = df, x = 'RainTomorrow');
     st.pyplot(fig)
+  countPlot()
 
   
 
