@@ -15,7 +15,7 @@ st.markdown("La pluie est considérée comme présente si elle est strictement s
 st.markdown("En plus du guidage sur la préparation de vos données et la création du modèle, vous profiterez d'affichages de graphiques décrivant vos données ")
 st.markdown("Vous pouvez donc commencer par charger vos données et observer leur prmeemière description! ")
 
-st.header("Première partie")
+st.title("Première partie")
 uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
@@ -39,5 +39,6 @@ if uploaded_file is not None:
   st.write(percentage_dupli)
   st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade afin (selon notre expérience) d'avoir un score de prédiction suffisant, sinon vous devez compléter votre dataset :")
   st.write(len(df))
-  sns.boxplot( data = df, orient="h")
   
+  st.markdown("A ce stade, il faut vérifier que vos données sont bien de distribution gaussienne. Affichons donc la répartition des valeurs en boite à moustache afin de vous permettre cette vérification rapide")
+  st.line_chart(dataframe)  
