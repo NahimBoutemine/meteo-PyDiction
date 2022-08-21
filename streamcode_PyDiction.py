@@ -20,6 +20,6 @@ uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
   st.write(df)
-  st.writedf.dtypes.value_counts().plot.pie());
+  st.write(df.dtypes.value_counts().plot.pie());
 
 
