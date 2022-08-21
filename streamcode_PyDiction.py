@@ -40,5 +40,9 @@ if uploaded_file is not None:
   st.markdown("Affichons de nouveau le nombre de lignes, pour rappel vous devez en avoir au moins 56 000 à ce stade afin (selon notre expérience) d'avoir un score de prédiction suffisant, sinon vous devez compléter votre dataset :")
   st.write(len(df))
   
-  st.markdown("A ce stade, il faut vérifier que vos données sont bien de distribution gaussienne. Affichons donc la répartition des valeurs en boite à moustache afin de vous permettre cette vérification rapide")
-  st.plotly_chart(df)  
+  import matplotlib.pyplot as plt
+  import numpy as np
+
+  
+  
+
