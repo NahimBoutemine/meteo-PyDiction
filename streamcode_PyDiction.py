@@ -2,7 +2,8 @@ import pandas as pd
 import streamlit as st
 
 st.title("PyDiction")
-st.subtitle("PyDiction")
+st.title("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
+st.title("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
 
 
 uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
