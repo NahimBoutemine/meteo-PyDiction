@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 #pip install matplotlib pb pour importer matplotlib à régler
 #import matplotlib.pyplot as plt
+echo "backend: TkAgg" >> ~/.matplotlib/matplotlibrc
 import numpy as np
 
 st.title("PyDiction")
@@ -19,6 +20,8 @@ st.markdown("En plus du guidage sur la préparation de vos données et la créat
 st.markdown("Vous pouvez donc commencer par charger vos données et observer leur prmeemière description! ")
 
 st.title("Première partie")
+
+#si le fichier est chargé, alors lancer le code seulement ensuite (condition nécessaire sinon le code se lance trop tôt et bloque):
 uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
