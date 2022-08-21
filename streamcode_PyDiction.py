@@ -41,4 +41,4 @@ if uploaded_file is not None:
   st.write(len(df))
   
   st.markdown("A ce stade, il faut vérifier que vos données sont bien de distribution gaussienne. Affichons donc la répartition des valeurs en boite à moustache afin de vous permettre cette vérification rapide")
-  st.line_chart(dataframe)  
+  st.plotly_chart(df)  
