@@ -31,7 +31,7 @@ uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
   
-  st.markdown("Affichons le nombre de lignes, vous devez en avoir au moins 57 000 après suppression des manquantes :")
+  st.markdown("Affichons le nombre de lignes, vous devez en avoir au moins 56 000 après suppression des manquantes :")
   st.write(len(df))
 
   st.write(df)
