@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 #pip install matplotlib pb pour importer matplotlib à régler
 #import matplotlib.pyplot as plt
-echo "backend: TkAgg" >> ~/.matplotlib/matplotlibrc
+#echo "backend: TkAgg" >> ~/.matplotlib/matplotlibrc
 import numpy as np
 
 st.title("PyDiction")
@@ -47,7 +47,11 @@ if uploaded_file is not None:
   st.write(len(df))
   
   
+  fig, x = matplotlib.pyplot.subplots()
+  x.hist(df.RainTomorrow, bins=10)
 
+  #plotting the figure
+  st.pyplot(fig)
   
   
 
