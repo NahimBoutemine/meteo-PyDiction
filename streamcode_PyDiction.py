@@ -83,11 +83,25 @@ if uploaded_file is not None:
   st.write(df)
 
   #heatmap
+  st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
+  st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
   fig, ax = plt.subplots()
   sns.heatmap(df.corr(), ax=ax)
   st.write(fig)
 
-  
+  # Create correlation matrix for then suppression : 
+  corr_matrix = df.corr().abs()
+
+  # Select upper triangle of correlation matrix
+  upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(np.bool))
+  to_drop = [column for column in upper.columns if any(upper[column] > 0.95)]
+
+  # Drop features 
+  df = df.drop(to_drop, axis=1, inplace=True)
+
+  st.markdown("Vérifiez les suppressions des variables")
+  st.write(df)
+
 
 
 
