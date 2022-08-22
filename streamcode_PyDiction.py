@@ -165,14 +165,19 @@ if uploaded_file is not None:
   st.write('score AUC sur données aprèes smote', roc_auc_score_KNNsm)
 
   #la courbe ROC
-  plt.title('Receiver Operating Characteristic - logreg')
+
+
+  fig, ax = plt.title('Receiver Operating Characteristic - logreg')
   plt.plot(false_positive_rate, true_positive_rate)
   plt.plot([0, 1], ls="--")
   plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7")
   plt.ylabel('True Positive Rate')
   plt.xlabel('False Positive Rate')
   plt.show()
+  
+  st.pyplot(fig)
 
+  
   #Résultat :
   st.markdown("confirmation de la matrice de confusion")
   st.markdown("le classement des vrais positifs est moins bon que le classement des vrais négatifs")
