@@ -172,5 +172,5 @@ if uploaded_file is not None:
 
   # MAE :
   MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
-  st.write("Mean Absolute Error' ou 'MAE' : " + str(MAE_KNNsm))
+  st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE_KNNsm), ', plus elle est basse plus le modèle est précis.')
   st.markdown("la MAE est faible, ce qui corrobore avec la bonne performance du modèle")
