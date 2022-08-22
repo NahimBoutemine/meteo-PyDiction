@@ -149,10 +149,9 @@ if uploaded_file is not None:
   st.markdown("hausse à la fois de l'accuracy et du f1 score (0.87 et 0.87 contre 0.85 et 0.74 respectivement pour le KNN sans oversampling")
   st.markdown("meilleur classement des positifs !")
 
-  #AUC :
+  #AUC et ROC Curve:
+  st.markdown('Imprimons à présent la courbe ROC de votre modèle, sont interprétation est donnée ci-dessous. ')
   false_positive_rate, true_positive_rate, thresholds = roc_curve(y_sm_test, model.predict(x_sm_test), pos_label = 1)
-
-  #le score AUC
   roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
   #la courbe ROC
   fig = plt.figure();
@@ -164,9 +163,8 @@ if uploaded_file is not None:
   plt.xlabel('False Positive Rate');
   st.pyplot(fig);
   st.write('Le score AUC est de', roc_auc_score_KNNsm, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-
-  
-  st.markdown("le classement des vrais positifs est normalement moins bon que le classement des vrais négatifs")
+ 
+  st.markdown("Le classement des vrais positifs est normalement moins bon que le classement des vrais négatifs")
 
   # MAE :
   MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
