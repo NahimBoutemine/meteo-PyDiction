@@ -126,7 +126,7 @@ if uploaded_file is not None:
   ##Précision et f1-score :
   y_pred_train_KNNsm = model.predict(x_sm_train)
   y_pred_test_KNNsm = model.predict(x_sm_test)
-  st.markdown('Les scores d accuracy sur les jeux d entrainement et de test sont :  ')
+  st.markdown('Les scores d accuracy et de f1-score (sensible à la prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
   #accuracy : 
   acc_train_KNNsm  = accuracy_score(y_sm_train, y_pred_train_KNNsm)
@@ -143,7 +143,7 @@ if uploaded_file is not None:
 
   #résultats :
   st.markdown("Les prédictions sont plutôt bonnes !")
-  st.markdown("meilleur classement des positifs !")
+  st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
 
   #AUC et ROC Curve:
   st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
