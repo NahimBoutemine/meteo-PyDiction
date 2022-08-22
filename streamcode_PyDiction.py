@@ -29,10 +29,12 @@ from sklearn import metrics
 st.title("PyDiction")
 
 st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
-st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). Cette application streamlit sert à montrer les résultats de notre construction de modèle de prédiction de la variable 'RainTomorrow' à partir du dataset déposé ici https://www.kaggle.com/jsphyg/weather-dataset-rattle-package")
+st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
+st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow." 
+st.mardown("Cette application streamlit sert à montrer la méthode de construction de notre construction de modèle de prédiction de la variable 'RainTomorrow' ainsi que les résultats de l évlauation qui sont satisfaisants.")
 st.markdown("Le modèle nous permet de prédire effectivement la présence de pluie au lendemain avec une précision de plus de 85%, ce qui est acceptable en météorologie. Procédure : il vous faudra charger des données du site kaggle. ")
 st.markdown("au FORMAT CSV. Ensuite, vous pourrez voir les étapes de construction du modèle et constater ses performances. ")
-st.markdown("Le score de prédiction sera affiché en fin. ")
+st.markdown("Les indicateurs d'évaluation sont présentés en fin ")
 st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc")
 st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
 
