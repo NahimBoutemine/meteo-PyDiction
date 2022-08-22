@@ -108,16 +108,8 @@ if uploaded_file is not None:
   st.write(fig)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
   
-  Var_Corr = df.corr()
-  serie = 100*abs(Var_Corr['RainTomorrow_encode']).sort_values(ascending = False)
-  i = 0
-  for elt in serie:
-    i += 1
-    if elt < 5:
-      print('on supprime ', elt, 'dont la corrélation est inférieure à 5%')
-      df = df.drop(serie.index[i], axis = 1)
-  
-  #remis si besoin df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
+  st.markdown('Par hypothèse issue de notre expérience, sur ce type de jeu de données, la direction des vents ainsi que Temp9am sont trop peut corréllées, elles sont donc supprimées automatiquement ')
+  df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
   
 
   ##Découpage des données en jeu d'entrainement et jeu test pour
