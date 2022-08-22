@@ -154,7 +154,6 @@ if uploaded_file is not None:
 
   #le score AUC
   roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
-  st.write('Le score AUC est de', roc_auc_score_KNNsm, 'plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
   #la courbe ROC
   fig = plt.figure();
   plt.plot(false_positive_rate, true_positive_rate);
@@ -164,6 +163,8 @@ if uploaded_file is not None:
   plt.ylabel('True Positive Rate');
   plt.xlabel('False Positive Rate');
   st.pyplot(fig);
+  st.write('Le score AUC est de', roc_auc_score_KNNsm, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+
   
   #Résultat :
   st.markdown("confirmation de la matrice de confusion")
