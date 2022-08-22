@@ -97,10 +97,7 @@ if uploaded_file is not None:
 
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
   df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-
-  st.markdown("on supprime toutes les lignes ou il y a une manquante")
-  df_bourrin = df.dropna()
-  df_bourrin.shape
+  df_bourrin = df #renommer le dataset pour lecture (rappel de la stratégie "bourrine" : dropna).
 
 
   ##Découpage des données en jeu d'entrainement et jeu test pour
