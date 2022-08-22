@@ -120,7 +120,6 @@ if uploaded_file is not None:
   #préparation de l'oversampling SMOTE
   smo = SMOTE()
   x_sm, y_sm = smo.fit_resample(x, y)
-  st.write('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
 
   # réduction du jeu de données, répartition en jeux train et test
   x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
