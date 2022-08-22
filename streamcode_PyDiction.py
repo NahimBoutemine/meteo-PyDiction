@@ -106,22 +106,16 @@ if uploaded_file is not None:
   fig, ax = plt.subplots()
   sns.heatmap(df.corr(), ax=ax)
   st.write(fig)
-
- 
-  #application
-
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
   df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-  df_bourrin = df #renommer le dataset pour lecture (rappel de la stratégie "bourrine" : dropna).
-
 
   ##Découpage des données en jeu d'entrainement et jeu test pour
   #permettre d'évaluer la performance globale des modèles sur un jeu nouveau,
   #à hauteur de 20 % des données en test, avec en paramètre randomstate=42 rempli pour la reproductibilité 
   #des résultats :
   #(méthode courante d'évaluation):
-  y = df_bourrin['RainTomorrow_encode']
-  x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
+  y = df['RainTomorrow_encode']
+  x = df.drop('RainTomorrow_encode', axis = 1)
 
   #préparation de l'oversampling SMOTE
   smo = SMOTE()
@@ -182,7 +176,3 @@ if uploaded_file is not None:
   MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
   st.write("Mean Absolute Error' ou 'MAE' : " + str(MAE_KNNsm))
   st.markdown("la MAE est faible, ce qui corrobore avec la bonne performance du modèle")
-
-
-
-
