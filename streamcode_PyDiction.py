@@ -126,7 +126,7 @@ if uploaded_file is not None:
   ##Précision et f1-score :
   y_pred_train_KNNsm = model.predict(x_sm_train)
   y_pred_test_KNNsm = model.predict(x_sm_test)
-  st.markdown('Les scores d accuracy et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+  st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
   #accuracy : 
   acc_train_KNNsm  = accuracy_score(y_sm_train, y_pred_train_KNNsm)
