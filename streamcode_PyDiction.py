@@ -166,11 +166,8 @@ if uploaded_file is not None:
   st.write('Le score AUC est de', roc_auc_score_KNNsm, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
 
   
-  #Résultat :
-  st.markdown("confirmation de la matrice de confusion")
-  st.markdown("le classement des vrais positifs est moins bon que le classement des vrais négatifs")
+  st.markdown("le classement des vrais positifs est normalement moins bon que le classement des vrais négatifs")
 
   # MAE :
   MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
   st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE_KNNsm), ', plus elle est basse plus le modèle est précis.')
-  st.markdown("la MAE est faible, ce qui corrobore avec la bonne performance du modèle")
