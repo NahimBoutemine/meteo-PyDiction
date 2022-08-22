@@ -165,8 +165,7 @@ if uploaded_file is not None:
   plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7");
   plt.ylabel('True Positive Rate');
   plt.xlabel('False Positive Rate');
-  st.pyplot(fig)
-
+  st.pyplot(fig);
   
   #Résultat :
   st.markdown("confirmation de la matrice de confusion")
