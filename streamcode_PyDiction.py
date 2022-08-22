@@ -30,7 +30,7 @@ st.title("PyDiction")
 st.header("PyDiction")
 
 st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
-st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML).")
+st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). Il permet de prédire si la pluie est présente sur un point quelconque australien à partir de données météorologiques telles que décrites plus bas.' ")
 st.markdown("Procédure : il vous faudra charger des données de météorologie (températures etc) les plus conséquentes possibles ")
 st.markdown("au FORMAT CSV. Ensuite, vous pourrez suivre les étapes et répondre aux questions jusqu'à la création du modèle et la prédiction de la présence ou non de pluie à J+1, sur un point quelconque du territoire australien. ")
 st.markdown("Le score de prédiction sera affiché en fin. Les données rentrées devront être du même type que ce sur ce lien https://www.kaggle.com/jsphyg/weather-dataset-rattle-package, car le modèle est construit à partir de ces dernières")
