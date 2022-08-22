@@ -152,17 +152,16 @@ if uploaded_file is not None:
 
   #AUC :
   false_positive_rate, true_positive_rate, thresholds = roc_curve(y_sm_test, model.predict(x_sm_test), pos_label = 1)
-  st.write('false_positive_rate :', false_positive_rate, 'true_positive_rate :', true_positive_rate)
 
   #le score AUC
   roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
-  st.write('score AUC sur données aprèes smote', roc_auc_score_KNNsm);
-
+  st.write('Le score AUC est de', roc_auc_score_KNNsm, 'plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
   #la courbe ROC
   fig = plt.figure();
   plt.plot(false_positive_rate, true_positive_rate);
   plt.plot([0, 1], ls="--");
-  plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7");
+  plt.plot([0, 0], [1, 0] , c=".7"), 
+  plt.plot([1, 1] , c=".7");
   plt.ylabel('True Positive Rate');
   plt.xlabel('False Positive Rate');
   st.pyplot(fig);
