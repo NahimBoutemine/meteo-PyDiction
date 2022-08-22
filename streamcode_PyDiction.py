@@ -167,14 +167,13 @@ if uploaded_file is not None:
   #la courbe ROC
 
 
-  fig = plt.figure()
-  plt.plot(false_positive_rate, true_positive_rate)
-  plt.plot([0, 1], ls="--")
-  plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7")
-  plt.ylabel('True Positive Rate')
-  plt.xlabel('False Positive Rate')
-  plt.show()
-  
+  fig = plt.figure();
+  plt.plot(false_positive_rate, true_positive_rate);
+  plt.plot([0, 1], ls="--");
+  plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7");
+  plt.ylabel('True Positive Rate');
+  plt.xlabel('False Positive Rate');
+  plt.show();
   st.pyplot(fig)
 
   
@@ -185,7 +184,6 @@ if uploaded_file is not None:
   # MAE :
   MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
   st.write("Mean Absolute Error' ou 'MAE' : " + str(MAE_KNNsm))
-
   st.markdown("la MAE est faible, ce qui corrobore avec la bonne performance du modèle")
 
 
