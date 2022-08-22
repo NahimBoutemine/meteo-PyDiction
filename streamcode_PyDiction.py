@@ -111,7 +111,8 @@ if uploaded_file is not None:
   serie = 100*abs(Var_Corr['RainTomorrow_encode']).sort_values(ascending = False))
   for elt in serie: 
     if elt < 5:
-      df = df.drop(serie.index, axis = 1)
+      print('on supprime ', elt, 'dont la corrélation est inférieure à 5%')
+      df = df.drop(Index(serie).get_loc(lt), axis = 1)
   
   #remis si besoin df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
   
