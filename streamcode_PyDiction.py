@@ -27,7 +27,6 @@ from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 
 st.title("PyDiction")
-st.header("PyDiction")
 
 st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
 st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). Il permet de prédire si la pluie est présente sur un point quelconque australien à partir de données météorologiques telles que décrites plus bas. ")
@@ -128,7 +127,7 @@ if uploaded_file is not None:
   x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
 
   #itération du modèle : KNN, avec les données réduites.
-  st.markdown('Le modèle optimal est selon notre expérience un KNN que nous avons optimisé. Regardons les données 
+  st.markdown('Le modèle optimal est selon notre expérience un KNN que nous avons optimisé. Regardons les résultats de prédiction :  ')
   model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
   model.fit(x_sm_train,y_sm_train)
 
