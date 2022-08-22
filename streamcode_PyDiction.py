@@ -162,18 +162,15 @@ if uploaded_file is not None:
 
   #le score AUC
   roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
-  st.write('score AUC sur données aprèes smote', roc_auc_score_KNNsm)
+  st.write('score AUC sur données aprèes smote', roc_auc_score_KNNsm);
 
   #la courbe ROC
-
-
   fig = plt.figure();
   plt.plot(false_positive_rate, true_positive_rate);
   plt.plot([0, 1], ls="--");
   plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7");
   plt.ylabel('True Positive Rate');
   plt.xlabel('False Positive Rate');
-  plt.show();
   st.pyplot(fig)
 
   
