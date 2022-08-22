@@ -8,6 +8,8 @@ import streamlit as st
 import seaborn as sns
 import numpy as np
 from imblearn.over_sampling import RandomOverSampler, SMOTE
+from sklearn.model_selection import train_test_split, KFold, GridSearchCV
+
 
 st.title("PyDiction")
 st.header("PyDiction")
@@ -91,83 +93,83 @@ if uploaded_file is not None:
   st.write(fig)
 
  
-#☻application
+  #application
 
-st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
-df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
+  st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
+  df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 
-st.markdown("on supprime toutes les lignes ou il y a une manquante")
-df_bourrin = df.dropna()
-df_bourrin.shape
+  st.markdown("on supprime toutes les lignes ou il y a une manquante")
+  df_bourrin = df.dropna()
+  df_bourrin.shape
 
 
-##Découpage des données en jeu d'entrainement et jeu test pour
-#permettre d'évaluer la performance globale des modèles sur un jeu nouveau,
-#à hauteur de 20 % des données en test, avec en paramètre randomstate=42 rempli pour la reproductibilité 
-#des résultats :
-#(méthode courante d'évaluation):
-y = df_bourrin['RainTomorrow_encode']
-x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
+  ##Découpage des données en jeu d'entrainement et jeu test pour
+  #permettre d'évaluer la performance globale des modèles sur un jeu nouveau,
+  #à hauteur de 20 % des données en test, avec en paramètre randomstate=42 rempli pour la reproductibilité 
+  #des résultats :
+  #(méthode courante d'évaluation):
+  y = df_bourrin['RainTomorrow_encode']
+  x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
 
-#préparation de l'oversampling SMOTE
-smo = SMOTE()
-x_sm, y_sm = smo.fit_resample(x, y)
-st.write('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
+  #préparation de l'oversampling SMOTE
+  smo = SMOTE()
+  x_sm, y_sm = smo.fit_resample(x, y)
+  st.write('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
 
-# réduction du jeu de données, répartition en jeux train et test
-x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+  # réduction du jeu de données, répartition en jeux train et test
+  x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
 
-#itération du modèle : KNN, avec les données réduites.
-model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
-model.fit(x_sm_train,y_sm_train)
+  #itération du modèle : KNN, avec les données réduites.
+  model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
+  model.fit(x_sm_train,y_sm_train)
 
-##Précision et f1-score :
-y_pred_train_KNNsm = model.predict(x_sm_train)
-y_pred_test_KNNsm = model.predict(x_sm_test)
+  ##Précision et f1-score :
+  y_pred_train_KNNsm = model.predict(x_sm_train)
+  y_pred_test_KNNsm = model.predict(x_sm_test)
 
-#accuracy : 
-acc_train_KNNsm  = accuracy_score(y_sm_train, y_pred_train_KNNsm)
-acc_test_KNNsm  = accuracy_score(y_sm_test, y_pred_test_KNNsm)
-st.write("acc_train : ", acc_train_KNNsm, "acc_test :", acc_test_KNNsm)
+  #accuracy : 
+  acc_train_KNNsm  = accuracy_score(y_sm_train, y_pred_train_KNNsm)
+  acc_test_KNNsm  = accuracy_score(y_sm_test, y_pred_test_KNNsm)
+  st.write("acc_train : ", acc_train_KNNsm, "acc_test :", acc_test_KNNsm)
 
-##F1-score :
-f1score_train_KNNsm = f1_score(y_sm_train, y_pred_train_KNNsm, average='macro')
-f1score_test_KNNsm = f1_score(y_sm_test, y_pred_test_KNNsm, average='macro')
-st.write("F1score_train : ", f1score_train_KNNsm, "F1score_test : ", f1score_test_KNNsm)
+  ##F1-score :
+  f1score_train_KNNsm = f1_score(y_sm_train, y_pred_train_KNNsm, average='macro')
+  f1score_test_KNNsm = f1_score(y_sm_test, y_pred_test_KNNsm, average='macro')
+  st.write("F1score_train : ", f1score_train_KNNsm, "F1score_test : ", f1score_test_KNNsm)
 
-#matrice de confusion : 
-st.write(pd.crosstab(y_sm_test, y_pred_test_KNNsm, rownames=['Classe réelle'], colnames=['Classe prédite']))
+  #matrice de confusion : 
+  st.write(pd.crosstab(y_sm_test, y_pred_test_KNNsm, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
-#résultats :
-st.markdown("hausse à la fois de l'accuracy et du f1 score (0.87 et 0.87 contre 0.85 et 0.74 respectivement pour le KNN sans oversampling")
-st.markdown("meilleur classement des positifs !")
+  #résultats :
+  st.markdown("hausse à la fois de l'accuracy et du f1 score (0.87 et 0.87 contre 0.85 et 0.74 respectivement pour le KNN sans oversampling")
+  st.markdown("meilleur classement des positifs !")
 
-#AUC :
-false_positive_rate, true_positive_rate, thresholds = roc_curve(y_sm_test, model.predict(x_sm_test), pos_label = 1)
-st.write('false_positive_rate :', false_positive_rate, 'true_positive_rate :', true_positive_rate)
+  #AUC :
+  false_positive_rate, true_positive_rate, thresholds = roc_curve(y_sm_test, model.predict(x_sm_test), pos_label = 1)
+  st.write('false_positive_rate :', false_positive_rate, 'true_positive_rate :', true_positive_rate)
 
-#le score AUC
-roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
-st.write('score AUC sur données aprèes smote', roc_auc_score_KNNsm)
+  #le score AUC
+  roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
+  st.write('score AUC sur données aprèes smote', roc_auc_score_KNNsm)
 
-#la courbe ROC
-plt.title('Receiver Operating Characteristic - logreg')
-plt.plot(false_positive_rate, true_positive_rate)
-plt.plot([0, 1], ls="--")
-plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7")
-plt.ylabel('True Positive Rate')
-plt.xlabel('False Positive Rate')
-plt.show()
+  #la courbe ROC
+  plt.title('Receiver Operating Characteristic - logreg')
+  plt.plot(false_positive_rate, true_positive_rate)
+  plt.plot([0, 1], ls="--")
+  plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7")
+  plt.ylabel('True Positive Rate')
+  plt.xlabel('False Positive Rate')
+  plt.show()
 
-#Résultat :
-st.markdown("confirmation de la matrice de confusion")
-st.markdown("le classement des vrais positifs est moins bon que le classement des vrais négatifs")
+  #Résultat :
+  st.markdown("confirmation de la matrice de confusion")
+  st.markdown("le classement des vrais positifs est moins bon que le classement des vrais négatifs")
 
-# MAE :
-MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
-st.write("Mean Absolute Error' ou 'MAE' : " + str(MAE_KNNsm))
+  # MAE :
+  MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
+  st.write("Mean Absolute Error' ou 'MAE' : " + str(MAE_KNNsm))
 
-st.markdown("la MAE est faible, ce qui corrobore avec la bonne performance du modèle")
+  st.markdown("la MAE est faible, ce qui corrobore avec la bonne performance du modèle")
 
 
 
