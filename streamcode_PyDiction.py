@@ -30,7 +30,7 @@ st.title("PyDiction")
 st.header("PyDiction")
 
 st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
-st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). Il permet de prédire si la pluie est présente sur un point quelconque australien à partir de données météorologiques telles que décrites plus bas.' ")
+st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). Il permet de prédire si la pluie est présente sur un point quelconque australien à partir de données météorologiques telles que décrites plus bas. ")
 st.markdown("Procédure : il vous faudra charger des données de météorologie (températures etc) les plus conséquentes possibles ")
 st.markdown("au FORMAT CSV. Ensuite, vous pourrez suivre les étapes et répondre aux questions jusqu'à la création du modèle et la prédiction de la présence ou non de pluie à J+1, sur un point quelconque du territoire australien. ")
 st.markdown("Le score de prédiction sera affiché en fin. Les données rentrées devront être du même type que ce sur ce lien https://www.kaggle.com/jsphyg/weather-dataset-rattle-package, car le modèle est construit à partir de ces dernières")
@@ -128,6 +128,7 @@ if uploaded_file is not None:
   x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
 
   #itération du modèle : KNN, avec les données réduites.
+  st.markdown('Le modèle optimal est selon notre expérience un KNN que nous avons optimisé. Regardons les données 
   model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
   model.fit(x_sm_train,y_sm_train)
 
@@ -153,7 +154,7 @@ if uploaded_file is not None:
   st.markdown("meilleur classement des positifs !")
 
   #AUC et ROC Curve:
-  st.markdown('Imprimons à présent la courbe ROC de votre modèle, sont interprétation est donnée ci-dessous. ')
+  st.markdown('Imprimons à présent la courbe ROC de ce modèle, sont interprétation est donnée ci-dessous. ')
   false_positive_rate, true_positive_rate, thresholds = roc_curve(y_sm_test, model.predict(x_sm_test), pos_label = 1)
   roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
   #la courbe ROC
