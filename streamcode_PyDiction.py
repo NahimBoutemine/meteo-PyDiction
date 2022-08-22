@@ -109,13 +109,11 @@ if uploaded_file is not None:
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
   
   serie = 100*abs(Var_Corr['RainTomorrow_encode']).sort_values(ascending = False)
-  list = pd.Series(série)
-  for elt in list: 
-    if elt < = 5:
-      df = df.drop(list.index, axis = 1)
+  for elt in serie: 
+    if elt < 5:
+      df = df.drop(serie.index, axis = 1)
   
-  df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-  
+  #remis si besoin df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
   
 
   ##Découpage des données en jeu d'entrainement et jeu test pour
