@@ -167,7 +167,7 @@ if uploaded_file is not None:
   #la courbe ROC
 
 
-  fig, ax = plt.title('Receiver Operating Characteristic - logreg')
+  fig = plt.figure()
   plt.plot(false_positive_rate, true_positive_rate)
   plt.plot([0, 1], ls="--")
   plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7")
