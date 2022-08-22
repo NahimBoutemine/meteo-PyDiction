@@ -104,7 +104,7 @@ if uploaded_file is not None:
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
   df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
   
-  st.markdown('le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivvement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
+  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
   #(méthode courante d'évaluation):
   y = df['RainTomorrow_encode']
   x = df.drop('RainTomorrow_encode', axis = 1)
