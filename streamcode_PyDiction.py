@@ -108,7 +108,7 @@ if uploaded_file is not None:
   st.write(fig)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
   
-  serie = 100*abs(Var_Corr['RainTomorrow_encode']).sort_values(ascending = False)
+  serie = 100*abs(Var_Corr['RainTomorrow_encode']).sort_values(ascending = False))
   for elt in serie: 
     if elt < 5:
       df = df.drop(serie.index, axis = 1)
