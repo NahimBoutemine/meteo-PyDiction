@@ -42,16 +42,7 @@ if rad == "Introduction":
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
 
 if rad == "2":
-
-    
-    
-
-
-
-
-
-
-#si le fichier est chargé, alors lancer le code seulement ensuite (condition nécessaire sinon le code se lance trop tôt et bloque):
+  #si le fichier est chargé, alors lancer le code seulement ensuite (condition nécessaire sinon le code se lance trop tôt et bloque):
 uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
@@ -178,3 +169,13 @@ if uploaded_file is not None:
   st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE_KNNsm), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
               
               #conf que c'est bien une prez de l'efficacité et evaluation de notre modèle, dans ce cas présenter tout en allant à essentiel, ajouter un réso de neurone pour comparer efficacité, des graphiques intéractifs sur ROC, les classes diparates et de la dataviz, des clics pour passer à l'étape suivante et une conclusion et limite de la suite des travaux.
+
+
+    
+    
+
+
+
+
+
+
