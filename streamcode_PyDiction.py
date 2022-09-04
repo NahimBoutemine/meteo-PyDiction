@@ -51,6 +51,33 @@ def main():
         "\n\n"
         "Lamia BOUGARA\n(https://www.linkedin.com/in/lamia-bougara-68aaa9124/) "
         )
+    
+  def page_dashboard(state):
+    st.title("VoiceGlass")
+    st.header("Lunettes connectées pour malentendants")
+    st.write("\n\n")
+    img = Image.open("images/voiceglass.png")
+    st.image(img, width = 600, caption = "")
+    st.write(
+    "Les personnes malentendantes souffrent d’un problème auditif et de ce fait, se trouvent dans l’incapacité de communiquer aisément avec autrui."
+    "\n\n"
+    "Les lunettes connectées <b>VoiceGlass</b> sont dotées de la technologie de reconnaissance vocale avec des algorithmes de deep learning en termes d’intelligence artificielle."
+    "\n\n"
+    "Elles permettent de localiser la voix d’un interlocuteur puis d’afficher sur les verres la transcription textuelle en temps réel."
+    "\n\n"
+    "Si nous parvenons à fabriquer ces lunettes, il est clair que nous pourrons améliorer la vie des malentendants en leur apportant un confort de vie sans égal."
+    "\n\n"
+    "C’est tout l’objectif de notre projet.", unsafe_allow_html=True)
+
+
+
+
+
+
+
+
+
+
 
 st.title("PyDiction")
 
