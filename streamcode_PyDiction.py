@@ -52,7 +52,7 @@ def main():
         "Lamia BOUGARA\n(https://www.linkedin.com/in/lamia-bougara-68aaa9124/) "
         )
     
-  def page_dashboard(state):
+def page_dashboard(state):
     st.title("VoiceGlass")
     st.header("Lunettes connectées pour malentendants")
     st.write("\n\n")
