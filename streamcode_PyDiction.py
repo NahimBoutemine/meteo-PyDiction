@@ -26,58 +26,7 @@ from sklearn.feature_selection import VarianceThreshold, SelectKBest, SelectFrom
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 
-def main():
-    state = session._get_state()
-    pages = {
-        "Le projet PyDiction": page_dashboard,
-        "Datasets": page_datasets,
-        "Analyse exploratoire": page_eda,
-        "Méthodologie": page_methodologie,
-        "Modélisation": page_modelisation,
-        "Prédiction (démo)": page_demo,
-        "Conclusion & Perspectives": page_conclusion,
-    }
-    st.sidebar.title("VoiceGlass")
-    st.sidebar.subheader("Menu")
-    page = st.sidebar.radio("", tuple(pages.keys()))
-    pages[page](state)
-    state.sync()
-    st.sidebar.info(
-        "Projet DS - Promotion Bootcamp Juillet 2020"
-        "\n\n"
-        "Participants:"
-        "\n\n"
-        "Malik ALY MARECAR (https://www.linkedin.com/in/malik-alymarecar-35502859/)"
-        "\n\n"
-        "Lamia BOUGARA\n(https://www.linkedin.com/in/lamia-bougara-68aaa9124/) "
-        )
-    
-def page_dashboard(state):
-    st.title("VoiceGlass")
-    st.header("Lunettes connectées pour malentendants")
-    st.write("\n\n")
-    img = Image.open("images/voiceglass.png")
-    st.image(img, width = 600, caption = "")
-    st.write(
-    "Les personnes malentendantes souffrent d’un problème auditif et de ce fait, se trouvent dans l’incapacité de communiquer aisément avec autrui."
-    "\n\n"
-    "Les lunettes connectées <b>VoiceGlass</b> sont dotées de la technologie de reconnaissance vocale avec des algorithmes de deep learning en termes d’intelligence artificielle."
-    "\n\n"
-    "Elles permettent de localiser la voix d’un interlocuteur puis d’afficher sur les verres la transcription textuelle en temps réel."
-    "\n\n"
-    "Si nous parvenons à fabriquer ces lunettes, il est clair que nous pourrons améliorer la vie des malentendants en leur apportant un confort de vie sans égal."
-    "\n\n"
-    "C’est tout l’objectif de notre projet.", unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
+st.sidebar.selectbox('select', [1,2,3,4,5])
 
 st.title("PyDiction")
 
