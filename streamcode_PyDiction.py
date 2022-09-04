@@ -26,6 +26,32 @@ from sklearn.feature_selection import VarianceThreshold, SelectKBest, SelectFrom
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 
+def main():
+    state = session._get_state()
+    pages = {
+        "Le projet PyDiction": page_dashboard,
+        "Datasets": page_datasets,
+        "Analyse exploratoire": page_eda,
+        "Méthodologie": page_methodologie,
+        "Modélisation": page_modelisation,
+        "Prédiction (démo)": page_demo,
+        "Conclusion & Perspectives": page_conclusion,
+    }
+    st.sidebar.title("VoiceGlass")
+    st.sidebar.subheader("Menu")
+    page = st.sidebar.radio("", tuple(pages.keys()))
+    pages[page](state)
+    state.sync()
+    st.sidebar.info(
+        "Projet DS - Promotion Bootcamp Juillet 2020"
+        "\n\n"
+        "Participants:"
+        "\n\n"
+        "Malik ALY MARECAR (https://www.linkedin.com/in/malik-alymarecar-35502859/)"
+        "\n\n"
+        "Lamia BOUGARA\n(https://www.linkedin.com/in/lamia-bougara-68aaa9124/) "
+        )
+
 st.title("PyDiction")
 
 st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
