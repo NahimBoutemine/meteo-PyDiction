@@ -95,9 +95,9 @@ if rad == "2":
 
     #encodage :     
     for var in df.select_dtypes(include='object').columns:
-    df[var] = le.fit_transform(df[var])
-    st.markdown("Vérifions les encodages : c'est vérifié. ")
-    st.write(df)
+      df[var] = le.fit_transform(df[var])
+      st.markdown("Vérifions les encodages : c'est vérifié. ")
+      st.write(df)
 
     #heatmap
     st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
