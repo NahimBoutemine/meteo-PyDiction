@@ -26,7 +26,7 @@ from sklearn.feature_selection import VarianceThreshold, SelectKBest, SelectFrom
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 
-rad =st.sidebar.radio("Navigation",["Introduction : Projet et ses créateurs","Partie à resectionner"])
+rad =st.sidebar.radio("Menu",["Introduction : Projet et ses créateurs","Partie à resectionner"])
 
 if rad == "Introduction : Projet et ses créateurs":
   st.header("Première partie")
@@ -41,7 +41,7 @@ if rad == "Introduction : Projet et ses créateurs":
   st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
 
-if rad == "Partie à resectionner:
+if rad == "Partie à resectionner":
   #si le fichier est chargé, alors lancer le code seulement ensuite (condition nécessaire sinon le code se lance trop tôt et bloque):
   uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
   if uploaded_file is not None:
