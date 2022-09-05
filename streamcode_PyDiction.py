@@ -40,7 +40,7 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.title("Les créateurs")
   from PIL import Image
   #Richard = Image.open('Richard.jpg')
-  Nahim = Image.open('Nahim.jpg')
+  Nahim = Image.open('Nahim.png')
   #st.image(Richard, caption='Sunrise by the mountains')
   st.image(Nahim, caption='Sunrise by the mountains')
 
