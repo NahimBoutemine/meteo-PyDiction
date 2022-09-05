@@ -33,16 +33,17 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.title("Introduction : Le projet et ses créateurs")
   
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
-  st.header("Le projet 'PyDiction' (titre du projet)")
+  st.header("Le projet 'PyDiction'")
   
   kangourou = Image.open('kangoufun.jpg')
   st.image(kangourou, caption=' ')
-  st.markdown("Le nom est une synthèse de Prédiction de la pluie demain en utilisant le language Python et ses bibliothèques")
+  st.markdown("Le titre du projet 'PyDiction est une synthèse de Prédiction de la pluie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
   diapo = Image.open('diapo.jpg')
   st.image(diapo, caption="Etapes depuis les données météo jusqu'à la prédiction ")
-  st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow qui vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+  st.markdown("Les données météorologiques de pluie, ensoleillement, températures, pression, vent, humidité, sur plusieurs années, sur 49 stations réparties sur tout le territoire australien.")
+  st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'  qui représente la présence de pluie à jour J + 1 sur un point du territoire australien) qui vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
   st.markdown("Cette application streamlit vise à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction, ainsi que la préparation optimale sur un dataset de ce type.")
  
 #Présentation des créateurs :
