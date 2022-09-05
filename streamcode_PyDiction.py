@@ -31,6 +31,8 @@ rad =st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs","Part
 
 if rad == "Introduction : Le projet et ses créateurs":
   st.title("Introduction : Le projet et ses créateurs")
+  
+#Présentation du projet : titre, contexte, objectifs:
   st.header("Le projet 'PyDiction' (titre du projet)")
   st.markdown("Le nom est une synthèse de Prédiction de la pluie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
@@ -39,9 +41,8 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.markdown("Cette application streamlit sert à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction ainsi que la préparation optimale sur un dataset de ce type.")
   st.markdown("Le modèle nous permet de prédire effectivement la présence de pluie au lendemain avec une précision de plus de 85%, ce qui est acceptable en météorologie. Procédure : il vous faudra charger des données du site kaggle. ")
  
-#Oreésentation des créateurs :
-
-  st.title("Les créateurs") 
+#Présentation des créateurs :
+  st.header("Les créateurs") 
   #Richard = Image.open('Richard.jpg')
   #Richard = Richard.resize((200, 200)) 
   #st.image(Richard, caption='Richard')
