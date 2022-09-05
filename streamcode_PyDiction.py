@@ -32,14 +32,13 @@ rad =st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs","Part
 if rad == "Introduction : Le projet et ses créateurs":
   st.title("Introduction : Le projet et ses créateurs")
   
-#Présentation du projet : titre, contexte, objectifs:
+#Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
   st.header("Le projet 'PyDiction' (titre du projet)")
   st.markdown("Le nom est une synthèse de Prédiction de la pluie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
-  st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow : vaug 1  si la pluie est > 1mm, 0 sinon.")
-  st.markdown("Cette application streamlit sert à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction ainsi que la préparation optimale sur un dataset de ce type.")
-  st.markdown("Le modèle nous permet de prédire effectivement la présence de pluie au lendemain avec une précision de plus de 85%, ce qui est acceptable en météorologie. Procédure : il vous faudra charger des données du site kaggle. ")
+  st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow qui vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+  st.markdown("Cette application streamlit vise à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction, ainsi que la préparation optimale sur un dataset de ce type.")
  
 #Présentation des créateurs :
   st.header("Les créateurs") 
