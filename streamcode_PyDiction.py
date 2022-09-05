@@ -28,16 +28,17 @@ from sklearn import metrics
 
 rad =st.sidebar.radio("Menu",["Introduction : Projet et ses créateurs","Partie à resectionner"])
 
-if rad == "Introduction : Projet et ses créateurs":
+if rad == "Introduction : Le projet et ses créateurs":
   st.header("Première partie")
-  st.title("PyDiction")
+  st.title("Titre projet : PyDiction ")
+  st.markdown("synthèse de Prédiction de la PLuie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
-  st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow.")
-  st.markdown("Cette application streamlit sert à montrer la méthode de construction de notre construction de modèle de prédiction de la variable 'RainTomorrow' ainsi que les résultats de l évlauation qui sont satisfaisants.")
+  st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow : vaug 1  si la pluie est > 1mm, 0 sinon.")
+  st.markdown("Cette application streamlit sert à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction ainsi que la préparation optimale sur un dataset de ce type.")
   st.markdown("Le modèle nous permet de prédire effectivement la présence de pluie au lendemain avec une précision de plus de 85%, ce qui est acceptable en météorologie. Procédure : il vous faudra charger des données du site kaggle. ")
-  st.markdown("Il faut charger au FORMAT CSV. Ensuite, vous pourrez voir les étapes de construction du modèle et constater ses performances. ")
-  st.markdown("Les indicateurs d'évaluation sont présentés en fin.")
+  
+  #Le jeu de données
   st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
 
