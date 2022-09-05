@@ -37,7 +37,7 @@ if rad == "Introduction : Le projet et ses créateurs":
   
   kangourou = Image.open('kangoufun.jpg')
   st.image(kangourou, caption=' ')
-  st.markdown("Le titre du projet 'PyDiction est une synthèse de 'Prédiction' car l'on cherche ici à prédire la pluie et du language Python utilisé pour la prédire")
+  st.markdown("Le titre du projet 'PyDiction est une synthèse du mot prédiction et de python car l'on cherche ici à prédire la pluie grâce au language Python")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
   diapo = Image.open('diapo.jpg')
