@@ -34,6 +34,9 @@ if rad == "Introduction : Le projet et ses créateurs":
   
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
   st.header("Le projet 'PyDiction' (titre du projet)")
+  
+  Nahim = Image.open('kangoufun.jpg')
+  st.image(Nahim, caption='Nahim')
   st.markdown("Le nom est une synthèse de Prédiction de la pluie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
@@ -48,13 +51,13 @@ if rad == "Introduction : Le projet et ses créateurs":
   Nahim = Image.open('Nahim.png')
   Nahim = Nahim.resize((200, 200))
   st.image(Nahim, caption='Nahim')
-
   
-  #Le jeu de données
-  st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
-  st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
 
 if rad == "Partie à resectionner":
+  
+   #Le jeu de données
+  st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
+  st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   #si le fichier est chargé, alors lancer le code seulement ensuite (condition nécessaire sinon le code se lance trop tôt et bloque):
   uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
   if uploaded_file is not None:
