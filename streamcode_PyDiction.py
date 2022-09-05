@@ -29,8 +29,8 @@ from sklearn import metrics
 rad =st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs","Partie à resectionner"])
 
 if rad == "Introduction : Le projet et ses créateurs":
-  st.header("Introduction : Le projet et ses créateurs")
-  st.title("Titre projet : PyDiction ")
+  st.title("Introduction : Le projet et ses créateurs")
+  st.header("Titre projet : PyDiction ")
   st.markdown("Le nom est une synthèse de Prédiction de la PLuie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
