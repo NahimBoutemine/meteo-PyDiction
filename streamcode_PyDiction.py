@@ -42,8 +42,8 @@ if rad == "Introduction : Le projet et ses créateurs":
   #Richard = Image.open('Richard.jpg')
   Nahim = Image.open('Nahim.png')
   Nahim = Nahim.resize((200, 200))
-  #st.image(Richard, caption='Nahim')
-  st.image(Nahim, caption='Sunrise by the mountains')
+  #st.image(Richard, caption='Richard')
+  st.image(Nahim, caption='Nahim')
 
   
   #Le jeu de données
