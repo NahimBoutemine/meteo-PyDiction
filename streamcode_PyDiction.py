@@ -30,8 +30,8 @@ rad =st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs","Part
 
 if rad == "Introduction : Le projet et ses créateurs":
   st.title("Introduction : Le projet et ses créateurs")
-  st.header("Titre projet : PyDiction ")
-  st.markdown("Le nom est une synthèse de Prédiction de la PLuie demain en utilisant le language Python et ses bibliothèques")
+  st.header("Le projet 'PyDiction' (titre du projet)")
+  st.markdown("Le nom est une synthèse de Prédiction de la pluie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
   st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow : vaug 1  si la pluie est > 1mm, 0 sinon.")
