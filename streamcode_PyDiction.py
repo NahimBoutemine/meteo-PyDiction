@@ -30,6 +30,8 @@ from PIL import Image
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Partie à resectionner"])
 
 if rad == "Introduction : Le projet et ses créateurs":
+  def title(url):
+     st.markdown(f'<p style="background-color:#0066cc;color:#33ff33;font-size:24px;border-radius:2%;">{url}</p>', unsafe_allow_html=True)
   st.title("Introduction : Le projet et ses créateurs")
   
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
