@@ -44,8 +44,8 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.image(diapo, caption="Etapes depuis les données météo jusqu'à la prédiction ")
     st.markdown("Les données météorologiques de pluie, ensoleillement, températures, pression, vent, humidité, sur plusieurs années, sur 49 stations réparties sur tout le territoire australien.")
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
-    st.markdown("'RainTomorrow' représente la présence de pluie à jour J + 1 sur un point du territoire australien) qui vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
-    st.markdown("Cette application streamlit vise à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction, ainsi que la préparation optimale sur un dataset de ce type.")
+    st.markdown("'RainTomorrow' représente la présence de pluie à jour J + 1 sur un point du territoire australien, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+    st.markdown("Cette application streamlit vise à montrer les étapes ayant permis de conclure sur une méthode optimale de préparation des données et sur un modèle au taux de prédiction satisfisant pour ce type de données." )
 
 #Présentation des créateurs :
   st.header("Les créateurs") 
