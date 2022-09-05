@@ -41,7 +41,7 @@ if rad == "Introduction : Le projet et ses créateurs":
   from PIL import Image
   #Richard = Image.open('Richard.jpg')
   Nahim = Image.open('Nahim.png')
-  Nahim = Nahim.resize((100, 400))
+  Nahim = Nahim.resize((200, 200))
   #st.image(Richard, caption='Nahim')
   st.image(Nahim, caption='Sunrise by the mountains')
 
