@@ -48,8 +48,8 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.markdown("Cette application streamlit vise à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction, ainsi que la préparation optimale sur un dataset de ce type.")
 
 #Présentation des créateurs :
+  st.header("Les créateurs") 
   if st.button('Cliquer pour découvrir les créateurs du projet'):
-    st.header("Les créateurs") 
     #Richard = Image.open('Richard.jpg')
     #Richard = Richard.resize((200, 200)) 
     #st.image(Richard, caption='Richard')
