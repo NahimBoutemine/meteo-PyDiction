@@ -54,7 +54,6 @@ if rad == "Introduction : Le projet et ses créateurs":
     #Richard = Richard.resize((200, 200)) 
     #st.image(Richard, caption='Richard')
     Nahim = Image.open('Nahim.png')
-    Nahim = Nahim.resize((100, 100))
     st.image(Nahim, caption='Nahim, anciennement ingénieur développement durable et formateur en sciences, en reconversion dans la data science, la progammation et les maths appliquées')
 
 
