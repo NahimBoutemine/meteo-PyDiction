@@ -25,6 +25,7 @@ from sklearn.metrics import f1_score
 from sklearn.feature_selection import VarianceThreshold, SelectKBest, SelectFromModel, f_regression, mutual_info_regression, RFE, RFECV
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
+from PIL import Image
 
 rad =st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs","Partie à resectionner"])
 
@@ -37,12 +38,15 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow : vaug 1  si la pluie est > 1mm, 0 sinon.")
   st.markdown("Cette application streamlit sert à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction ainsi que la préparation optimale sur un dataset de ce type.")
   st.markdown("Le modèle nous permet de prédire effectivement la présence de pluie au lendemain avec une précision de plus de 85%, ce qui est acceptable en météorologie. Procédure : il vous faudra charger des données du site kaggle. ")
-  st.title("Les créateurs")
-  from PIL import Image
+ 
+#Oreésentation des créateurs :
+
+  st.title("Les créateurs") 
   #Richard = Image.open('Richard.jpg')
+  #Richard = Richard.resize((200, 200)) 
+  #st.image(Richard, caption='Richard')
   Nahim = Image.open('Nahim.png')
   Nahim = Nahim.resize((200, 200))
-  #st.image(Richard, caption='Richard')
   st.image(Nahim, caption='Nahim')
 
   
