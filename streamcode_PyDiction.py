@@ -27,7 +27,7 @@ from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 from PIL import Image
 
-rad =st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs","Partie à resectionner"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Partie à resectionner"])
 
 if rad == "Introduction : Le projet et ses créateurs":
   st.title("Introduction : Le projet et ses créateurs")
@@ -35,11 +35,13 @@ if rad == "Introduction : Le projet et ses créateurs":
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
   st.header("Le projet 'PyDiction' (titre du projet)")
   
-  Nahim = Image.open('kangoufun.jpg')
-  st.image(Nahim, caption='Nahim')
+  kangourou = Image.open('kangoufun.jpg')
+  st.image(kangourou, caption=' ')
   st.markdown("Le nom est une synthèse de Prédiction de la pluie demain en utilisant le language Python et ses bibliothèques")
   st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
   st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
+  diapo = Image.open('diapo.jpg')
+  st.image(diapo, caption="Etapes depuis les données météo jusqu'à la prédiction ")
   st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow qui vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
   st.markdown("Cette application streamlit vise à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction, ainsi que la préparation optimale sur un dataset de ce type.")
  
