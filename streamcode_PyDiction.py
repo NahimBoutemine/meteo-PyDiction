@@ -34,7 +34,7 @@ if rad == "Introduction : Le projet et ses créateurs":
   
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
   st.header("Le projet 'PyDiction'")
-  if st.button('Cliquer pour afficher la description du projet'):
+  if st.button('Cliquer ici pour afficher la description du projet et de cette application'):
     kangourou = Image.open('kangoufun.jpg')
     st.image(kangourou, caption=' ')
     st.markdown("Le titre du projet 'PyDiction' est une synthèse des mots prédiction et python car l'on cherche ici à prédire la pluie et python a été employé pour cela ainsi que le Machine Learning. ")
@@ -49,12 +49,12 @@ if rad == "Introduction : Le projet et ses créateurs":
 
 #Présentation des créateurs :
   st.header("Les créateurs") 
-  if st.button('Cliquer pour découvrir les créateurs du projet'):
+  if st.button('Cliquer ici pour découvrir les créateurs du projet'):
     #Richard = Image.open('Richard.jpg')
     #Richard = Richard.resize((200, 200)) 
     #st.image(Richard, caption='Richard')
     Nahim = Image.open('Nahim.png')
-    st.image(Nahim, caption='Nahim, anciennement ingénieur développement durable et formateur en sciences, en reconversion dans la data science, la progammation et les maths appliquées')
+    st.image(Nahim, caption="Nahim, anciennement ingénieur développement durable et formateur en sciences, en reconversion dans l'informatique (data science, web et bases de données) et les maths appliquées ")
 
 
 if rad == "Partie à resectionner":
