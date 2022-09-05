@@ -37,6 +37,13 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.markdown("Le but a été de contruire un modèle de prédiction de la variable RainTomorrow : vaug 1  si la pluie est > 1mm, 0 sinon.")
   st.markdown("Cette application streamlit sert à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction ainsi que la préparation optimale sur un dataset de ce type.")
   st.markdown("Le modèle nous permet de prédire effectivement la présence de pluie au lendemain avec une précision de plus de 85%, ce qui est acceptable en météorologie. Procédure : il vous faudra charger des données du site kaggle. ")
+  st.title("Les créateurs")
+  from PIL import Image
+  #Richard = Image.open('Richard.jpg')
+  Nahim = Image.open('Nahim.jpg')
+  #st.image(Richard, caption='Sunrise by the mountains')
+  st.image(Nahim, caption='Sunrise by the mountains')
+
   
   #Le jeu de données
   st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
