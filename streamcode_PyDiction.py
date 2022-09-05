@@ -34,19 +34,22 @@ if rad == "Introduction : Le projet et ses créateurs":
   
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
   st.header("Le projet 'PyDiction'")
-  
-  kangourou = Image.open('kangoufun.jpg')
-  st.image(kangourou, caption=' ')
-  st.markdown("Le titre du projet 'PyDiction' est une synthèse des mots prédiction et python car l'on cherche ici à prédire la pluie et python a été employé pour cela ainsi que le Machine Learning. ")
-  st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
-  st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
-  diapo = Image.open('diapo.jpg')
-  st.image(diapo, caption="Etapes depuis les données météo jusqu'à la prédiction ")
-  st.markdown("Les données météorologiques de pluie, ensoleillement, températures, pression, vent, humidité, sur plusieurs années, sur 49 stations réparties sur tout le territoire australien.")
-  st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
-  st.markdown("'RainTomorrow' représente la présence de pluie à jour J + 1 sur un point du territoire australien) qui vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
-  st.markdown("Cette application streamlit vise à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction, ainsi que la préparation optimale sur un dataset de ce type.")
- 
+  if st.button('Say hello'):
+     st.write('Why hello there')
+    
+  else:
+    kangourou = Image.open('kangoufun.jpg')
+    st.image(kangourou, caption=' ')
+    st.markdown("Le titre du projet 'PyDiction' est une synthèse des mots prédiction et python car l'on cherche ici à prédire la pluie et python a été employé pour cela ainsi que le Machine Learning. ")
+    st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
+    st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
+    diapo = Image.open('diapo.jpg')
+    st.image(diapo, caption="Etapes depuis les données météo jusqu'à la prédiction ")
+    st.markdown("Les données météorologiques de pluie, ensoleillement, températures, pression, vent, humidité, sur plusieurs années, sur 49 stations réparties sur tout le territoire australien.")
+    st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
+    st.markdown("'RainTomorrow' représente la présence de pluie à jour J + 1 sur un point du territoire australien) qui vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+    st.markdown("Cette application streamlit vise à montrer les étapes du travail jusqu'à la détermination du modèle idéal de prédiction, ainsi que la préparation optimale sur un dataset de ce type.")
+
 #Présentation des créateurs :
   st.header("Les créateurs") 
   #Richard = Image.open('Richard.jpg')
