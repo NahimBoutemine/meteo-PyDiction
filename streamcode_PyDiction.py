@@ -53,11 +53,9 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.header("Les créateurs") 
   if st.button('Cliquer ici pour découvrir les créateurs du projet'):
     Richard = Image.open('richard.jpg')
-    Richard = Richard.resize((200, 200)) 
-    st.image(Richard, caption='Richard')
+    st.image(Richard, caption='Richard', width = 200)
     Nahim = Image.open('Nahim.png')
-    Nahim = Nahim.resize((200, 200))
-    st.image(Nahim, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
+    st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
 
 if rad == "Partie à resectionner":
