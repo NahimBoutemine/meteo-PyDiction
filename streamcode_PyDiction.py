@@ -66,9 +66,10 @@ if rad == "Présentation et exploration des données":
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   if st.button("Cliquer ici pour découvrir la suite de l'exploration des données brutes"):
     df = pd.read_csv("weatherAUS.csv")
+    st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
+    st.write(df)
     st.markdown("Le nombre de lignes est:")
     st.write(len(df))
-    st.write(df)
     st.markdown("S'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
     st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
     percent_missing_df = df.isnull().sum() * 100 / len(df)
