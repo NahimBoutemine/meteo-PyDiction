@@ -60,7 +60,7 @@ if rad == "Introduction : Le projet et ses créateurs":
 if rad == "Présentation et exploration des données":
   
    #Présentation du jeu de données
-  st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
+  st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("Les dates se siovent globalement pour chacune de stations et pour chacune des stations les données météorologiques journalières sont référencées sur plusieurs mois.")
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
@@ -69,11 +69,10 @@ if rad == "Présentation et exploration des données":
   #si le fichier est chargé, alors lancer le code seulement ensuite (condition nécessaire sinon le code se lance trop tôt et bloque):
   uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
   if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    df = pd.read_csv("weatherAUS.csv")
 
     st.markdown("Le nombre de lignes est:")
     st.write(len(df))
-    st.markdown("Le nombre de données total est:")
     st.write(df)
     st.markdown("S'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
     st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
