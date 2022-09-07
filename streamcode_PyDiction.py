@@ -85,8 +85,10 @@ if rad == "Présentation et exploration des données":
     st.write(percentage_dupli)
     st.markdown("Affichons de nouveau le nombre de lignes, ce nombre même réduit par rapport au départ (plus de 50% de suppression) nous a permis d'avoir un score de prédiction suffisant :")
     st.write(len(df))
-
+    
     #afficher la répartition des valeurs dans la cible A FAIRE ET DECRIRE
+    fig = plt.figure()
+    sns.countplot(data = df, x = 'RainTomorrow')
 
     st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
     #encodage des données
