@@ -85,14 +85,13 @@ if rad == "Présentation et exploration des données":
     st.write(percentage_dupli)
     st.markdown("Affichons de nouveau le nombre de lignes, ce nombre même réduit par rapport au départ (plus de 50% de suppression) nous a permis d'avoir un score de prédiction suffisant :")
     st.write(len(df))
-    st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
 
     #afficher la répartition des valeurs dans la cible A FAIRE ET DECRIRE
 
+    st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
     #encodage des données
 
     ##Traitement de la variable 'date' :
-
     #dt.datetime pour extraire année, mois, et jour
     df['year'] = pd.to_datetime(df['Date']).dt.year
     df['month'] = pd.to_datetime(df['Date']).dt.month
@@ -102,9 +101,11 @@ if rad == "Présentation et exploration des données":
     df['year'] = df['year'].astype(int)
     df['month'] = df['month'].astype(int)
     df['day'] = df['day'].astype(int)
+
     #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
     df = df.drop('Date', axis = 1)
-    ##Renommer pour lisibilité les booléénnes : 
+    
+    #Renommer pour lisibilité les booléénnes : 
     df['RainToday_encode'] = df['RainToday']
     df['RainTomorrow_encode'] = df['RainTomorrow']
     df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
@@ -115,8 +116,9 @@ if rad == "Présentation et exploration des données":
     #encodage :     
     for var in df.select_dtypes(include='object').columns:
       df[var] = le.fit_transform(df[var])
-    st.markdown("Vérifions les encodages : c'est vérifié. ")
+    st.markdown("Vérifions les encodages en affichant le contenu des données : ")
     st.write(df)
+    st.markdown(": c'est vérifié, toutes les données sont bien numériques. ")
 
     #heatmap
     st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
