@@ -56,7 +56,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     #Richard = Richard.resize((200, 200)) 
     #st.image(Richard, caption='Richard')
     Nahim = Image.open('Nahim.png')
-    st.image(Nahim, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web et bases de données) et les maths appliquées ")
+    st.image(Nahim, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
 
 if rad == "Partie à resectionner":
