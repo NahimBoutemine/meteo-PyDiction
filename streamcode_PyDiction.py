@@ -89,6 +89,7 @@ if rad == "Présentation et exploration des données":
     #afficher la répartition des valeurs dans la cible A FAIRE ET DECRIRE
     fig = plt.figure()
     sns.countplot(data = df, x = 'RainTomorrow')
+    st.pyplot(fig)
     st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
