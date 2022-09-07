@@ -66,9 +66,6 @@ if rad == "Présentation et exploration des données":
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
 
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
-  #si le fichier est chargé, alors lancer le code seulement ensuite (condition nécessaire sinon le code se lance trop tôt et bloque):
-  uploaded_file = st.file_uploader("cliquer sur 'Browse' pour charger vos données")
-  if uploaded_file is not None:
     df = pd.read_csv("weatherAUS.csv")
 
     st.markdown("Le nombre de lignes est:")
