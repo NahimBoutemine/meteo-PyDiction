@@ -64,9 +64,8 @@ if rad == "Présentation et exploration des données":
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("Les dates se siovent globalement pour chacune de stations et pour chacune des stations les données météorologiques journalières sont référencées sur plusieurs mois.")
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
-
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
-      if st.button('Cliquer ici pour explorer le jeu de données'):
+  if st.button("Cliquer ici pour découvrir la suite de l'expliration des données brutes"):
     df = pd.read_csv("weatherAUS.csv")
     st.markdown("Le nombre de lignes est:")
     st.write(len(df))
