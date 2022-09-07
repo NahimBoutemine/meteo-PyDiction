@@ -27,11 +27,10 @@ from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 from PIL import Image
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Partie à resectionner"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Présentation et exploration des données", ""])
 
 if rad == "Introduction : Le projet et ses créateurs":
-  def title(url):
-     st.markdown(f'<p style="background-color:#0066cc;color:#33ff33;font-size:24px;border-radius:2%;">{url}</p>', unsafe_allow_html=True)
+  
   st.title("Introduction : Le projet et ses créateurs")
   
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
@@ -53,12 +52,12 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.header("Les créateurs") 
   if st.button('Cliquer ici pour découvrir les créateurs du projet'):
     Richard = Image.open('richard.jpg')
-    st.image(Richard, caption='Richard', width = 200)
+    st.image(Richard, caption="Richard, anciennement assistant de recherche en spectrométrie infrarouge, en reconversion dans la data science", width = 200)
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
 
-if rad == "Partie à resectionner":
+if rad == "Présentation et exploration des données":
   
    #Le jeu de données
   st.markdown("Les données sont présentes sur 49 stations, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
