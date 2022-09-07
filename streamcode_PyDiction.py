@@ -86,16 +86,15 @@ if rad == "Présentation et exploration des données":
     st.markdown("Affichons de nouveau le nombre de lignes, ce nombre même réduit par rapport au départ (plus de 50% de suppression) nous a permis d'avoir un score de prédiction suffisant :")
     st.write(len(df))
     
-    #afficher la répartition des valeurs dans la cible A FAIRE ET DECRIRE
+    #afficher la répartition des valeurs dans la cible:
+    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
     fig = plt.figure()
     sns.countplot(data = df, x = 'RainTomorrow')
     st.pyplot(fig)
-    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-
-    st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
     #encodage des données
+    st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
 
     ##Traitement de la variable 'date' :
     #dt.datetime pour extraire année, mois, et jour
@@ -116,7 +115,7 @@ if rad == "Présentation et exploration des données":
     df['RainTomorrow_encode'] = df['RainTomorrow']
     df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
-    #import: 
+    #creation de l'encodeur: 
     le = preprocessing.LabelEncoder()
 
     #encodage :     
