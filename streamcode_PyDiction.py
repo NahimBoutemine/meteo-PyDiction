@@ -89,6 +89,9 @@ if rad == "Présentation et exploration des données":
     #afficher la répartition des valeurs dans la cible A FAIRE ET DECRIRE
     fig = plt.figure()
     sns.countplot(data = df, x = 'RainTomorrow')
+    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
+    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+
 
     st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
     #encodage des données
@@ -120,7 +123,7 @@ if rad == "Présentation et exploration des données":
       df[var] = le.fit_transform(df[var])
     st.markdown("Vérifions les encodages en affichant le contenu des données : ")
     st.write(df)
-    st.markdown(": c'est vérifié, toutes les données sont bien numériques. ")
+    st.markdown("C'est vérifié, toutes les données sont bien numériques. ")
 
     #heatmap
     st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
