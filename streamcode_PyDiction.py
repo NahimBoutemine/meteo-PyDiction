@@ -53,9 +53,10 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.header("Les créateurs") 
   if st.button('Cliquer ici pour découvrir les créateurs du projet'):
     Richard = Image.open('richard.jpg')
-    #Richard = Richard.resize((200, 200)) 
+    Richard = Richard.resize((200, 200)) 
     st.image(Richard, caption='Richard')
     Nahim = Image.open('Nahim.png')
+    Nahim = Nahim.resize((200, 200))
     st.image(Nahim, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
 
