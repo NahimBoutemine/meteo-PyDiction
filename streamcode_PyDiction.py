@@ -100,7 +100,7 @@ if rad == "Description du jeu de données":
 if rad == "Préparation des données - partie 1 : élimination des manquantes et encodage des données":
  
   #encodage des données
-  ##Traitement de la variable 'date' :
+  #Traitement de la variable 'date' :
   #dt.datetime pour extraire année, mois, et jour
   df['year'] = pd.to_datetime(df['Date']).dt.year
   df['month'] = pd.to_datetime(df['Date']).dt.month
@@ -148,8 +148,21 @@ if rad == "Préparation des données - partie 2 : Méthodes de normalisation et 
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
   
-
-  if choice = 'OverSampling SMOTE':
+  
+'''
+  if choice = 'None':
+    #nothing
+    #tenter le curseur glissant pour le split ? ou on reste à 20%
+    #selection de la normalisation
+    
+  elifif choice = 'Undersampling':
+    rUs = RandomUnderSampler()
+    x_ru, y_ru = rUs.fit_resample(x, y)
+    #affectation de x et y
+    x = x_ru
+    y = y_ru
+    
+  elif choice = 'OverSampling SMOTE':
     st.write('Vous avez sélectionné :', choice)
     '''smo = SMOTE()
     x_sm, y_sm = smo.fit_resample(x, y)
@@ -157,19 +170,7 @@ if rad == "Préparation des données - partie 2 : Méthodes de normalisation et 
     x = x_sm
     y = y_sm
     
-  elif choice = 'Undersampling':
-    rUs = RandomUnderSampler()
-    x_ru, y_ru = rUs.fit_resample(x, y)
-    #affectation de x et y
-    x = x_ru
-    y = y_ru
-    
-  elif choice = 'None':
-    #nothing
-    #tenter le curseur glissant pour le split ? ou on reste à 20%
-    #selection de la normalisation
-    
-
+  
   choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice)
