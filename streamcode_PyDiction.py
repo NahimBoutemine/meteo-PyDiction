@@ -134,7 +134,6 @@ if rad == "Pipeline de préparation des données":
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
   df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
 
-  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
   #(méthode courante d'évaluation):
   y = df['RainTomorrow_encode']
   x = df.drop('RainTomorrow_encode', axis = 1)
@@ -145,7 +144,7 @@ if rad == "Prétraitements":
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n'ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
  
   #selection du prétraitement :
-  choice = st.selectbox('Sélectionner ce que vous voulez utiliser - méthode de rééchantillonnage', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
+  choice = st.selectbox('électionnez la méthode de rééchantillonnage que vous voulez appliquer au données :', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
   
