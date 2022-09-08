@@ -125,16 +125,16 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   
   st.markdown("Affichons les types des variables :")
   ##pourcentage de valeurs en fonction de chaque type d'objets et de valeurs manquantes
-  #fig = plt.figure()
+  fig1 = plt.figure()
   sns.countplot(data = df.dtypes.value_counts())
-  #st.pyplot(fig)
+  #st.pyplot(fig1)
  
   
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-  fig = plt.figure()
+  fig2 = plt.figure()
   sns.countplot(data = df, x = 'RainTomorrow')
-  st.pyplot(fig)
+  st.pyplot(fig2)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
     
