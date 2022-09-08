@@ -150,19 +150,19 @@ if rad == "Préparation des données - partie 2 : Méthodes de normalisation, de
   choice = str(choice)
   
 '''
-  if choice = 'None':
+  if choice == 'None':
     #nothing
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation
     
-  elifif choice = 'Undersampling':
+  elifif choice == 'Undersampling':
     rUs = RandomUnderSampler()
     x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
     x = x_ru
     y = y_ru
     
-  elif choice = 'OverSampling SMOTE':
+  elif choice == 'OverSampling SMOTE':
     st.write('Vous avez sélectionné :', choice)
     smo = SMOTE()
     x_sm, y_sm = smo.fit_resample(x, y)
@@ -174,6 +174,7 @@ if rad == "Préparation des données - partie 2 : Méthodes de normalisation, de
   choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice)
+  
   if choice2 = 'StandardScaler':
     #affectation de x et y
     x = x_sm
@@ -183,29 +184,31 @@ if rad == "Préparation des données - partie 2 : Méthodes de normalisation, de
     #créer, Entrainer et transformer directement les colonnes numériques de x
     scaler =  StandardScaler()
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
+    
    else:
       #nothing
 
 
 if rad == "Machine Learning":
     
-  #selection du modèle
-  choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
+    #selection du modèle
+    choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
 
-  if choice3 = 'KNN':
-    model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
-  elif choice3 = 'arbre de décision' :
-    model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+    if choice3 == 'KNN':
+      model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
+    elif choice3 = 'arbre de décision' :
+      model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
 
 
-  elif choice3 = 'régression logistique' :
-    model = LogisticRegression(C=0.01, penalty= 'l2')
+    elif choice3 == 'régression logistique' :
+      model = LogisticRegression(C=0.01, penalty= 'l2')
 
-  elif choice3 = 'Random forest' :
-    model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
+    elif choice3 == 'Random forest' :
+      model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
+    
     #itération du modèle :
     st.markdown('itération du modèle')
-     model.fit(x_train,y_train)
+    model.fit(x_train,y_train)
     ##Précision et f1-score :
     y_pred_train = model.predict(x_train)
     y_pred_test = model.predict(x_test)
