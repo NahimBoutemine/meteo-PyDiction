@@ -130,7 +130,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   st.pyplot(fig1)
   st.markdown("Les variables catégorielles consistuent un bon tier du jeu de données. L'évaluation de leur pertinence et leur encodage devra etre envisagé.")
   
-  df.dtypes.value_counts().plot.pie();
+  st.write(df.dtypes.value_counts().plot.pie())
   
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
