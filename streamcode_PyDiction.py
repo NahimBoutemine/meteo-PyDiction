@@ -1,3 +1,4 @@
+#Première partie : imports et création des variables (jeux de données, indicateurs...) à afficher :
 
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -28,11 +29,13 @@ from sklearn import metrics
 from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
+#création du jeu de données :
+
 df = pd.read_csv("weatherAUS.csv")
 df = df.dropna()
 df = df.drop_duplicates()
 
-#Encodage des données :
+#Encodage des données et stockage des variables à afficher dans l'application :
 
 #-Traitement de la variable 'date' :
 #dt.datetime pour extraire année, mois, et jour
@@ -56,6 +59,9 @@ for var in df.select_dtypes(include='object').columns:
   df[var] = le.fit_transform(df[var])
 df_encode = df#stocjage à ce stade du df aux variables encodées
 
+df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
+
+#Affichages des étapes du projet et des  points clés à partir des variables stockées plus haut :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
@@ -132,7 +138,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes 
   sns.heatmap(df.corr(), ax=ax)
   st.write(fig)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
-  df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
+
 
   #(méthode courante d'évaluation):
   y = df['RainTomorrow_encode']
