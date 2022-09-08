@@ -94,7 +94,7 @@ elif rad == "Description du jeu de données":
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
 elif rad == "Préparation des données - partie 1 : élimination des manquantes et encodage des données":
- 
+  
   #encodage des données
   #Traitement de la variable 'date' :
   #dt.datetime pour extraire année, mois, et jour
@@ -112,10 +112,8 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes 
   df['RainTomorrow_encode'] = df['RainTomorrow']
   df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
-  #import: 
-  le = preprocessing.LabelEncoder()
-  
   #encodage :     
+  le = preprocessing.LabelEncoder()
   for var in df.select_dtypes(include='object').columns:
     df[var] = le.fit_transform(df[var])
   st.markdown("Vérifions les encodages : c'est vérifié. ")
