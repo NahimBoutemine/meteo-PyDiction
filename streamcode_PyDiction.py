@@ -171,7 +171,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.write('Vous avez sélectionné :', choice)
   choice = str(choice)
   
-'''
+
   if choice == 'None':
     #nothing
     #tenter le curseur glissant pour le split ? ou on reste à 20%
@@ -185,7 +185,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
     
-  elifif choice == 'Undersampling':
+  elif choice == 'Undersampling':
     rUs = RandomUnderSampler()
     x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
@@ -216,7 +216,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
   
-  
+  '''
   choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice)
