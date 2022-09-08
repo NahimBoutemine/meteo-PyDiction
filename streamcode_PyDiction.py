@@ -88,7 +88,7 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.header("Les créateurs") 
   if st.button('Cliquer ici pour découvrir les créateurs du projet'):
     Richard = Image.open('richard.jpg')
-    st.image(Richard, caption="Richard, anciennement assistant de recherche en spectrométrie infrarouge, en reconversion dans la data science", width = 200)
+    st.image(Richard, caption= "Richard, anciennement assistant de recherche en spectrométrie infrarouge, en reconversion dans la data science", width = 200)
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
@@ -127,7 +127,7 @@ elif rad == "Description du jeu de données":
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
-  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithme. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.')
+  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithme. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
   st.write(df_nonencode)
   st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
