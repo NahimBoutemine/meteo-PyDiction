@@ -29,7 +29,7 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation et méthodes de rééchantillonnage", "Machine learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation et méthodes de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
 
 if rad == "Introduction : Le projet et ses créateurs":
   def title(url):
@@ -164,7 +164,7 @@ if rad == "Préparation des données - partie 2 : Méthodes de normalisation et 
     
   elif choice = 'OverSampling SMOTE':
     st.write('Vous avez sélectionné :', choice)
-    '''smo = SMOTE()
+    smo = SMOTE()
     x_sm, y_sm = smo.fit_resample(x, y)
     #affectation de x et y
     x = x_sm
@@ -187,9 +187,8 @@ if rad == "Préparation des données - partie 2 : Méthodes de normalisation et 
       #nothing
 
 
-if rad == "machine learning":
-  
-  
+if rad == "Machine Learning":
+    
   #selection du modèle
   choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
 
