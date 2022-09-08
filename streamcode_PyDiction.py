@@ -29,7 +29,7 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Description du jeu de données", "pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Description du jeu de données", "Pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
 
 if rad == "Introduction : Le projet et ses créateurs":
   def title(url):
@@ -51,7 +51,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un point du territoire australien, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
     st.markdown("Cette application streamlit vise à montrer les étapes ayant permis de conclure sur une méthode optimale de préparation des données et sur un modèle au taux de prédiction satisfisant pour ce type de données." )
 
-#Présentation des créateurs :
+  #Présentation des créateurs :
   st.header("Les créateurs") 
   if st.button('Cliquer ici pour découvrir les créateurs du projet'):
     Richard = Image.open('richard.jpg')
@@ -59,11 +59,9 @@ if rad == "Introduction : Le projet et ses créateurs":
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
-
-
-if rad == "Présentation et exploration des données":
+if rad == "Description du jeu de données":
   
-   #Présentation du jeu de données
+  #Présentation du jeu de données
   st.header("Présentation et exploration des données")
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
@@ -99,9 +97,7 @@ if rad == "Présentation et exploration des données":
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-
-
-if rad == "pipeline de préparation des données":
+if rad == "Pipeline de préparation des données":
   #encodage des données
 
   ##Traitement de la variable 'date' :
@@ -142,7 +138,6 @@ if rad == "pipeline de préparation des données":
   #(méthode courante d'évaluation):
   y = df['RainTomorrow_encode']
   x = df.drop('RainTomorrow_encode', axis = 1)
-
 
 if rad == "prétraitements":
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
@@ -244,28 +239,24 @@ if rad == "machine learning":
 
 
 if rad == "Conclusion et perspectives":
+  st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
+  st.markdown("acc_train :  1.0, acc_test : 0.87.")
+  st.markdown("F1score_train :  1.0 F1score_test : 0.87.")
+  st.markdown("Mean Absolute Error' ou 'MAE' : 0.13.")
+  st.markdown("l'AUC est de : 0.87.")
 
 
-    st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
+  st.text("Limites")
 
+  st.markdown("Tentative de création et prédiction de RainIn3Days")
 
-    st.markdown("acc_train :  1.0, acc_test : 0.87.")
-    st.markdown("F1score_train :  1.0 F1score_test : 0.87.")
-    st.markdown("Mean Absolute Error' ou 'MAE' : 0.13.")
-    st.markdown("l'AUC est de : 0.87.")
+  st.markdown("Dans l'optique d'enrichir les capacités de notre modèle, nous avons tenté de créer la variable RainIn3Days, en nous servant de Rain_Today.")
+  st.markdown("Pour cela, nous avons tenté de processer la variable de RainIn3Days à partir de RainToday, au moyen d’une boucle prenant en compte la date et la localisation (en effet, il y a plusieurs stations météos, et seulement 256 dates qui ne sont pas en doublons : cela signifie qu’il y a plusieurs bulletins météos émis le même jour par ces stations).")
+  st.markdown("Malheureusement, nous n'avons pas pu mener cette étude à son terme par manque de temps notamment suite au départ d’une personne de l’équipe.")
 
+  st.markdown("Traitement des outliers : nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier, même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix. La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
 
-    st.text("Limites")
-
-    st.markdown("Tentative de création et prédiction de RainIn3Days")
-
-    st.markdown("Dans l'optique d'enrichir les capacités de notre modèle, nous avons tenté de créer la variable RainIn3Days, en nous servant de Rain_Today.")
-    st.markdown("Pour cela, nous avons tenté de processer la variable de RainIn3Days à partir de RainToday, au moyen d’une boucle prenant en compte la date et la localisation (en effet, il y a plusieurs stations météos, et seulement 256 dates qui ne sont pas en doublons : cela signifie qu’il y a plusieurs bulletins météos émis le même jour par ces stations).")
-    st.markdown("Malheureusement, nous n'avons pas pu mener cette étude à son terme par manque de temps notamment suite au départ d’une personne de l’équipe.")
-
-    st.markdown("Traitement des outliers : nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier, même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix. La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
-
-    st.markdown("Autres modèles : Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
+  st.markdown("Autres modèles : Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
 
 
 
