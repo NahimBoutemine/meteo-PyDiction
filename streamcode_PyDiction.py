@@ -123,18 +123,19 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
     st.write(len(df))
   
   
-  st.markdown("Affichons les types des variables :")
+  #st.markdown("Affichons les types des variables :")
   ##pourcentage de valeurs en fonction de chaque type d'objets et de valeurs manquantes
-  fig1 = plt.figure()
-  sns.countplot(data = df.dtypes.value_counts())
-  st.pyplot(fig1)
-  st.markdown("Les variables catégorielles consistuent un bon tier du jeu de données. L'évaluation de leur pertinence et leur encodage devra etre envisagé.")
+  #fig1 = plt.figure()
+  #sns.countplot(data = df.dtypes.value_counts())
+  #st.pyplot(fig1)
+  #st.markdown("Les variables catégorielles consistuent un bon tier du jeu de données. L'évaluation de leur pertinence et leur encodage devra etre envisagé.")
+  
   
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-  fig2 = plt.figure()
+  fig = plt.figure()
   sns.countplot(data = df, x = 'RainTomorrow')
-  st.pyplot(fig2)
+  st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
     
