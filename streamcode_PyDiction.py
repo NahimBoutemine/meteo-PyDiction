@@ -150,10 +150,8 @@ if rad == "Prétraitements":
   
 
   if choice = 'OverSampling SMOTE':
-      st.write('Vous avez sélectionné :', choice)
-
- '''
-    smo = SMOTE()
+    st.write('Vous avez sélectionné :', choice)
+    '''smo = SMOTE()
     x_sm, y_sm = smo.fit_resample(x, y)
     #affectation de x et y
     x = x_sm
