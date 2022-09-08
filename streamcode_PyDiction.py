@@ -69,6 +69,7 @@ if rad == "Présentation et exploration des données":
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
+  
   if st.button("Cliquer ici pour découvrir la suite de l'exploration des données brutes"):
     df = pd.read_csv("weatherAUS.csv")
     st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
@@ -152,7 +153,6 @@ if rad == "prétraitements":
   st.write('Vous avez sélectionné :', choice)
   
   if choice = 'OverSampling SMOTE':
-    #préparation de l'oversampling SMOTE
     smo = SMOTE()
     x_sm, y_sm = smo.fit_resample(x, y)
     #affectation de x et y
@@ -160,7 +160,6 @@ if rad == "prétraitements":
     y = y_sm
     
   elif choice = 'Undersampling':
-    #préparation de l'Undersampling
     rUs = RandomUnderSampler()
     x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
