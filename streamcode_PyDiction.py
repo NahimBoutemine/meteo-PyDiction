@@ -176,6 +176,14 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     #nothing
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation
+        
+    #afficher la répartition des valeurs dans la cible:
+    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
+    fig = plt.figure()
+    sns.countplot(data = df, x = 'RainTomorrow_encode')
+    st.pyplot(fig)
+    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+
     
   elifif choice == 'Undersampling':
     rUs = RandomUnderSampler()
@@ -183,6 +191,14 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     #affectation de x et y
     x = x_ru
     y = y_ru
+    
+    #afficher la répartition des valeurs dans la cible:
+    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
+    fig = plt.figure()
+    sns.countplot(data = df, x = 'RainTomorrow_encode')
+    st.pyplot(fig)
+    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+
     
   elif choice == 'OverSampling SMOTE':
     st.write('Vous avez sélectionné :', choice)
@@ -192,6 +208,14 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     x = x_sm
     y = y_sm
     
+    #afficher la répartition des valeurs dans la cible:
+    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
+    fig = plt.figure()
+    sns.countplot(data = df, x = 'RainTomorrow_encode')
+    st.pyplot(fig)
+    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+
+  
   
   choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
   #displaying the selected option
