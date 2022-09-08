@@ -99,7 +99,7 @@ elif rad == "Exploration des données":
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   
-  if st.button("Cliquer ici pour découvrir la suite de l'exploration des données brutes"):
+  if st.button("Cliquez ici pour découvrir la suite de l'exploration des données brutes"):
     st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
     st.write(df)
     st.markdown("Le nombre de lignes est:")
