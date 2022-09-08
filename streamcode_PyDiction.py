@@ -104,12 +104,10 @@ if rad == "pipeline de préparation des données":
   #encodage des données
 
   ##Traitement de la variable 'date' :
-
   #dt.datetime pour extraire année, mois, et jour
   df['year'] = pd.to_datetime(df['Date']).dt.year
   df['month'] = pd.to_datetime(df['Date']).dt.month
   df['day'] = pd.to_datetime(df['Date']).dt.day
-
   #réenregistrement des variables year, month, et day, en tant que int.
   df['year'] = df['year'].astype(int)
   df['month'] = df['month'].astype(int)
@@ -123,7 +121,7 @@ if rad == "pipeline de préparation des données":
 
   #import: 
   le = preprocessing.LabelEncoder()
-
+  
   #encodage :     
   for var in df.select_dtypes(include='object').columns:
     df[var] = le.fit_transform(df[var])
@@ -147,10 +145,11 @@ if rad == "pipeline de préparation des données":
 
 if rad == "prétraitements":
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
+ 
   #selection du prétraining
   choice = st.selectbox('Select the items you want?', ('None','Undersampling','OverSampling SMOTE'))
   #afficher le choix sélectionné :
-    st.write('You have selected:', choice)
+  st.write('You have selected:', choice)
   
   if choice = 'OverSampling SMOTE':
     #préparation de l'oversampling SMOTE
