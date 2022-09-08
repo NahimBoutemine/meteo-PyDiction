@@ -84,7 +84,7 @@ if rad == "Présentation et exploration des données":
     st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
     percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
     st.write(percentage_dupli)
-    st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Ce jeu de données réduites nous a cependant permis d'avoir un score de prédiction suffisant :")
+    st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
     st.write(len(df))
     
     #afficher la répartition des valeurs dans la cible:
