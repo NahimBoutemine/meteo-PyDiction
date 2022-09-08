@@ -126,7 +126,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   st.markdown("Affichons les types des variables :")
   ##pourcentage de valeurs en fonction de chaque type d'objets et de valeurs manquantes
   #fig = plt.figure()
-  df.dtypes.value_counts().plot.pie()
+  sns.countplot(data = df.dtypes.value_counts())
   #st.pyplot(fig)
  
   
@@ -141,7 +141,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   
   
   
-  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithme. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
+  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
   st.write(df_nonencode)
   st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
