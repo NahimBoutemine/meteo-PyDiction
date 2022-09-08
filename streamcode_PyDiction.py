@@ -29,7 +29,7 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation et méthodes de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
 
 if rad == "Introduction : Le projet et ses créateurs":
   def title(url):
