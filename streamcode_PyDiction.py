@@ -139,15 +139,18 @@ if rad == "Préparation des données - partie 1 : élimination des manquantes et
   x = df.drop('RainTomorrow_encode', axis = 1)
   
 
-if rad == "Préparation des données - partie 2 : Méthodes de normalisation et méthodes de rééchantillonnage":
+if rad == "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":
   
-  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n'ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
+  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.") 
+  st.mardown(" une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprenisage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
+  st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
+  st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
  
   #selection de la méthode de rééchantillonage :
   choice = st.selectbox('Sélectionnez la méthode de rééchantillonnage que vous voulez appliquer au données :', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
-  
+  choice = str(choice)
   
 '''
   if choice = 'None':
