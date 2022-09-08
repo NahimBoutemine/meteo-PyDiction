@@ -28,15 +28,12 @@ from sklearn import metrics
 from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
-
+#Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
 
+#Si choix 1 :
 if rad == "Introduction : Le projet et ses créateurs":
-  def title(url):
-     st.markdown(f'<p style="background-color:#0066cc;color:#33ff33;font-size:24px;border-radius:2%;">{url}</p>', unsafe_allow_html=True)
   st.title("Introduction : Le projet et ses créateurs")
-  
-#Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
   st.header("Le projet 'PyDiction'")
   if st.button('Cliquer ici pour afficher la description du projet et de cette application'):
     kangourou = Image.open('kangoufun.jpg')
@@ -142,7 +139,7 @@ if rad == "Préparation des données - partie 1 : élimination des manquantes et
 if rad == "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":
   
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.") 
-  st.mardown(" une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprenisage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
+  st.markdown(" une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprenisage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
   st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
   st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
  
