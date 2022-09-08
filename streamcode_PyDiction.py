@@ -29,7 +29,7 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Présentation et exploration des données", "pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Description du jeu de données", "pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
 
 if rad == "Introduction : Le projet et ses créateurs":
   def title(url):
@@ -101,186 +101,120 @@ if rad == "Présentation et exploration des données":
 
 
 if rad == "pipeline de préparation des données":
-    
-    #encodage des données
+  #encodage des données
 
-    ##Traitement de la variable 'date' :
+  ##Traitement de la variable 'date' :
 
-    #dt.datetime pour extraire année, mois, et jour
-    df['year'] = pd.to_datetime(df['Date']).dt.year
-    df['month'] = pd.to_datetime(df['Date']).dt.month
-    df['day'] = pd.to_datetime(df['Date']).dt.day
+  #dt.datetime pour extraire année, mois, et jour
+  df['year'] = pd.to_datetime(df['Date']).dt.year
+  df['month'] = pd.to_datetime(df['Date']).dt.month
+  df['day'] = pd.to_datetime(df['Date']).dt.day
 
-    #réenregistrement des variables year, month, et day, en tant que int.
-    df['year'] = df['year'].astype(int)
-    df['month'] = df['month'].astype(int)
-    df['day'] = df['day'].astype(int)
-    #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
-    df = df.drop('Date', axis = 1)
-    ##Renommer pour lisibilité les booléénnes : 
-    df['RainToday_encode'] = df['RainToday']
-    df['RainTomorrow_encode'] = df['RainTomorrow']
-    df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
+  #réenregistrement des variables year, month, et day, en tant que int.
+  df['year'] = df['year'].astype(int)
+  df['month'] = df['month'].astype(int)
+  df['day'] = df['day'].astype(int)
+  #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
+  df = df.drop('Date', axis = 1)
+  ##Renommer pour lisibilité les booléénnes : 
+  df['RainToday_encode'] = df['RainToday']
+  df['RainTomorrow_encode'] = df['RainTomorrow']
+  df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
-    #import: 
-    le = preprocessing.LabelEncoder()
+  #import: 
+  le = preprocessing.LabelEncoder()
 
-    #encodage :     
-    for var in df.select_dtypes(include='object').columns:
-      df[var] = le.fit_transform(df[var])
-      st.markdown("Vérifions les encodages : c'est vérifié. ")
-      st.write(df)
+  #encodage :     
+  for var in df.select_dtypes(include='object').columns:
+    df[var] = le.fit_transform(df[var])
+    st.markdown("Vérifions les encodages : c'est vérifié. ")
+    st.write(df)
 
-    #heatmap
-    st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
-    st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
-    fig, ax = plt.subplots()
-    sns.heatmap(df.corr(), ax=ax)
-    st.write(fig)
-    st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
-    df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
+  #heatmap
+  st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
+  st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
+  fig, ax = plt.subplots()
+  sns.heatmap(df.corr(), ax=ax)
+  st.write(fig)
+  st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
+  df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
 
-    st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
-    #(méthode courante d'évaluation):
-    y = df['RainTomorrow_encode']
-    x = df.drop('RainTomorrow_encode', axis = 1)
+  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
+  #(méthode courante d'évaluation):
+  y = df['RainTomorrow_encode']
+  x = df.drop('RainTomorrow_encode', axis = 1)
 
 
 if rad == "prétraitements":
-
-
-    st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
-
-
-    #selection du prétraining
-
-    choice = st.selectbox(
-
-    'Select the items you want?',
-
-    ('None','Undersampling','OverSampling SMOTE'))
-
-
-    #displaying the selected option
-
-    st.write('You have selected:', choice)
-
-    if choice == 'OverSampling SMOTE':
-
-      #préparation de l'oversampling SMOTE
-      smo = SMOTE()
-      x_sm, y_sm = smo.fit_resample(x, y)
-
-      #affectation de x et y
-      x = x_sm
-      y = y_sm
-
-    elif choice == 'Undersampling':
-
-      #préparation de l'Undersampling
-      rUs = RandomUnderSampler()
-      x_ru, y_ru = rUs.fit_resample(x, y)
-
-      #affectation de x et y
-      x = x_ru
-      y = y_ru
-
-    elif choice == 'None':
-
-      #nothing
-
-
+  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
+  
+  #selection du prétraining
+  choice = st.selectbox('Select the items you want?',('None','Undersampling','OverSampling SMOTE'))
+  #afficher le choix sélectionné :
+  st.write('You have selected:', choice)
+  if choice = 'OverSampling SMOTE':
+    #préparation de l'oversampling SMOTE
+    smo = SMOTE()
+    x_sm, y_sm = smo.fit_resample(x, y)
+    #affectation de x et y
+    x = x_sm
+    y = y_sm
+  elif choice = 'Undersampling':
+    #préparation de l'Undersampling
+    rUs = RandomUnderSampler()
+    x_ru, y_ru = rUs.fit_resample(x, y)
+    #affectation de x et y
+    x = x_ru
+    y = y_ru
+  elif choice = 'None':
+    #nothing
     #tenter le curseur glissant pour le split ? ou on reste à 20%
-
-
-
     #selection de la normalisation
-
-    choice2 = st.selectbox(
-
-    'Select the items you want?',
-
-    ('None','StandardScaler'))
-
-
-    #displaying the selected option
-
-    st.write('You have selected:', choice)
-
-    if choice2 == 'StandardScaler':
-
-      
-      #affectation de x et y
-      x = x_sm
-      y = y_sm
-
-      numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
-      name_columns_numerics = x.select_dtypes(include=numerics).columns
-
-      #créer, Entrainer et transformer directement les colonnes numériques de x
-      scaler =  StandardScaler()
-      x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
-
-    else:
-
+  choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
+  #displaying the selected option
+  st.write('You have selected:', choice)
+  if choice2 = 'StandardScaler':
+    #affectation de x et y
+    x = x_sm
+    y = y_sm
+    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+    name_columns_numerics = x.select_dtypes(include=numerics).columns
+    #créer, Entrainer et transformer directement les colonnes numériques de x
+    scaler =  StandardScaler()
+    x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
+   else:
       #nothing
+if rad == "machine learning":
+  #selection du modèle
+  choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
+
+  if choice3 = 'KNN':
+    model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
+  elif choice3 = 'arbre de décision' :
+    model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
 
 
-
-if rad == "Machine learning":
-
-    #selection du modèle
-
-    choice3 = st.selectbox(
-
-    'Select the items you want?',
-
-    ('KNN','arbre de décision','régression logistique','Random forest'))
+  elif choice3 = 'régression logistique' :
+    model = LogisticRegression(C=0.01, penalty= 'l2')
 
 
-    if choice3 == 'KNN': 
-
-      model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
-
-
-    elif choice3 == 'arbre de décision' :
-
-      model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
-
-
-    elif choice3 == 'régression logistique' :
-
-
-      model = LogisticRegression(C=0.01, penalty= 'l2')
-
-
-    elif choice3 = 'Random forest' :
-
-      model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt') 
-
-
-
-
+  elif choice3 = 'Random forest' :
+    model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
     #itération du modèle :
     st.markdown('itération du modèle')
- 
-    model.fit(x_train,y_train)
-
+     model.fit(x_train,y_train)
     ##Précision et f1-score :
     y_pred_train = model.predict(x_train)
     y_pred_test = model.predict(x_test)
     st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
-
     #accuracy : 
     acc_train  = accuracy_score(y_train, y_pred_train)
     acc_test  = accuracy_score(y_test, y_pred_test)
     st.write("acc_train : ", acc_train, "acc_test :", acc_test)
-
     ##F1-score :
     f1score_train = f1_score(y_train, y_pred_train, average='macro')
     f1score_test = f1_score(y_test, y_pred_test, average='macro')
     st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
-
     #matrice de confusion : 
     st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
