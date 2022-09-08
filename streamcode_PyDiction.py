@@ -142,7 +142,7 @@ if rad == "Pipeline de préparation des données":
 
 if rad == "Prétraitements":
   
-  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
+  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n'ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
  
   #selection du prétraitement :
   choice = st.selectbox('Sélectionner ce que vous voulez utiliser - méthode de rééchantillonnage', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
