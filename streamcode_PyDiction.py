@@ -127,8 +127,8 @@ if rad == "pipeline de préparation des données":
   #encodage :     
   for var in df.select_dtypes(include='object').columns:
     df[var] = le.fit_transform(df[var])
-    st.markdown("Vérifions les encodages : c'est vérifié. ")
-    st.write(df)
+  st.markdown("Vérifions les encodages : c'est vérifié. ")
+  st.write(df)
 
   #heatmap
   st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
@@ -147,11 +147,11 @@ if rad == "pipeline de préparation des données":
 
 if rad == "prétraitements":
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
-  
   #selection du prétraining
-  choice = st.selectbox('Select the items you want?',('None','Undersampling','OverSampling SMOTE'))
+  choice = st.selectbox('Select the items you want?', ('None','Undersampling','OverSampling SMOTE'))
   #afficher le choix sélectionné :
-  st.write('You have selected:', choice)
+    st.write('You have selected:', choice)
+  
   if choice = 'OverSampling SMOTE':
     #préparation de l'oversampling SMOTE
     smo = SMOTE()
