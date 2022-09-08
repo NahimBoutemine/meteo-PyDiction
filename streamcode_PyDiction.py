@@ -125,9 +125,9 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   
   st.markdown("Affichons les types des variables :")
   ##pourcentage de valeurs en fonction de chaque type d'objets et de valeurs manquantes
-  fig = plt.figure()
+  #fig = plt.figure()
   df.dtypes.value_counts().plot.pie()
-  st.pyplot(fig)
+  #st.pyplot(fig)
  
   
   #afficher la répartition des valeurs dans la cible:
