@@ -28,6 +28,38 @@ from sklearn import metrics
 from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
+df = pd.read_csv("weatherAUS.csv")
+df = df.dropna()
+df = df.drop_duplicates()
+
+#encodage des données
+  #Traitement de la variable 'date' :
+  #dt.datetime pour extraire année, mois, et jour
+  df['year'] = pd.to_datetime(df['Date']).dt.year
+  df['month'] = pd.to_datetime(df['Date']).dt.month
+  df['day'] = pd.to_datetime(df['Date']).dt.day
+  #réenregistrement des variables year, month, et day, en tant que int.
+  df['year'] = df['year'].astype(int)
+  df['month'] = df['month'].astype(int)
+  df['day'] = df['day'].astype(int)
+  #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
+  df = df.drop('Date', axis = 1)
+  ##Renommer pour lisibilité les booléénnes : 
+  df['RainToday_encode'] = df['RainToday']
+  df['RainTomorrow_encode'] = df['RainTomorrow']
+  df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
+
+  #encodage :     
+  le = preprocessing.LabelEncoder()
+  df_nonencode = df#sauvegarde du df pour l'affichage ultérieur
+  
+  #encodage dans le df qui contiendra après cette étape les variables encodées
+  
+  for var in df.select_dtypes(include='object').columns:
+    df[var] = le.fit_transform(df[var])
+  df_encode = df#stocjage à ce stade du df aux variables encodées
+
+
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
 
@@ -65,7 +97,6 @@ elif rad == "Description du jeu de données":
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   
   if st.button("Cliquer ici pour découvrir la suite de l'exploration des données brutes"):
-    df = pd.read_csv("weatherAUS.csv")
     st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
     st.write(df)
     st.markdown("Le nombre de lignes est:")
@@ -75,8 +106,6 @@ elif rad == "Description du jeu de données":
     percent_missing_df = df.isnull().sum() * 100 / len(df)
     st.write(percent_missing_df)
     st.markdown("Ainsi, les valeurs manquantes sont enlevées car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
-    df = df.dropna()
-    df = df.drop_duplicates()
     st.markdown("A présent le nombre de données manquantes : on peut voir à présent qu'il n'y en a plus!")
     percent_missing_df = df.isnull().sum() * 100 / len(df)
     st.write(percent_missing_df)
@@ -94,31 +123,11 @@ elif rad == "Description du jeu de données":
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
 elif rad == "Préparation des données - partie 1 : élimination des manquantes et encodage des données":
+  st.markdown("Les données sont encodées. Les données avant encodage sont de ce type : ")
+  st.write(df_nonencode)
+  st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
+  st.write(df_encode)
   
-  #encodage des données
-  #Traitement de la variable 'date' :
-  #dt.datetime pour extraire année, mois, et jour
-  df['year'] = pd.to_datetime(df['Date']).dt.year
-  df['month'] = pd.to_datetime(df['Date']).dt.month
-  df['day'] = pd.to_datetime(df['Date']).dt.day
-  #réenregistrement des variables year, month, et day, en tant que int.
-  df['year'] = df['year'].astype(int)
-  df['month'] = df['month'].astype(int)
-  df['day'] = df['day'].astype(int)
-  #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
-  df = df.drop('Date', axis = 1)
-  ##Renommer pour lisibilité les booléénnes : 
-  df['RainToday_encode'] = df['RainToday']
-  df['RainTomorrow_encode'] = df['RainTomorrow']
-  df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
-
-  #encodage :     
-  le = preprocessing.LabelEncoder()
-  for var in df.select_dtypes(include='object').columns:
-    df[var] = le.fit_transform(df[var])
-  st.markdown("Vérifions les encodages : c'est vérifié. ")
-  st.write(df)
-
   #heatmap
   st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
   st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
