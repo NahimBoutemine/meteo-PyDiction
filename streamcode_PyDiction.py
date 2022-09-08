@@ -32,32 +32,29 @@ df = pd.read_csv("weatherAUS.csv")
 df = df.dropna()
 df = df.drop_duplicates()
 
-#encodage des données
-  #Traitement de la variable 'date' :
-  #dt.datetime pour extraire année, mois, et jour
-  df['year'] = pd.to_datetime(df['Date']).dt.year
-  df['month'] = pd.to_datetime(df['Date']).dt.month
-  df['day'] = pd.to_datetime(df['Date']).dt.day
-  #réenregistrement des variables year, month, et day, en tant que int.
-  df['year'] = df['year'].astype(int)
-  df['month'] = df['month'].astype(int)
-  df['day'] = df['day'].astype(int)
-  #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
-  df = df.drop('Date', axis = 1)
-  ##Renommer pour lisibilité les booléénnes : 
-  df['RainToday_encode'] = df['RainToday']
-  df['RainTomorrow_encode'] = df['RainTomorrow']
-  df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
+#Encodage des données :
 
-  #encodage :     
-  le = preprocessing.LabelEncoder()
-  df_nonencode = df#sauvegarde du df pour l'affichage ultérieur
-  
-  #encodage dans le df qui contiendra après cette étape les variables encodées
-  
-  for var in df.select_dtypes(include='object').columns:
-    df[var] = le.fit_transform(df[var])
-  df_encode = df#stocjage à ce stade du df aux variables encodées
+#-Traitement de la variable 'date' :
+#dt.datetime pour extraire année, mois, et jour
+df['year'] = pd.to_datetime(df['Date']).dt.year
+df['month'] = pd.to_datetime(df['Date']).dt.month
+df['day'] = pd.to_datetime(df['Date']).dt.day
+#réenregistrement des variables year, month, et day, en tant que int.
+df['year'] = df['year'].astype(int)
+df['month'] = df['month'].astype(int)
+df['day'] = df['day'].astype(int)
+#on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
+df = df.drop('Date', axis = 1)
+##-Renommer pour lisibilité les booléénnes : 
+df['RainToday_encode'] = df['RainToday']
+df['RainTomorrow_encode'] = df['RainTomorrow']
+df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
+#encodage des restantes:     
+le = preprocessing.LabelEncoder()
+df_nonencode = df#sauvegarde du df pour l'affichage ultérieur
+for var in df.select_dtypes(include='object').columns:
+  df[var] = le.fit_transform(df[var])
+df_encode = df#stocjage à ce stade du df aux variables encodées
 
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
