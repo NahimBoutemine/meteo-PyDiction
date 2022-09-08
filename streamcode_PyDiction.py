@@ -65,7 +65,7 @@ df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 #Affichages des étapes du projet et des  points clés à partir des variables stockées plus haut :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
 
 #Si choix 1 :
 if rad == "Introduction : Le projet et ses créateurs":
@@ -92,9 +92,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
-
-elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
-  
+elif rad == "Exploration des données":
   #Présentation du jeu de données
   st.header("Présentation et exploration des données")
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
@@ -107,7 +105,6 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
     st.markdown("Le nombre de lignes est:")
     st.write(len(df))
    
-    
     st.markdown("S'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
     st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
     percent_missing_df = df.isnull().sum() * 100 / len(df)
@@ -135,8 +132,8 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
     
-  
-  
+
+elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
   
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
