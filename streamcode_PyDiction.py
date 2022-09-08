@@ -148,6 +148,7 @@ if rad == "Prétraitements":
   choice = st.selectbox('Sélectionner ce que vous voulez utiliser - méthode de rééchantillonnage', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
+  
 '''
   if choice = 'OverSampling SMOTE':
     smo = SMOTE()
@@ -186,6 +187,7 @@ if rad == "Prétraitements":
 '''
 
 if rad == "machine learning":
+'''  
   #selection du modèle
   choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
 
@@ -243,6 +245,8 @@ if rad == "machine learning":
     MAE = mae(y_test, y_pred_test)
     st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
+
+'''
 
 
 if rad == "Conclusion et perspectives":
