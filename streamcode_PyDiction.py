@@ -125,7 +125,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   
   #afficher les types des variables:
   st.markdown("Affichons les types des différentes variables de notre jeu de données:")
-  st.write(df.dtypes.value_counts())
+  df.dtypes.value_counts()
   
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
