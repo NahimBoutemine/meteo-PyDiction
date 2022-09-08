@@ -27,10 +27,11 @@ from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 from PIL import Image
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Présentation et exploration des données", ""])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Description du jeu de données", "pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
 
 if rad == "Introduction : Le projet et ses créateurs":
-  
+  def title(url):
+     st.markdown(f'<p style="background-color:#0066cc;color:#33ff33;font-size:24px;border-radius:2%;">{url}</p>', unsafe_allow_html=True)
   st.title("Introduction : Le projet et ses créateurs")
   
 #Présentation du projet : titre, contexte, définition projet, objectifs du projet et de l'application:
@@ -55,6 +56,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.image(Richard, caption="Richard, anciennement assistant de recherche en spectrométrie infrarouge, en reconversion dans la data science", width = 200)
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
+
 
 
 if rad == "Présentation et exploration des données":
@@ -94,10 +96,14 @@ if rad == "Présentation et exploration des données":
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
+
+
+if rad == "pipeline de préparation des données":
+    
     #encodage des données
-    st.markdown("A présent, les données sont automatiquement encodées, date est transformée en Année, Mois et Jours")
 
     ##Traitement de la variable 'date' :
+
     #dt.datetime pour extraire année, mois, et jour
     df['year'] = pd.to_datetime(df['Date']).dt.year
     df['month'] = pd.to_datetime(df['Date']).dt.month
@@ -107,24 +113,21 @@ if rad == "Présentation et exploration des données":
     df['year'] = df['year'].astype(int)
     df['month'] = df['month'].astype(int)
     df['day'] = df['day'].astype(int)
-
     #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
     df = df.drop('Date', axis = 1)
-    
-    #Renommer pour lisibilité les booléénnes : 
+    ##Renommer pour lisibilité les booléénnes : 
     df['RainToday_encode'] = df['RainToday']
     df['RainTomorrow_encode'] = df['RainTomorrow']
     df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
-    #creation de l'encodeur: 
+    #import: 
     le = preprocessing.LabelEncoder()
 
     #encodage :     
     for var in df.select_dtypes(include='object').columns:
       df[var] = le.fit_transform(df[var])
-    st.markdown("Vérifions les encodages en affichant le contenu des données : ")
-    st.write(df)
-    st.markdown("C'est vérifié, toutes les données sont bien numériques. ")
+      st.markdown("Vérifions les encodages : c'est vérifié. ")
+      st.write(df)
 
     #heatmap
     st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
@@ -140,35 +143,144 @@ if rad == "Présentation et exploration des données":
     y = df['RainTomorrow_encode']
     x = df.drop('RainTomorrow_encode', axis = 1)
 
-    #préparation de l'oversampling SMOTE
-    smo = SMOTE()
-    x_sm, y_sm = smo.fit_resample(x, y)
 
-    # réduction du jeu de données, répartition en jeux train et test
-    x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+if rad == "prétraitements":
 
-    #itération du modèle : KNN, avec les données réduites.
-    st.markdown('Le modèle optimal est selon notre expérience un KNN que nous avons optimisé par gridsearch. Evaluons à présent notre modèle :  ')
-    model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
-    model.fit(x_sm_train,y_sm_train)
+
+    st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
+
+
+    #selection du prétraining
+
+    choice = st.selectbox(
+
+    'Select the items you want?',
+
+    ('None','Undersampling','OverSampling SMOTE'))
+
+
+    #displaying the selected option
+
+    st.write('You have selected:', choice)
+
+    if choice = 'OverSampling SMOTE':
+
+      #préparation de l'oversampling SMOTE
+      smo = SMOTE()
+      x_sm, y_sm = smo.fit_resample(x, y)
+
+      #affectation de x et y
+      x = x_sm
+      y = y_sm
+
+    elif choice = 'Undersampling':
+
+      #préparation de l'Undersampling
+      rUs = RandomUnderSampler()
+      x_ru, y_ru = rUs.fit_resample(x, y)
+
+      #affectation de x et y
+      x = x_ru
+      y = y_ru
+
+    elif choice = 'None':
+
+      #nothing
+
+
+    #tenter le curseur glissant pour le split ? ou on reste à 20%
+
+
+
+    #selection de la normalisation
+
+    choice2 = st.selectbox(
+
+    'Select the items you want?',
+
+    ('None','StandardScaler'))
+
+
+    #displaying the selected option
+
+    st.write('You have selected:', choice)
+
+    if choice2 = 'StandardScaler':
+
+      
+      #affectation de x et y
+      x = x_sm
+      y = y_sm
+
+      numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+      name_columns_numerics = x.select_dtypes(include=numerics).columns
+
+      #créer, Entrainer et transformer directement les colonnes numériques de x
+      scaler =  StandardScaler()
+      x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
+
+    else:
+
+      #nothing
+
+
+
+if rad == "machine learning":
+
+    #selection du modèle
+
+    choice3 = st.selectbox(
+
+    'Select the items you want?',
+
+    ('KNN','arbre de décision','régression logistique','Random forest'))
+
+
+    if choice3 = 'KNN': 
+
+      model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
+
+
+    elif choice3 = 'arbre de décision' :
+
+      model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+
+
+    elif choice3 = 'régression logistique' :
+
+
+      model = LogisticRegression(C=0.01, penalty= 'l2')
+
+
+    elif choice3 = 'Random forest' :
+
+      model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt') 
+
+
+
+
+    #itération du modèle :
+    st.markdown('itération du modèle')
+ 
+    model.fit(x_train,y_train)
 
     ##Précision et f1-score :
-    y_pred_train_KNNsm = model.predict(x_sm_train)
-    y_pred_test_KNNsm = model.predict(x_sm_test)
+    y_pred_train = model.predict(x_train)
+    y_pred_test = model.predict(x_test)
     st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
     #accuracy : 
-    acc_train_KNNsm  = accuracy_score(y_sm_train, y_pred_train_KNNsm)
-    acc_test_KNNsm  = accuracy_score(y_sm_test, y_pred_test_KNNsm)
-    st.write("acc_train : ", acc_train_KNNsm, "acc_test :", acc_test_KNNsm)
+    acc_train  = accuracy_score(y_train, y_pred_train)
+    acc_test  = accuracy_score(y_test, y_pred_test)
+    st.write("acc_train : ", acc_train, "acc_test :", acc_test)
 
     ##F1-score :
-    f1score_train_KNNsm = f1_score(y_sm_train, y_pred_train_KNNsm, average='macro')
-    f1score_test_KNNsm = f1_score(y_sm_test, y_pred_test_KNNsm, average='macro')
-    st.write("F1score_train : ", f1score_train_KNNsm, "F1score_test : ", f1score_test_KNNsm)
+    f1score_train = f1_score(y_train, y_pred_train, average='macro')
+    f1score_test = f1_score(y_test, y_pred_test, average='macro')
+    st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
 
     #matrice de confusion : 
-    st.write(pd.crosstab(y_sm_test, y_pred_test_KNNsm, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
     #résultats :
     st.markdown("Les prédictions sont plutôt bonnes !")
@@ -176,8 +288,8 @@ if rad == "Présentation et exploration des données":
 
     #AUC et ROC Curve:
     st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-    false_positive_rate, true_positive_rate, thresholds = roc_curve(y_sm_test, model.predict(x_sm_test), pos_label = 1)
-    roc_auc_score_KNNsm = roc_auc_score(y_sm_test, model.predict(x_sm_test))
+    false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
+    roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
     #la courbe ROC
     fig = plt.figure();
     plt.plot(false_positive_rate, true_positive_rate);
@@ -187,15 +299,39 @@ if rad == "Présentation et exploration des données":
     plt.ylabel('True Positive Rate');
     plt.xlabel('False Positive Rate');
     st.pyplot(fig);
-    st.write('Le score AUC est de', roc_auc_score_KNNsm, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+    st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
     st.markdown('Le score AUC ici est donc acceptable. ')
     st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
 
     # MAE :
-    MAE_KNNsm = mae(y_sm_test, y_pred_test_KNNsm)
-    st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE_KNNsm), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
+    MAE = mae(y_test, y_pred_test)
+    st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
-              #conf que c'est bien une prez de l'efficacité et evaluation de notre modèle, dans ce cas présenter tout en allant à essentiel, ajouter un réso de neurone pour comparer efficacité, des graphiques intéractifs sur ROC, les classes diparates et de la dataviz, des clics pour passer à l'étape suivante et une conclusion et limite de la suite des travaux.
+
+
+if rad == "Conclusion et perspectives":
+
+
+    st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
+
+
+    st.markdown("acc_train :  1.0, acc_test : 0.87.")
+    st.markdown("F1score_train :  1.0 F1score_test : 0.87.")
+    st.markdown("Mean Absolute Error' ou 'MAE' : 0.13.")
+    st.markdown("l'AUC est de : 0.87.")
+
+
+    st.text("Limites")
+
+    st.markdown("Tentative de création et prédiction de RainIn3Days")
+
+    st.markdown("Dans l'optique d'enrichir les capacités de notre modèle, nous avons tenté de créer la variable RainIn3Days, en nous servant de Rain_Today.")
+    st.markdown("Pour cela, nous avons tenté de processer la variable de RainIn3Days à partir de RainToday, au moyen d’une boucle prenant en compte la date et la localisation (en effet, il y a plusieurs stations météos, et seulement 256 dates qui ne sont pas en doublons : cela signifie qu’il y a plusieurs bulletins météos émis le même jour par ces stations).")
+    st.markdown("Malheureusement, nous n'avons pas pu mener cette étude à son terme par manque de temps notamment suite au départ d’une personne de l’équipe.")
+
+    st.markdown("Traitement des outliers : nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier, même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix. La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
+
+    st.markdown("Autres modèles : Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
 
 
 
