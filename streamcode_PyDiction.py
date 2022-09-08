@@ -26,6 +26,8 @@ from sklearn.feature_selection import VarianceThreshold, SelectKBest, SelectFrom
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 from PIL import Image
+from sklearn.preprocessing import StandardScaler
+
 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Description du jeu de données", "pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
 
