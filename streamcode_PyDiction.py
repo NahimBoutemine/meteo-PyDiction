@@ -123,13 +123,14 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
     st.write(len(df))
   
   
-  #st.markdown("Affichons les types des variables :")
-  ##pourcentage de valeurs en fonction de chaque type d'objets et de valeurs manquantes
-  #fig1 = plt.figure()
-  #sns.countplot(data = df.dtypes.value_counts())
-  #st.pyplot(fig1)
-  #st.markdown("Les variables catégorielles consistuent un bon tier du jeu de données. L'évaluation de leur pertinence et leur encodage devra etre envisagé.")
+  st.markdown("Affichons les types des variables :")
+  #pourcentage de valeurs en fonction de chaque type d'objets et de valeurs manquantes
+  fig1 = plt.figure()
+  sns.countplot(data = df.dtypes.value_counts())
+  st.pyplot(fig1)
+  st.markdown("Les variables catégorielles consistuent un bon tier du jeu de données. L'évaluation de leur pertinence et leur encodage devra etre envisagé.")
   
+  df.dtypes.value_counts().plot.pie();
   
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
