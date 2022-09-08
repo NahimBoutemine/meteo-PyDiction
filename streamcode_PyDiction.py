@@ -62,13 +62,7 @@ df_encode = df#stocjage à ce stade du df aux variables encodées
 #suppression
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
 
-#heatmap
-  st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
-  st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
-  heatmap, ax = plt.subplots()
-  sns.heatmap(df.corr(), ax=ax)
-  
-  
+
 #Affichages des étapes du projet et des  points clés à partir des variables stockées plus haut :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
@@ -133,12 +127,17 @@ elif rad == "Description du jeu de données":
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-elif rad == "Préparation des données - partie 1 : élimination des manquantes et encodage des données":
+elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
   st.markdown("Les données sont encodées. Les données avant encodage sont de ce type : ")
   st.write(df_nonencode)
   st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
   st.write(df_encode)
   
+  #heatmap
+  st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
+  st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
+  heatmap, ax = plt.subplots()
+  sns.heatmap(df.corr(), ax=ax) 
   st.write(heatmap)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
 
