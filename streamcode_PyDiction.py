@@ -105,12 +105,12 @@ elif rad == "Exploration des données":
     st.markdown("Le nombre de lignes est:")
     st.write(len(df))
    
-    st.markdown("S'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
+    st.markdown("Par principe en ML, s'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
     st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
     percent_missing_df = df.isnull().sum() * 100 / len(df)
     st.write(percent_missing_df)
-    st.markdown("Ainsi, les valeurs manquantes sont enlevées car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
-    st.markdown("A présent le nombre de données manquantes : on peut voir à présent qu'il n'y en a plus!")
+    st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
+    st.markdown("A présent le nombre de données manquantes : on peut voir qu'il n'y en a plus!")
     percent_missing_df = df.isnull().sum() * 100 / len(df)
     st.write(percent_missing_df)
     st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
@@ -120,18 +120,18 @@ elif rad == "Exploration des données":
     st.write(len(df))
   
   
-  #afficher les types des variables:
-  st.markdown("Affichons les types des différentes variables de notre jeu de données:")
-  df.dtypes.value_counts()
-  
-  #afficher la répartition des valeurs dans la cible:
-  st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-  fig = plt.figure()
-  sns.countplot(data = df, x = 'RainTomorrow_encode')
-  st.pyplot(fig)
-  st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+    #afficher les types des variables:
+    st.markdown("Affichons les types des différentes variables de notre jeu de données:")
+    df.dtypes.value_counts()
 
-    
+    #afficher la répartition des valeurs dans la cible:
+    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
+    fig = plt.figure()
+    sns.countplot(data = df, x = 'RainTomorrow_encode')
+    st.pyplot(fig)
+    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+
+
 
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
   
@@ -170,7 +170,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   
 
   if choice == 'None':
-    #nothing
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation
         
