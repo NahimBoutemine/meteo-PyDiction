@@ -59,14 +59,13 @@ for var in df.select_dtypes(include='object').columns:
   df[var] = le.fit_transform(df[var])
 df_encode = df#stocjage à ce stade du df aux variables encodées
 
-#suppression
+#suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
-
 
 #Affichages des étapes du projet et des  points clés à partir des variables stockées plus haut :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
 
 #Si choix 1 :
 if rad == "Introduction : Le projet et ses créateurs":
