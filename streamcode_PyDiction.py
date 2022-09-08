@@ -29,7 +29,7 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Description du jeu de données", "Pipeline de préparation des données", "Prétraitements", "Machine learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation et méthodes de rééchantillonnage", "Machine learning", "Conclusion et perspectives"])
 
 if rad == "Introduction : Le projet et ses créateurs":
   def title(url):
@@ -97,9 +97,9 @@ if rad == "Description du jeu de données":
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-if rad == "Pipeline de préparation des données":
+if rad == "Préparation des données - partie 1 : élimination des manquantes et encodage des données":
+ 
   #encodage des données
-
   ##Traitement de la variable 'date' :
   #dt.datetime pour extraire année, mois, et jour
   df['year'] = pd.to_datetime(df['Date']).dt.year
@@ -139,11 +139,11 @@ if rad == "Pipeline de préparation des données":
   x = df.drop('RainTomorrow_encode', axis = 1)
   
 
-if rad == "Prétraitements":
+if rad == "Préparation des données - partie 2 : Méthodes de normalisation et méthodes de rééchantillonnage":
   
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n'ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
  
-  #selection du prétraitement :
+  #selection de la méthode de rééchantillonage :
   choice = st.selectbox('Sélectionnez la méthode de rééchantillonnage que vous voulez appliquer au données :', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
