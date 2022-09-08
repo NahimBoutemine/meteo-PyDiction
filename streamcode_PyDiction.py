@@ -144,12 +144,15 @@ if rad == "Prétraitements":
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n'ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
  
   #selection du prétraitement :
-  choice = st.selectbox('électionnez la méthode de rééchantillonnage que vous voulez appliquer au données :', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
+  choice = st.selectbox('Sélectionnez la méthode de rééchantillonnage que vous voulez appliquer au données :', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
   
-'''
+
   if choice = 'OverSampling SMOTE':
+      st.write('Vous avez sélectionné :', choice)
+
+ '''
     smo = SMOTE()
     x_sm, y_sm = smo.fit_resample(x, y)
     #affectation de x et y
