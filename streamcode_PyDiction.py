@@ -185,7 +185,7 @@ if rad == "prétraitements":
       x = x_ru
       y = y_ru
 
-    elif choice = 'None':
+    elif choice == 'None':
 
       #nothing
 
