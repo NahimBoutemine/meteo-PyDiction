@@ -60,6 +60,7 @@ if rad == "Introduction : Le projet et ses créateurs":
 if rad == "Présentation et exploration des données":
   
    #Présentation du jeu de données
+  st.header("Présentation et exploration des données")
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
@@ -83,7 +84,7 @@ if rad == "Présentation et exploration des données":
     st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
     percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
     st.write(percentage_dupli)
-    st.markdown("Affichons de nouveau le nombre de lignes, ce nombre même réduit par rapport au départ (plus de 50% de suppression) nous a permis d'avoir un score de prédiction suffisant :")
+    st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Ce jeu de données réduites nous a cependant permis d'avoir un score de prédiction suffisant :")
     st.write(len(df))
     
     #afficher la répartition des valeurs dans la cible:
