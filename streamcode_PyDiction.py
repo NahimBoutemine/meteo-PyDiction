@@ -184,10 +184,11 @@ if rad == "Prétraitements":
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
    else:
       #nothing
-'''
+
 
 if rad == "machine learning":
-'''  
+  
+  
   #selection du modèle
   choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
 
