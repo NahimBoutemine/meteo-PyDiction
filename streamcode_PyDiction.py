@@ -59,13 +59,12 @@ for var in df.select_dtypes(include='object').columns:
   df[var] = le.fit_transform(df[var])
 df_encode = df#stocjage à ce stade du df aux variables encodées
 
-#suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
 
 #Affichages des étapes du projet et des  points clés à partir des variables stockées plus haut :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Préparation des données - partie 1 : élimination des manquantes et encodage des données", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
 
 #Si choix 1 :
 if rad == "Introduction : Le projet et ses créateurs":
@@ -126,7 +125,7 @@ elif rad == "Description du jeu de données":
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
+elif rad == "Préparation des données - partie 1 : élimination des manquantes et encodage des données":
   st.markdown("Les données sont encodées. Les données avant encodage sont de ce type : ")
   st.write(df_nonencode)
   st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
@@ -135,9 +134,9 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   #heatmap
   st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
   st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
-  heatmap, ax = plt.subplots()
-  sns.heatmap(df.corr(), ax=ax) 
-  st.write(heatmap)
+  fig, ax = plt.subplots()
+  sns.heatmap(df.corr(), ax=ax)
+  st.write(fig)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
 
 
@@ -159,111 +158,11 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.write('Vous avez sélectionné :', choice)
   choice = str(choice)
   
-'''
-  if choice == 'None':
-    #nothing
-    #tenter le curseur glissant pour le split ? ou on reste à 20%
-    #selection de la normalisation
-    
-  elifif choice == 'Undersampling':
-    rUs = RandomUnderSampler()
-    x_ru, y_ru = rUs.fit_resample(x, y)
-    #affectation de x et y
-    x = x_ru
-    y = y_ru
-    
-  elif choice == 'OverSampling SMOTE':
-    st.write('Vous avez sélectionné :', choice)
-    smo = SMOTE()
-    x_sm, y_sm = smo.fit_resample(x, y)
-    #affectation de x et y
-    x = x_sm
-    y = y_sm
-    
-  
-  choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
-  #displaying the selected option
-  st.write('You have selected:', choice)
-  
-  if choice2 = 'StandardScaler':
-    #affectation de x et y
-    x = x_sm
-    y = y_sm
-    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
-    name_columns_numerics = x.select_dtypes(include=numerics).columns
-    #créer, Entrainer et transformer directement les colonnes numériques de x
-    scaler =  StandardScaler()
-    x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
-    
-   else:
-      #nothing
 
 
-if rad == "Machine Learning":
-    
-    #selection du modèle
-    choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
 
-    if choice3 == 'KNN':
-      model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
-    elif choice3 = 'arbre de décision' :
-      model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
-
-
-    elif choice3 == 'régression logistique' :
-      model = LogisticRegression(C=0.01, penalty= 'l2')
-
-    elif choice3 == 'Random forest' :
-      model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
-    
-    #itération du modèle :
-    st.markdown('itération du modèle')
-    model.fit(x_train,y_train)
-    ##Précision et f1-score :
-    y_pred_train = model.predict(x_train)
-    y_pred_test = model.predict(x_test)
-    st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
-    #accuracy : 
-    acc_train  = accuracy_score(y_train, y_pred_train)
-    acc_test  = accuracy_score(y_test, y_pred_test)
-    st.write("acc_train : ", acc_train, "acc_test :", acc_test)
-    ##F1-score :
-    f1score_train = f1_score(y_train, y_pred_train, average='macro')
-    f1score_test = f1_score(y_test, y_pred_test, average='macro')
-    st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
-    #matrice de confusion : 
-    st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
-
-    #résultats :
-    st.markdown("Les prédictions sont plutôt bonnes !")
-    st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
-
-    #AUC et ROC Curve:
-    st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-    false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
-    roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
-    #la courbe ROC
-    fig = plt.figure();
-    plt.plot(false_positive_rate, true_positive_rate);
-    plt.plot([0, 1], ls="--");
-    plt.plot([0, 0], [1, 0] , c=".7"), 
-    plt.plot([1, 1] , c=".7");
-    plt.ylabel('True Positive Rate');
-    plt.xlabel('False Positive Rate');
-    st.pyplot(fig);
-    st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-    st.markdown('Le score AUC ici est donc acceptable. ')
-    st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
-
-    # MAE :
-    MAE = mae(y_test, y_pred_test)
-    st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
-
-
-'''
-
-
-if rad == "Conclusion et perspectives":
+elif rad == "Conclusion et perspectives":
+  st.header("Conclusion et perspectives")
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
   st.markdown("acc_train :  1.0, acc_test : 0.87.")
   st.markdown("F1score_train :  1.0 F1score_test : 0.87.")
