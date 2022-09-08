@@ -30,29 +30,32 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
 #création du jeu de données :
-
 df = pd.read_csv("weatherAUS.csv")
 df = df.dropna()
 df = df.drop_duplicates()
 
 #Encodage des données et stockage des variables à afficher dans l'application :
-
 #-Traitement de la variable 'date' :
+
 #dt.datetime pour extraire année, mois, et jour
 df['year'] = pd.to_datetime(df['Date']).dt.year
 df['month'] = pd.to_datetime(df['Date']).dt.month
 df['day'] = pd.to_datetime(df['Date']).dt.day
+
 #réenregistrement des variables year, month, et day, en tant que int.
 df['year'] = df['year'].astype(int)
 df['month'] = df['month'].astype(int)
 df['day'] = df['day'].astype(int)
+
 #on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
 df = df.drop('Date', axis = 1)
+
 ##-Renommer pour lisibilité les booléénnes : 
 df['RainToday_encode'] = df['RainToday']
 df['RainTomorrow_encode'] = df['RainTomorrow']
 df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
-#encodage des restantes:     
+
+#-encodage des restantes:     
 le = preprocessing.LabelEncoder()
 df_nonencode = df#sauvegarde du df pour l'affichage ultérieur
 for var in df.select_dtypes(include='object').columns:
@@ -62,7 +65,7 @@ df_encode = df#stocjage à ce stade du df aux variables encodées
 #suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
 
-#Affichages des étapes du projet et des  points clés à partir des variables stockées plus haut :
+#Affichages des étapes du projet et des  points clés :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
