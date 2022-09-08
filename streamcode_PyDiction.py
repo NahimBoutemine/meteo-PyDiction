@@ -147,9 +147,9 @@ if rad == "prétraitements":
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d entrainement à hauteur de 20% et 80% respectivement. Puis un rééchantillonnage SMOTE est appliqué puisque nous avons de meilleures performances avec. Cependant il est à noter que les méthodes de normalisation ou de réduction de dimensions n ont pas amené d améloration des résultats, nous ne les avons donc pas conservées. ")
  
   #selection du prétraining
-  choice = st.selectbox('Select the items you want?', ('None','Undersampling','OverSampling SMOTE'))
+  choice = st.selectbox('Sélectionner ce que vous voulez utiliser - méthode de rééchantillonnage', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
-  st.write('You have selected:', choice)
+  st.write('Vous avez sélectionné :', choice)
   
   if choice = 'OverSampling SMOTE':
     #préparation de l'oversampling SMOTE
@@ -158,6 +158,7 @@ if rad == "prétraitements":
     #affectation de x et y
     x = x_sm
     y = y_sm
+    
   elif choice = 'Undersampling':
     #préparation de l'Undersampling
     rUs = RandomUnderSampler()
@@ -195,7 +196,6 @@ if rad == "machine learning":
 
   elif choice3 = 'régression logistique' :
     model = LogisticRegression(C=0.01, penalty= 'l2')
-
 
   elif choice3 = 'Random forest' :
     model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
