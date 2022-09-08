@@ -29,7 +29,7 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Description du jeu de données", "pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Présentation et exploration des données", "pipeline de préparation des données", "Machine learning", "Conclusion et perspectives"])
 
 if rad == "Introduction : Le projet et ses créateurs":
   def title(url):
@@ -165,7 +165,7 @@ if rad == "prétraitements":
 
     st.write('You have selected:', choice)
 
-    if choice = 'OverSampling SMOTE':
+    if choice == 'OverSampling SMOTE':
 
       #préparation de l'oversampling SMOTE
       smo = SMOTE()
@@ -175,7 +175,7 @@ if rad == "prétraitements":
       x = x_sm
       y = y_sm
 
-    elif choice = 'Undersampling':
+    elif choice == 'Undersampling':
 
       #préparation de l'Undersampling
       rUs = RandomUnderSampler()
@@ -207,7 +207,7 @@ if rad == "prétraitements":
 
     st.write('You have selected:', choice)
 
-    if choice2 = 'StandardScaler':
+    if choice2 == 'StandardScaler':
 
       
       #affectation de x et y
@@ -227,7 +227,7 @@ if rad == "prétraitements":
 
 
 
-if rad == "machine learning":
+if rad == "Machine learning":
 
     #selection du modèle
 
@@ -238,17 +238,17 @@ if rad == "machine learning":
     ('KNN','arbre de décision','régression logistique','Random forest'))
 
 
-    if choice3 = 'KNN': 
+    if choice3 == 'KNN': 
 
       model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
 
 
-    elif choice3 = 'arbre de décision' :
+    elif choice3 == 'arbre de décision' :
 
       model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
 
 
-    elif choice3 = 'régression logistique' :
+    elif choice3 == 'régression logistique' :
 
 
       model = LogisticRegression(C=0.01, penalty= 'l2')
