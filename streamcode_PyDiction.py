@@ -8,7 +8,7 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import numpy as np
-
+from imblearn import *
 from imblearn.over_sampling import RandomOverSampler, SMOTE
 from imblearn.under_sampling import RandomUnderSampler,  ClusterCentroids
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
