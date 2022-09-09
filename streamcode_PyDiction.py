@@ -133,8 +133,8 @@ elif rad == "Exploration des données":
     #création de sous dataframes
     df_minmaxtemp = df.iloc[:, 1:3]
     df_rainfall_evaporation = df.iloc[:, 3:5]
-    df_evaporation_sunshine = df.iloc[:, 5:6]
-    df_wind = df.iloc[:, 11:13]
+    df_evaporation_sunshine = df.iloc[:, 4:6]
+    df_wind = df.iloc[:, 12:14]
     df_humidity = df.iloc[:, 18:19]
     df_pressure = df.iloc[:, 15:17]
     df_cloud = df.iloc[:, 17:-4]
