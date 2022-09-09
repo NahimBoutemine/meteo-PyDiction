@@ -291,7 +291,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
   
-  '''
   choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice)
@@ -312,6 +311,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
 
 if rad == "Machine Learning":
     
+    '''
     #selection du modèle
     choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
 
