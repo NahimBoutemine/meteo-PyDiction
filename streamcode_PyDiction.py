@@ -100,6 +100,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
+#Si choix 2 :
 elif rad == "Exploration des données":
   #Présentation du jeu de données
   st.header("Présentation et exploration des données")
@@ -123,7 +124,7 @@ elif rad == "Exploration des données":
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   sns.countplot(data = df, x = 'RainTomorrow_encode')
   st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
