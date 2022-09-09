@@ -194,7 +194,7 @@ elif rad == "Exploration des données":
 #Si choix 3:
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
-   st.markdown("Voyons le pourcentage de valeurs manquantes")
+  st.markdown("Voyons le pourcentage de valeurs manquantes")
   #st.write(df_full.isna().sum())
   percent_missing_df_full = df_full.isnull().sum() * 100 / len(df_full)
   st.write(percent_missing_df_full)
