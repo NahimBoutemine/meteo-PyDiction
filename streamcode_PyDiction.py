@@ -146,8 +146,8 @@ elif rad == "Exploration des données":
   fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
   sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
   sns.boxplot(data=df_wind, color="green", ax=ax2 )
-  ax1.set_title("minmaxtemp")
-  ax2.set_title("wind")
+  ax1.set_title("températures journalières min et max")
+  ax2.set_title("vitesse du vent (9pm et 3 am)")
   fig.set_tight_layout(True)
   st.pyplot(fig)  
     
@@ -155,8 +155,8 @@ elif rad == "Exploration des données":
   fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
   sns.boxplot(data=df_humidity, color="red", ax=ax1)
   sns.boxplot(data=df_pressure, color="green", ax=ax2 )
-  ax1.set_title("humidity")
-  ax2.set_title("pressure")
+  ax1.set_title("humidité journalière")
+  ax2.set_title("pression (matin et après midi)")
   fig.set_tight_layout(True)
   st.pyplot(fig)
   
@@ -164,8 +164,8 @@ elif rad == "Exploration des données":
   fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
   sns.boxplot(data=df_cloud, color="red", ax=ax1)
   sns.boxplot(data=df_temp, color="green", ax=ax2 )
-  ax1.set_title("cloud")
-  ax2.set_title("temp")
+  ax1.set_title("couverture nuageuse (matin et après midi)")
+  ax2.set_title("températures (matin et après midi)")
   fig.set_tight_layout(True)
   st.pyplot(fig)
   
