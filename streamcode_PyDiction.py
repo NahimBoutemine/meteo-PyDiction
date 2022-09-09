@@ -126,17 +126,59 @@ elif rad == "Exploration des données":
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
+    
+    #visualiser la répartition de variables numériques
+    st.markdown("visualisons maintenant la répartition de quelques unes des varoables numériques de notre jeu de données").
+    
+    #création de sous dataframes
+    df_minmaxtemp = df.iloc[:, 2:4]
+    df_rainfall_evaporation = df.iloc[:, 4:6]
+    df_evaporation_sunshine = df.iloc[:, 5:7]
+    df_wind = df.iloc[:, 11:13]
+    df_humidity = df.iloc[:, 13:15]
+    df_pressure = df.iloc[:, 15:17]
+    df_cloud = df.iloc[:, 17:-4]
+    df_temp = df.iloc[:, 19:-2]
 
+    fig = plt.figure()
+    plt.figure(figsize = (13,10))
+    #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
+    plt.subplot(2, 4, 1);
+    sns.boxplot(data=df_minmaxtemp, color="red")
 
+    plt.subplot(2, 4, 2)
+    sns.boxplot(data=df_wind, color="green")
+
+    plt.subplot(2, 4, 3)
+    sns.boxplot(data=df_humidity, color="blue")
+
+    plt.subplot(2, 4, 4)
+    sns.boxplot(data=df_pressure,  color="violet")
+
+    plt.subplot(2, 4, 5)
+    sns.boxplot(data=df_cloud,  color="yellow")
+
+    plt.subplot(2, 4, 6)
+    sns.boxplot(data=df_temp,  color="black")
+
+    plt.subplot(2, 4, 7)
+    sns.boxplot(data=df_rainfall_evaporation,  color="red")
+
+    plt.subplot(2, 4, 8);
+    sns.boxplot(data=df_evaporation_sunshine,  color="green");
+
+    st.pyplot(fig)
+    
+    st.markdown("visualisons maintenant la répartition de quelques unes des varoables numériques de notre jeu de données").
+    
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
   
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
  
-  st.markdown("nombre de nans avant dropna")
-  st.write(df_full.isna().sum())
-  
-  st.markdown("nombre de nans après dropna")
-  st.write(df.isna().sum())
+  st.markdown("Voyons le pourcentage de valeurs manquantes")
+  #st.write(df_full.isna().sum())
+  percent_missing_df_full = df_full.isnull().sum() * 100 / len(df_full)
+  st.write(percent_missing_df_full)
 
   st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   st.markdown("A présent le nombre de données manquantes : on peut voir qu'il n'y en a plus!")
