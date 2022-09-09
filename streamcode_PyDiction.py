@@ -94,7 +94,7 @@ if rad == "Introduction : Le projet et ses créateurs":
 
   #Présentation des créateurs :
   st.header("Les créateurs") 
-  if st.button('Cliquer ici pour découvrir les créateurs du projet'):
+  if st.button('Cliquez ici pour découvrir les créateurs du projet'):
     Richard = Image.open('richard.jpg')
     st.image(Richard, caption= "Richard, anciennement assistant de recherche en spectrométrie infrarouge, en reconversion dans la data science", width = 200)
     Nahim = Image.open('Nahim.png')
