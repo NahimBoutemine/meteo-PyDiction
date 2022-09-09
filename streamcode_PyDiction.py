@@ -141,7 +141,18 @@ elif rad == "Exploration des données":
   df_temp = df.iloc[:, 18:20]
   df_rainfall_evaporation = df.iloc[:, 3:5]
   df_evaporation_sunshine = df.iloc[:, 4:6]
-
+  
+  #fgures 2 par 2:
+  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+  sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
+  sns.boxplot(data=df_wind, color="green", ax=ax2 )
+  ax1.set_title("ALLO")
+  ax2.set_title("QUOI!")
+  fig.set_tight_layout(True)
+  st.pyplot(fig)
+  
+  
+  ''''
   fig, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
   #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 1);
@@ -177,7 +188,7 @@ elif rad == "Exploration des données":
   
   st.pyplot(fig, figsize=(3, 3))
   st.markdown("Nous voyons que les distributions des variables sont symétriques")
-    
+  '''
 #Si choix 3:
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
