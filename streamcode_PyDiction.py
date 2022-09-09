@@ -142,10 +142,10 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   
   st.markdown("nombre de nans avant dropna")
-  st.write(df_full.isna().count())
+  st.write(df_full.isna().sum())
   
   st.markdown("nombre de nans après dropna")
-  st.write(df.isna().count())
+  st.write(df.isna().sum())
   
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
   st.write(df_nonencode)
