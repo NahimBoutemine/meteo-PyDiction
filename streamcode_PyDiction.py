@@ -135,7 +135,7 @@ elif rad == "Exploration des données":
     df_rainfall_evaporation = df.iloc[:, 3:5]
     df_evaporation_sunshine = df.iloc[:, 5:6]
     df_wind = df.iloc[:, 11:13]
-    df_humidity = df.iloc[:, 13:15]
+    df_humidity = df.iloc[:, 18:19]
     df_pressure = df.iloc[:, 15:17]
     df_cloud = df.iloc[:, 17:-4]
     df_temp = df.iloc[:, 19:-2]
