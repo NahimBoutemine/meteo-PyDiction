@@ -111,19 +111,10 @@ elif rad == "Exploration des données":
    
     st.markdown("Par principe en ML, s'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
     st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
-    percent_missing_df = df.isnull().sum() * 100 / len(df)
-    st.write(percent_missing_df)
-    st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
-    st.markdown("A présent le nombre de données manquantes : on peut voir qu'il n'y en a plus!")
-    percent_missing_df = df.isnull().sum() * 100 / len(df)
-    st.write(percent_missing_df)
-    st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
-    percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
-    st.write(percentage_dupli)
-    st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
-    st.write(len(df))
-  
-  
+    percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
+    st.write(percent_missing_df_full)
+    
+     
     #afficher les types des variables:
     st.markdown("Affichons les types des différentes variables de notre jeu de données:")
     df.dtypes.value_counts()
@@ -140,13 +131,25 @@ elif rad == "Exploration des données":
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
   
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
-  
+ 
   st.markdown("nombre de nans avant dropna")
   st.write(df_full.isna().sum())
   
   st.markdown("nombre de nans après dropna")
   st.write(df.isna().sum())
-  
+
+  st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
+  st.markdown("A présent le nombre de données manquantes : on peut voir qu'il n'y en a plus!")
+  percent_missing_df = df.isnull().sum() * 100 / len(df)
+  st.write(percent_missing_df)
+    
+  st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
+  percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
+  st.write(percentage_dupli)
+  st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
+  st.write(len(df))
+    
+
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
   st.write(df_nonencode)
   st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
