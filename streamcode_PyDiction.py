@@ -30,6 +30,8 @@ from sklearn import metrics
 from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
+#chargements préliminaires nécessaires : 
+
 #création du jeu de données :
 df = pd.read_csv("weatherAUS.csv")
 df_full = df
@@ -65,9 +67,10 @@ for var in df.select_dtypes(include='object').columns:
 df_encode = df#stocjage à ce stade du df aux variables encodées
 
 #suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
-df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1) 
+df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 
-#Affichages des étapes du projet et des  points clés :
+
+#Affichages des étapes du projet et des points clés :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
@@ -76,7 +79,7 @@ rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Ex
 if rad == "Introduction : Le projet et ses créateurs":
   st.title("Introduction : Le projet et ses créateurs")
   st.header("Le projet 'PyDiction'")
-  if st.button('Cliquer ici pour afficher la description du projet et de cette application'):
+  if st.button('Cliquez ici pour afficher la description du projet et de cette application'):
     kangourou = Image.open('kangoufun.jpg')
     st.image(kangourou, caption=' ')
     st.markdown("Le titre du projet 'PyDiction' est une synthèse des mots prédiction et python car l'on cherche ici à prédire la pluie et python a été employé pour cela ainsi que le Machine Learning. ")
@@ -126,7 +129,6 @@ elif rad == "Exploration des données":
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-    
     #visualiser la répartition de variables numériques
     st.markdown("visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
     
@@ -146,7 +148,6 @@ elif rad == "Exploration des données":
     df_rainfall_evaporation = df.iloc[:, 3:5]
     
     df_evaporation_sunshine = df.iloc[:, 4:6]
-    
     
     #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
     fig = plt.figure()
