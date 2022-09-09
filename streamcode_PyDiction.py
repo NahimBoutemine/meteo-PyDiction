@@ -128,7 +128,7 @@ elif rad == "Exploration des données":
 
     
     #visualiser la répartition de variables numériques
-    st.markdown("visualisons maintenant la répartition de quelques unes des varoables numériques de notre jeu de données").
+    st.markdown("visualisons maintenant la répartition de quelques unes des varoables numériques de notre jeu de données")
     
     #création de sous dataframes
     df_minmaxtemp = df.iloc[:, 2:4]
@@ -169,7 +169,8 @@ elif rad == "Exploration des données":
 
     st.pyplot(fig)
     
-    st.markdown("visualisons maintenant la répartition de quelques unes des varoables numériques de notre jeu de données").
+    st.markdown("Nous voyons que nos variables sont réparties selon une loi normale, mais que des outliers sont présents")
+    
     
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
   
