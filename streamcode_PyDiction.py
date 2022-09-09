@@ -124,7 +124,7 @@ elif rad == "Exploration des données":
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-  fig = plt.figure(figsize=(3,3))
+  fig = plt.figure(figsize=(10,14))
   sns.countplot(data = df, x = 'RainTomorrow_encode')
   st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
@@ -150,20 +150,20 @@ elif rad == "Exploration des données":
   df_evaporation_sunshine = df.iloc[:, 4:6]
 
   #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-  fig = plt.figure((figsize=(10,7)))
+  fig = plt.figure(figsize=(10,7))
   plt.subplot(2, 4, 1);
   sns.boxplot(data=df_minmaxtemp, color="red")
-  st.pyplot(fig, figsize=(3, 3))
+  st.pyplot(fig)
 
   fig = plt.figure()
   plt.subplot(2, 4, 2)
   sns.boxplot(data=df_wind, color="green")
-  st.pyplot(fig, figsize=(3, 3))
+  st.pyplot(fig)
 
   fig = plt.figure()
   plt.subplot(2, 4, 3)
   sns.boxplot(data=df_humidity, color="blue")
-  st.pyplot(fig, figsize=(3, 3))
+  st.pyplot(fig)
 
   fig = plt.figure()
   plt.subplot(2, 4, 4)
