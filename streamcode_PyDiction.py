@@ -105,9 +105,9 @@ elif rad == "Exploration des données":
   
   if st.button("Cliquez ici pour découvrir la suite de l'exploration des données brutes"):
     st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
-    st.write(df)
+    st.write(df_full)
     st.markdown("Le nombre de lignes est:")
-    st.write(len(df))
+    st.write(len(df_full))
    
     st.markdown("Par principe en ML, s'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
     st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
