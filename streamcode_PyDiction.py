@@ -142,15 +142,14 @@ elif rad == "Exploration des données":
   df_rainfall_evaporation = df.iloc[:, 3:5]
   df_evaporation_sunshine = df.iloc[:, 4:6]
   
-  #fgures 2 par 2:
+  #figures 2 par 2:
   fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
   sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
   sns.boxplot(data=df_wind, color="green", ax=ax2 )
   ax1.set_title("minmaxtemp")
   ax2.set_title("wind")
   fig.set_tight_layout(True)
-  st.pyplot(fig)
-  
+  st.pyplot(fig)  
     
   #figures 2 par 2:
   fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
