@@ -137,7 +137,7 @@ elif rad == "Exploration des données":
     
     df_humidity = df.iloc[:, 12:14]
     
-    df_pressure = df.iloc[:, 15:16]
+    df_pressure = df.iloc[:, 14:16]
     
     df_cloud = df.iloc[:, 16:18]
     
