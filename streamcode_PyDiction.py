@@ -31,6 +31,7 @@ from sklearn.preprocessing import StandardScaler
 
 #création du jeu de données :
 df = pd.read_csv("weatherAUS.csv")
+df_full = df
 df = df.dropna()
 df = df.drop_duplicates()
 
@@ -139,6 +140,13 @@ elif rad == "Exploration des données":
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
   
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
+  
+  st.markdown("nombre de nans avant dropna")
+  st.write(df_full.isna().count())
+  
+  st.markdown("nombre de nans après dropna")
+  st.write(df.isna().count())
+  
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
   st.write(df_nonencode)
   st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
