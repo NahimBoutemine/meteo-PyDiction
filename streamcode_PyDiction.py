@@ -131,9 +131,9 @@ elif rad == "Exploration des données":
     st.markdown("visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
     
     #création de sous dataframes
-    df_minmaxtemp = df.iloc[:, 2:4]
-    df_rainfall_evaporation = df.iloc[:, 4:6]
-    df_evaporation_sunshine = df.iloc[:, 5:7]
+    df_minmaxtemp = df.iloc[:, 1:3]
+    df_rainfall_evaporation = df.iloc[:, 3:5]
+    df_evaporation_sunshine = df.iloc[:, 5:6]
     df_wind = df.iloc[:, 11:13]
     df_humidity = df.iloc[:, 13:15]
     df_pressure = df.iloc[:, 15:17]
