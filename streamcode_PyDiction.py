@@ -305,10 +305,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     scaler =  StandardScaler()
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
     
-   else:
-      #nothing
-
-
+   
 if rad == "Machine Learning":
     
     '''
