@@ -120,12 +120,12 @@ elif rad == "Exploration des données":
 
   #afficher les types des variables:
   st.markdown("Affichons les types des différentes variables de notre jeu de données:")
-  df.dtypes.value_counts()
+  df_full.dtypes.value_counts()
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
   fig = plt.figure(figsize=(3,3))
-  sns.countplot(data = df, x = 'RainTomorrow_encode')
+  sns.countplot(data = df_full, x = 'RainTomorrow')
   st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
