@@ -134,60 +134,47 @@ elif rad == "Exploration des données":
 
   #création de sous dataframes
   df_minmaxtemp = df.iloc[:, 1:3]
-
   df_wind = df.iloc[:, 10:12]
-
   df_humidity = df.iloc[:, 12:14]
-
   df_pressure = df.iloc[:, 14:16]
-
   df_cloud = df.iloc[:, 16:18]
-
   df_temp = df.iloc[:, 18:20]
-
   df_rainfall_evaporation = df.iloc[:, 3:5]
-
   df_evaporation_sunshine = df.iloc[:, 4:6]
 
-  #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-  fig = plt.figure(figsize=(3,3))
+  fig, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
+  #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 1);
   sns.boxplot(data=df_minmaxtemp, color="red")
-  st.pyplot(fig)
 
-  fig = plt.figure(figsize=(3,3))
+  #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 2)
   sns.boxplot(data=df_wind, color="green")
-  st.pyplot(fig)
 
-  fig = plt.figure(figsize=(3,3))
+  #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 3)
   sns.boxplot(data=df_humidity, color="blue")
-  st.pyplot(fig)
 
-  fig = plt.figure(figsize=(3,3))
+  #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 4)
   sns.boxplot(data=df_pressure,  color="violet")
-  st.pyplot(fig)
 
-  fig = plt.figure(figsize=(3,3))
+  #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 5)
   sns.boxplot(data=df_cloud,  color="yellow")
-  st.pyplot(fig)
 
-  fig = plt.figure(figsize=(3,3))
+  #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 6)
   sns.boxplot(data=df_temp,  color="black")
-  st.pyplot(fig)
 
-  fig = plt.figure(figsize=(3,3))
+  #fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 7)
   sns.boxplot(data=df_rainfall_evaporation,  color="red")
-  st.pyplot(fig)
 
   fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 8);
   sns.boxplot(data=df_evaporation_sunshine,  color="green")
+  
   st.pyplot(fig, figsize=(3, 3))
   st.markdown("Nous voyons que les distributions des variables sont symétriques")
     
