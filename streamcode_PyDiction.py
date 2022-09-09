@@ -295,7 +295,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   #displaying the selected option
   st.write('You have selected:', choice)
   
-  if choice2 = 'StandardScaler':
+  if choice2 == 'StandardScaler':
     #affectation de x et y
     x = x_sm
     y = y_sm
