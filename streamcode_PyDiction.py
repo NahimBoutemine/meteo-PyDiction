@@ -151,44 +151,36 @@ elif rad == "Exploration des données":
   fig.set_tight_layout(True)
   st.pyplot(fig)
   
+    
+  #figures 2 par 2:
+  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+  sns.boxplot(data=df_humidity, color="red", ax=ax1)
+  sns.boxplot(data=df_pressure, color="green", ax=ax2 )
+  ax1.set_title("ALLO")
+  ax2.set_title("QUOI!")
+  fig.set_tight_layout(True)
+  st.pyplot(fig)
   
-  ''''
-  fig, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-  #fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 1);
-  sns.boxplot(data=df_minmaxtemp, color="red")
-
-  #fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 2)
-  sns.boxplot(data=df_wind, color="green")
-
-  #fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 3)
-  sns.boxplot(data=df_humidity, color="blue")
-
-  #fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 4)
-  sns.boxplot(data=df_pressure,  color="violet")
-
-  #fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 5)
-  sns.boxplot(data=df_cloud,  color="yellow")
-
-  #fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 6)
-  sns.boxplot(data=df_temp,  color="black")
-
-  #fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 7)
-  sns.boxplot(data=df_rainfall_evaporation,  color="red")
-
-  fig = plt.figure(figsize=(3,3))
-  plt.subplot(2, 4, 8);
-  sns.boxplot(data=df_evaporation_sunshine,  color="green")
+  #figures 2 par 2:
+  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+  sns.boxplot(data=df_cloud, color="red", ax=ax1)
+  sns.boxplot(data=df_temp, color="green", ax=ax2 )
+  ax1.set_title("ALLO")
+  ax2.set_title("QUOI!")
+  fig.set_tight_layout(True)
+  st.pyplot(fig)
   
-  st.pyplot(fig, figsize=(3, 3))
+  #figures 2 par 2:
+  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+  sns.boxplot(data=df_rainfall_evaporation, color="red", ax=ax1)
+  sns.boxplot(data=df_evaporation_sunshine, color="green", ax=ax2 )
+  ax1.set_title("ALLO")
+  ax2.set_title("QUOI!")
+  fig.set_tight_layout(True)
+  st.pyplot(fig)
+  
   st.markdown("Nous voyons que les distributions des variables sont symétriques")
-  '''
+ 
 #Si choix 3:
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
@@ -227,9 +219,8 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   y = df['RainTomorrow_encode']
   x = df.drop('RainTomorrow_encode', axis = 1)
   
-
-elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":
-  
+#Si choix 4 :
+elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":  
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.") 
   st.markdown(" Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprenisage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
   st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
