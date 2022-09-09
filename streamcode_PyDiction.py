@@ -97,7 +97,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
-  elif rad == "Exploration des données":
+elif rad == "Exploration des données":
   #Présentation du jeu de données
   st.header("Présentation et exploration des données")
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
