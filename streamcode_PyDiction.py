@@ -107,91 +107,88 @@ elif rad == "Exploration des données":
   st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   
-  if st.button("Cliquez ici pour découvrir la suite de l'exploration des données brutes"):
-    st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
-    st.write(df_full)
-    st.markdown("Le nombre de lignes est:")
-    st.write(len(df_full))
-   
-    st.markdown("Par principe en ML, s'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
-    st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
-    percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
-    st.write(percent_missing_df_full)    
-     
-    #afficher les types des variables:
-    st.markdown("Affichons les types des différentes variables de notre jeu de données:")
-    df.dtypes.value_counts()
+  st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
+  st.write(df_full)
+  st.markdown("Le nombre de lignes est:")
+  st.write(len(df_full))
 
-    #afficher la répartition des valeurs dans la cible:
-    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-    fig = plt.figure()
-    sns.countplot(data = df, x = 'RainTomorrow_encode')
-    st.pyplot(fig)
-    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+  st.markdown("Par principe en ML, s'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
+  st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
+  percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
+  st.write(percent_missing_df_full)    
 
-    #visualiser la répartition de variables numériques
-    st.markdown("visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
-    
-    #création de sous dataframes
-    df_minmaxtemp = df.iloc[:, 1:3]
-    
-    df_wind = df.iloc[:, 10:12]
-    
-    df_humidity = df.iloc[:, 12:14]
-    
-    df_pressure = df.iloc[:, 14:16]
-    
-    df_cloud = df.iloc[:, 16:18]
-    
-    df_temp = df.iloc[:, 18:20]
-    
-    df_rainfall_evaporation = df.iloc[:, 3:5]
-    
-    df_evaporation_sunshine = df.iloc[:, 4:6]
-    
-    #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-    fig = plt.figure()
-    plt.subplot(2, 4, 1);
-    sns.boxplot(data=df_minmaxtemp, color="red")
-    st.pyplot(fig)
+  #afficher les types des variables:
+  st.markdown("Affichons les types des différentes variables de notre jeu de données:")
+  df.dtypes.value_counts()
 
-    fig = plt.figure()
-    plt.subplot(2, 4, 2)
-    sns.boxplot(data=df_wind, color="green")
-    st.pyplot(fig, figsize=(5, 5))
+  #afficher la répartition des valeurs dans la cible:
+  st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
+  fig = plt.figure()
+  sns.countplot(data = df, x = 'RainTomorrow_encode')
+  st.pyplot(fig)
+  st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-    fig = plt.figure()
-    plt.subplot(2, 4, 3)
-    sns.boxplot(data=df_humidity, color="blue")
-    st.pyplot(fig)
+  #visualiser la répartition de variables numériques
+  st.markdown("visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
 
-    fig = plt.figure()
-    plt.subplot(2, 4, 4)
-    sns.boxplot(data=df_pressure,  color="violet")
-    st.pyplot(fig)
+  #création de sous dataframes
+  df_minmaxtemp = df.iloc[:, 1:3]
 
-    fig = plt.figure()
-    plt.subplot(2, 4, 5)
-    sns.boxplot(data=df_cloud,  color="yellow")
-    st.pyplot(fig)
+  df_wind = df.iloc[:, 10:12]
 
-    fig = plt.figure()
-    plt.subplot(2, 4, 6)
-    sns.boxplot(data=df_temp,  color="black")
-    st.pyplot(fig)
+  df_humidity = df.iloc[:, 12:14]
 
-    fig = plt.figure()
-    plt.subplot(2, 4, 7)
-    sns.boxplot(data=df_rainfall_evaporation,  color="red")
-    st.pyplot(fig)
-    
-    fig = plt.figure()
-    plt.subplot(2, 4, 8);
-    sns.boxplot(data=df_evaporation_sunshine,  color="green")
-    st.pyplot(fig)
+  df_pressure = df.iloc[:, 14:16]
 
-   
-    st.markdown("Nous voyons que les distributions des variables sont symétriques")
+  df_cloud = df.iloc[:, 16:18]
+
+  df_temp = df.iloc[:, 18:20]
+
+  df_rainfall_evaporation = df.iloc[:, 3:5]
+
+  df_evaporation_sunshine = df.iloc[:, 4:6]
+
+  #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
+  fig = plt.figure()
+  plt.subplot(2, 4, 1);
+  sns.boxplot(data=df_minmaxtemp, color="red")
+  st.pyplot(fig, figsize=(3, 3))
+
+  fig = plt.figure()
+  plt.subplot(2, 4, 2)
+  sns.boxplot(data=df_wind, color="green")
+  st.pyplot(fig, figsize=(3, 3))
+
+  fig = plt.figure()
+  plt.subplot(2, 4, 3)
+  sns.boxplot(data=df_humidity, color="blue")
+  st.pyplot(fig, figsize=(3, 3))
+
+  fig = plt.figure()
+  plt.subplot(2, 4, 4)
+  sns.boxplot(data=df_pressure,  color="violet")
+  st.pyplot(fig, figsize=(3, 3))
+
+  fig = plt.figure()
+  plt.subplot(2, 4, 5)
+  sns.boxplot(data=df_cloud,  color="yellow")
+  st.pyplot(fig, figsize=(3, 3))
+
+  fig = plt.figure()
+  plt.subplot(2, 4, 6)
+  sns.boxplot(data=df_temp,  color="black")
+  st.pyplot(fig, figsize=(3, 3))
+
+  fig = plt.figure()
+  plt.subplot(2, 4, 7)
+  sns.boxplot(data=df_rainfall_evaporation,  color="red")
+  st.pyplot(fig, figsize=(3, 3))
+
+  fig = plt.figure()
+  plt.subplot(2, 4, 8);
+  sns.boxplot(data=df_evaporation_sunshine,  color="green")
+  st.pyplot(fig, figsize=(3, 3))
+  st.markdown("Nous voyons que les distributions des variables sont symétriques")
     
     
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
