@@ -153,11 +153,13 @@ elif rad == "Exploration des données":
     fig = plt.figure()
     plt.subplot(2, 4, 1);
     sns.boxplot(data=df_minmaxtemp, color="red")
+    fig.set_size_inches(2, 2)
     st.pyplot(fig)
 
     fig = plt.figure()
     plt.subplot(2, 4, 2)
     sns.boxplot(data=df_wind, color="green")
+    fig.set_size_inches(2, 2)
     st.pyplot(fig)
 
     fig = plt.figure()
