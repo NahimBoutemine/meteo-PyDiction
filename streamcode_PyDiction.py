@@ -128,7 +128,7 @@ elif rad == "Exploration des données":
 
     
     #visualiser la répartition de variables numériques
-    st.markdown("visualisons maintenant la répartition de quelques unes des varoables numériques de notre jeu de données")
+    st.markdown("visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
     
     #création de sous dataframes
     df_minmaxtemp = df.iloc[:, 2:4]
@@ -141,31 +141,31 @@ elif rad == "Exploration des données":
     df_temp = df.iloc[:, 19:-2]
 
     fig = plt.figure()
-    plt.figure(figsize = (13,10))
-    #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-    plt.subplot(2, 4, 1);
-    sns.boxplot(data=df_minmaxtemp, color="red")
+      plt.figure(figsize = (13,10))
+      #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
+      plt.subplot(2, 4, 1);
+      sns.boxplot(data=df_minmaxtemp, color="red")
 
-    plt.subplot(2, 4, 2)
-    sns.boxplot(data=df_wind, color="green")
+      plt.subplot(2, 4, 2)
+      sns.boxplot(data=df_wind, color="green")
 
-    plt.subplot(2, 4, 3)
-    sns.boxplot(data=df_humidity, color="blue")
+      plt.subplot(2, 4, 3)
+      sns.boxplot(data=df_humidity, color="blue")
 
-    plt.subplot(2, 4, 4)
-    sns.boxplot(data=df_pressure,  color="violet")
+      plt.subplot(2, 4, 4)
+      sns.boxplot(data=df_pressure,  color="violet")
 
-    plt.subplot(2, 4, 5)
-    sns.boxplot(data=df_cloud,  color="yellow")
+      plt.subplot(2, 4, 5)
+      sns.boxplot(data=df_cloud,  color="yellow")
 
-    plt.subplot(2, 4, 6)
-    sns.boxplot(data=df_temp,  color="black")
+      plt.subplot(2, 4, 6)
+      sns.boxplot(data=df_temp,  color="black")
 
-    plt.subplot(2, 4, 7)
-    sns.boxplot(data=df_rainfall_evaporation,  color="red")
+      plt.subplot(2, 4, 7)
+      sns.boxplot(data=df_rainfall_evaporation,  color="red")
 
-    plt.subplot(2, 4, 8);
-    sns.boxplot(data=df_evaporation_sunshine,  color="green");
+      plt.subplot(2, 4, 8);
+      sns.boxplot(data=df_evaporation_sunshine,  color="green");
 
     st.pyplot(fig)
     
