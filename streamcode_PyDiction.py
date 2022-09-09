@@ -8,9 +8,10 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import numpy as np
+!pip install imblearn
 from imblearn.over_sampling import RandomOverSampler, SMOTE
-from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from imblearn.under_sampling import RandomUnderSampler,  ClusterCentroids
+from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn.metrics import roc_curve,auc
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import accuracy_score
