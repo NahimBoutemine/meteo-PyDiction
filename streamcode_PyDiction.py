@@ -97,7 +97,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
-elif rad == "Exploration des données":
+  elif rad == "Exploration des données":
   #Présentation du jeu de données
   st.header("Présentation et exploration des données")
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
@@ -113,8 +113,7 @@ elif rad == "Exploration des données":
     st.markdown("Par principe en ML, s'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
     st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
     percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
-    st.write(percent_missing_df_full)
-    
+    st.write(percent_missing_df_full)    
      
     #afficher les types des variables:
     st.markdown("Affichons les types des différentes variables de notre jeu de données:")
@@ -153,14 +152,12 @@ elif rad == "Exploration des données":
     fig = plt.figure()
     plt.subplot(2, 4, 1);
     sns.boxplot(data=df_minmaxtemp, color="red")
-    fig.set_size_inches(2, 2)
     st.pyplot(fig)
 
     fig = plt.figure()
     plt.subplot(2, 4, 2)
     sns.boxplot(data=df_wind, color="green")
-    fig.set_size_inches(2, 2)
-    st.pyplot(fig)
+    st.pyplot(fig, figsize=(5, 5))
 
     fig = plt.figure()
     plt.subplot(2, 4, 3)
