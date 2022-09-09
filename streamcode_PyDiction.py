@@ -140,35 +140,49 @@ elif rad == "Exploration des données":
     df_cloud = df.iloc[:, 17:-4]
     df_temp = df.iloc[:, 19:-2]
 
+
+    #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
     fig = plt.figure()
-      plt.figure(figsize = (13,10))
-      #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-      plt.subplot(2, 4, 1);
-      sns.boxplot(data=df_minmaxtemp, color="red")
+    plt.subplot(2, 4, 1);
+    sns.boxplot(data=df_minmaxtemp, color="red")
+    st.pyplot(fig)
 
-      plt.subplot(2, 4, 2)
-      sns.boxplot(data=df_wind, color="green")
+    fig = plt.figure()
+    plt.subplot(2, 4, 2)
+    sns.boxplot(data=df_wind, color="green")
+    st.pyplot(fig)
 
-      plt.subplot(2, 4, 3)
-      sns.boxplot(data=df_humidity, color="blue")
+    fig = plt.figure()
+    plt.subplot(2, 4, 3)
+    sns.boxplot(data=df_humidity, color="blue")
+    st.pyplot(fig)
 
-      plt.subplot(2, 4, 4)
-      sns.boxplot(data=df_pressure,  color="violet")
+    fig = plt.figure()
+    plt.subplot(2, 4, 4)
+    sns.boxplot(data=df_pressure,  color="violet")
+    st.pyplot(fig)
 
-      plt.subplot(2, 4, 5)
-      sns.boxplot(data=df_cloud,  color="yellow")
+    fig = plt.figure()
+    plt.subplot(2, 4, 5)
+    sns.boxplot(data=df_cloud,  color="yellow")
+    st.pyplot(fig)
 
-      plt.subplot(2, 4, 6)
-      sns.boxplot(data=df_temp,  color="black")
+    fig = plt.figure()
+    plt.subplot(2, 4, 6)
+    sns.boxplot(data=df_temp,  color="black")
+    st.pyplot(fig)
 
-      plt.subplot(2, 4, 7)
-      sns.boxplot(data=df_rainfall_evaporation,  color="red")
-
-      plt.subplot(2, 4, 8);
-      sns.boxplot(data=df_evaporation_sunshine,  color="green");
-
+    fig = plt.figure()
+    plt.subplot(2, 4, 7)
+    sns.boxplot(data=df_rainfall_evaporation,  color="red")
     st.pyplot(fig)
     
+    fig = plt.figure()
+    plt.subplot(2, 4, 8);
+    sns.boxplot(data=df_evaporation_sunshine,  color="green")
+    st.pyplot(fig)
+
+   
     st.markdown("Nous voyons que nos variables sont réparties selon une loi normale, mais que des outliers sont présents")
     
     
