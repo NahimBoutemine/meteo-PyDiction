@@ -124,7 +124,7 @@ elif rad == "Exploration des données":
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-  fig = plt.figure(figsize=(10,14))
+  fig = plt.figure(figsize=(3,3))
   sns.countplot(data = df, x = 'RainTomorrow_encode')
   st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
@@ -150,53 +150,51 @@ elif rad == "Exploration des données":
   df_evaporation_sunshine = df.iloc[:, 4:6]
 
   #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-  fig = plt.figure(figsize=(10,7))
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 1);
   sns.boxplot(data=df_minmaxtemp, color="red")
   st.pyplot(fig)
 
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 2)
   sns.boxplot(data=df_wind, color="green")
   st.pyplot(fig)
 
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 3)
   sns.boxplot(data=df_humidity, color="blue")
   st.pyplot(fig)
 
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 4)
   sns.boxplot(data=df_pressure,  color="violet")
-  st.pyplot(fig, figsize=(3, 3))
+  st.pyplot(fig)
 
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 5)
   sns.boxplot(data=df_cloud,  color="yellow")
-  st.pyplot(fig, figsize=(3, 3))
+  st.pyplot(fig)
 
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 6)
   sns.boxplot(data=df_temp,  color="black")
-  st.pyplot(fig, figsize=(3, 3))
+  st.pyplot(fig)
 
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 7)
   sns.boxplot(data=df_rainfall_evaporation,  color="red")
-  st.pyplot(fig, figsize=(3, 3))
+  st.pyplot(fig)
 
-  fig = plt.figure()
+  fig = plt.figure(figsize=(3,3))
   plt.subplot(2, 4, 8);
   sns.boxplot(data=df_evaporation_sunshine,  color="green")
   st.pyplot(fig, figsize=(3, 3))
   st.markdown("Nous voyons que les distributions des variables sont symétriques")
     
-    
-elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
-  
+#Si choix 3:
+elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
- 
-  st.markdown("Voyons le pourcentage de valeurs manquantes")
+   st.markdown("Voyons le pourcentage de valeurs manquantes")
   #st.write(df_full.isna().sum())
   percent_missing_df_full = df_full.isnull().sum() * 100 / len(df_full)
   st.write(percent_missing_df_full)
