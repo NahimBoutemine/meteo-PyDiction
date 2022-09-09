@@ -150,7 +150,7 @@ elif rad == "Exploration des données":
   df_evaporation_sunshine = df.iloc[:, 4:6]
 
   #Xf, axes = plt.subplots(4, 2)#6 graphiques (pour analyser les 6 catégorielles à part target "RainTomorrow" analysée séparément)
-  fig = plt.figure()
+  fig = plt.figure((figsize=(10,7)))
   plt.subplot(2, 4, 1);
   sns.boxplot(data=df_minmaxtemp, color="red")
   st.pyplot(fig, figsize=(3, 3))
