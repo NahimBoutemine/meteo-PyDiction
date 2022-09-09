@@ -8,7 +8,7 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import numpy as np
-!pip install imblearn
+
 from imblearn.over_sampling import RandomOverSampler, SMOTE
 from imblearn.under_sampling import RandomUnderSampler,  ClusterCentroids
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
@@ -191,7 +191,7 @@ elif rad == "Exploration des données":
     st.pyplot(fig)
 
    
-    st.markdown("Nous voyons que nos variables sont réparties selon une loi normale, mais que des outliers sont présents")
+    st.markdown("Nous voyons que les distributions des variables sont symétriques")
     
     
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":
