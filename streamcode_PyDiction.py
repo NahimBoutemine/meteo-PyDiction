@@ -302,6 +302,14 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
    
 if rad == "Machine Learning":
     
+    #le train set
+    #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
+    y = np.array(y)
+    y.reshape(-1, 1)
+    #le split
+    y = y.astype(float)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
+        
     
     #selection du modèle
     choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
@@ -347,36 +355,30 @@ if rad == "Machine Learning":
       false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
       roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
     
-    
-    st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+      #la courbe ROC
+      fig = plt.figure();
+      plt.plot(false_positive_rate, true_positive_rate);
+      plt.plot([0, 1], ls="--");
+      plt.plot([0, 0], [1, 0] , c=".7"), 
+      plt.plot([1, 1] , c=".7");
+      plt.ylabel('True Positive Rate');
+      plt.xlabel('False Positive Rate');
+      st.pyplot(fig);
+      st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+      st.markdown('Le score AUC ici est donc acceptable. ')
+      st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
+      st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
+    elif choice5 == 'MAE' :
+      MAE = mae(y_test, y_pred_test)
+      st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
+
+      
     
     #résultats :
     st.markdown("Les prédictions sont plutôt bonnes !")
     st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
     
-
-'''
-    #la courbe ROC
-    fig = plt.figure();
-    plt.plot(false_positive_rate, true_positive_rate);
-    plt.plot([0, 1], ls="--");
-    plt.plot([0, 0], [1, 0] , c=".7"), 
-    plt.plot([1, 1] , c=".7");
-    plt.ylabel('True Positive Rate');
-    plt.xlabel('False Positive Rate');
-    st.pyplot(fig);
-    st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-    st.markdown('Le score AUC ici est donc acceptable. ')
-    st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
-
-    # MAE :
-    MAE = mae(y_test, y_pred_test)
-    st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
-
-
-'''
-
 
 if rad == "Conclusion et perspectives":
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
