@@ -283,9 +283,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice)
-  
-  if choice2 == 'Aucune normalisation':
-    #affectation de x et y
 
   if choice2 == 'StandardScaler':
     #affectation de x et y
@@ -296,7 +293,13 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     scaler =  StandardScaler()
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
     
-   
+  elif choice2 == 'Aucune normalisation':
+    #affectation de x et y
+
+  
+  #potiron
+  
+    
 if rad == "Machine Learning":
     
     #le train set
