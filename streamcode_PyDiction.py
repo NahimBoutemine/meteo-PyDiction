@@ -226,7 +226,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
  
   #selection de la méthode de rééchantillonage :
-  choice = st.selectbox('Sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :', ('Aucune', 'Undersampling', 'OverSampling SMOTE'))
+  choice = st.selectbox('Sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :', ('Aucun rééchantillonage', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
   choice = str(choice)
@@ -275,7 +275,10 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     
     if choice == 'Undersampling':
       st.markdown("Les données sont déséquilibrées")
-
+    elif choice == 'OverSampling SMOTE':
+      st.markdown("Les données sont déséquilibrées")
+    elif choice == 'Aucun rééchantillonage':
+      st.markdown("Les données sont déséquilibrées")  
   
   choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
   #displaying the selected option
@@ -294,7 +297,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
    
 if rad == "Machine Learning":
     
-    '''
+    
     #selection du modèle
     choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
 
@@ -336,6 +339,9 @@ if rad == "Machine Learning":
     st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
     false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
     roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+    
+
+'''
     #la courbe ROC
     fig = plt.figure();
     plt.plot(false_positive_rate, true_positive_rate);
