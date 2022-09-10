@@ -69,6 +69,11 @@ df_encode = df#stocjage à ce stade du df aux variables encodées
 #suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 
+#préparation du split
+#(méthode courante d'évaluation):
+y = df['RainTomorrow_encode']
+x = df.drop('RainTomorrow_encode', axis = 1)
+
 
 #Affichages des étapes du projet et des points clés :
 
@@ -214,10 +219,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
 
 
-  #(méthode courante d'évaluation):
-  y = df['RainTomorrow_encode']
-  x = df.drop('RainTomorrow_encode', axis = 1)
-  
+ 
 #Si choix 4 :
 elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":  
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.") 
