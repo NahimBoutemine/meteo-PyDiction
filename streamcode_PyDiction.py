@@ -303,9 +303,9 @@ if rad == "Machine Learning":
 
     if choice3 == 'KNN':
       model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
-    elif choice3 = 'arbre de décision' :
+      
+    elif choice3 == 'arbre de décision' :
       model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
-
 
     elif choice3 == 'régression logistique' :
       model = LogisticRegression(C=0.01, penalty= 'l2')
