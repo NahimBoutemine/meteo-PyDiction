@@ -280,14 +280,19 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     elif choice == 'Aucun rééchantillonage':
       st.markdown("Les données sont déséquilibrées")  
   
-  choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
+  choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice)
   
-  if choice2 == 'StandardScaler':
+  if choice2 == 'Aucune normalisation':
     #affectation de x et y
-    x = x_sm
-    y = y_sm
+
+    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+    name_columns_numerics = x.select_dtypes(include=numerics).columns
+    
+  elif choice2 == 'StandardScaler':
+    #affectation de x et y
+
     numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
     name_columns_numerics = x.select_dtypes(include=numerics).columns
     #créer, Entrainer et transformer directement les colonnes numériques de x
@@ -319,26 +324,36 @@ if rad == "Machine Learning":
     ##Précision et f1-score :
     y_pred_train = model.predict(x_train)
     y_pred_test = model.predict(x_test)
-    st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
-    #accuracy : 
-    acc_train  = accuracy_score(y_train, y_pred_train)
-    acc_test  = accuracy_score(y_test, y_pred_test)
-    st.write("acc_train : ", acc_train, "acc_test :", acc_test)
-    ##F1-score :
-    f1score_train = f1_score(y_train, y_pred_train, average='macro')
-    f1score_test = f1_score(y_test, y_pred_test, average='macro')
-    st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
-    #matrice de confusion : 
-    st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    
+    st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
+    
+    choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','matrice de confusion','AUC et ROC Curve'))
 
+    if choice4 == 'accuracy':
+      acc_train  = accuracy_score(y_train, y_pred_train)
+      acc_test  = accuracy_score(y_test, y_pred_test)
+      st.write("acc_train : ", acc_train, "acc_test :", acc_test)
+      
+    elif choice4 == 'F1-score' :
+      f1score_train = f1_score(y_train, y_pred_train, average='macro')
+      f1score_test = f1_score(y_test, y_pred_test, average='macro')
+      st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+
+    elif choice4 == 'matrice de confusion' :
+      st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+
+    elif choice4 == 'AUC et ROC Curve' :
+      st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
+      false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
+      roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+    
+    
+    st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+
+    
     #résultats :
     st.markdown("Les prédictions sont plutôt bonnes !")
     st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
-
-    #AUC et ROC Curve:
-    st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-    false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
-    roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
     
 
 '''
