@@ -287,8 +287,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   if choice2 == 'Aucune normalisation':
     #affectation de x et y
 
-    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
-    name_columns_numerics = x.select_dtypes(include=numerics).columns
     
   elif choice2 == 'StandardScaler':
     #affectation de x et y
@@ -317,22 +315,45 @@ if rad == "Machine Learning":
     if choice3 == 'KNN':
       model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
       
+      #itération du modèle :
+      st.markdown('itération du modèle')
+      model.fit(x_train,y_train)
+      ##Précision et f1-score :
+      y_pred_train = model.predict(x_train)
+      y_pred_test = model.predict(x_test)
+      
     elif choice3 == 'arbre de décision' :
       model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
 
+      #itération du modèle :
+      st.markdown('itération du modèle')
+      model.fit(x_train,y_train)
+      ##Précision et f1-score :
+      y_pred_train = model.predict(x_train)
+      y_pred_test = model.predict(x_test)
+      
     elif choice3 == 'régression logistique' :
       model = LogisticRegression(C=0.01, penalty= 'l2')
 
+      #itération du modèle :
+      st.markdown('itération du modèle')
+      model.fit(x_train,y_train)
+      ##Précision et f1-score :
+      y_pred_train = model.predict(x_train)
+      y_pred_test = model.predict(x_test)
+      
     elif choice3 == 'Random forest' :
       model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
     
-    #itération du modèle :
-    st.markdown('itération du modèle')
-    model.fit(x_train,y_train)
-    ##Précision et f1-score :
-    y_pred_train = model.predict(x_train)
-    y_pred_test = model.predict(x_test)
+      #itération du modèle :
+      st.markdown('itération du modèle')
+      model.fit(x_train,y_train)
+      ##Précision et f1-score :
+      y_pred_train = model.predict(x_train)
+      y_pred_test = model.predict(x_test)
     
+    
+   
     st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
     
     choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','matrice de confusion','AUC et ROC Curve'))
