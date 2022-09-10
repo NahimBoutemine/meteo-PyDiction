@@ -287,8 +287,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   if choice2 == 'Aucune normalisation':
     #affectation de x et y
 
-    
-  elif choice2 == 'StandardScaler':
+  if choice2 == 'StandardScaler':
     #affectation de x et y
 
     numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
