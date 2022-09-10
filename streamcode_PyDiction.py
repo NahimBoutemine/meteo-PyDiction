@@ -282,7 +282,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
-  st.write('You have selected:', choice)
+  st.write('You have selected:', choice2)
 
   if choice2 == 'StandardScaler':
     #affectation de x et y
@@ -293,7 +293,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     scaler =  StandardScaler()
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
     
-  elif choice2 == 'Aucune normalisation':
+  #elif choice2 == 'Aucune normalisation':
     #affectation de x et y
 
   
@@ -358,7 +358,7 @@ if rad == "Machine Learning":
    
     st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
     
-    choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','matrice de confusion','AUC et ROC Curve'))
+    choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','matrice de confusion','AUC et ROC Curve','MAE'))
 
     if choice4 == 'accuracy':
       acc_train  = accuracy_score(y_train, y_pred_train)
