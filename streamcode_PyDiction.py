@@ -22,6 +22,7 @@ from sklearn import model_selection, preprocessing
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
 from sklearn.feature_selection import VarianceThreshold, SelectKBest, SelectFromModel, f_regression, mutual_info_regression, RFE, RFECV
@@ -394,7 +395,7 @@ if rad == "Machine Learning":
       st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
       st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
-    elif choice5 == 'MAE' :
+    elif choice4 == 'MAE' :
       MAE = mae(y_test, y_pred_test)
       st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
