@@ -232,7 +232,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   choice = str(choice)
   
 
-  if choice == 'None':
+  if choice == 'Aucun rééchantillonage':
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation
         
@@ -272,7 +272,9 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     fig = plt.figure()
     sns.countplot(data = df, x = 'RainTomorrow_encode')
     st.pyplot(fig)
-    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+    
+    if choice == 'Undersampling':
+      st.markdown("Les données sont déséquilibrées")
 
   
   choice2 = st.selectbox('Select the items you want?', ('None','StandardScaler'))
