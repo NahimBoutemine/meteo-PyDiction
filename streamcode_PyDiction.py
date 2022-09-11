@@ -88,7 +88,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     kangourou = Image.open('kangoufun.jpg')
     st.image(kangourou, caption=' ')
     st.markdown("Le titre du projet 'PyDiction' est une synthèse des mots prédiction et python car l'on cherche ici à prédire la pluie et python a été employé pour cela ainsi que le Machine Learning. ")
-    st.subheader("Défitions et objectifs du projet")
+    st.subheader("Définitions et objectifs du projet")
     st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
     st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
     st.markdown("Les données sont issues de https://www.kaggle.com/jsphyg/weather-dataset-rattle-package et sont des données météorologiques de pluie, ensoleillement, température, pression, vent, humidité, pour plusieurs années et réparties sur 49 stations australiennes.")
