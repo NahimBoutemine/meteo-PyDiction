@@ -84,18 +84,23 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.title("Introduction : Le projet et ses créateurs")
   st.header("Le projet 'PyDiction'")
   if st.button('Cliquez ici pour afficher la description du projet et de cette application'):
+    st.subheader("Titre du projet ")
     kangourou = Image.open('kangoufun.jpg')
     st.image(kangourou, caption=' ')
     st.markdown("Le titre du projet 'PyDiction' est une synthèse des mots prédiction et python car l'on cherche ici à prédire la pluie et python a été employé pour cela ainsi que le Machine Learning. ")
+    st.subheader("Défitions et objectifs du projet")
     st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
     st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
-    diapo = Image.open('diapo.jpg')
-    st.image(diapo, caption= "Etapes depuis les données météo jusqu'à la prédiction ")
     st.markdown("Les données sont issues de https://www.kaggle.com/jsphyg/weather-dataset-rattle-package et sont des données météorologiques de pluie, ensoleillement, température, pression, vent, humidité, pour plusieurs années et réparties sur 49 stations australiennes.")
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
     st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1), sur un endroit quelconque en Australie, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+    st.subheader("Objectifs de cette application web ")
     st.markdown("Cette application streamlit vise à montrer de manière intéractive un résumé des étapes ayant permis de construction du pipeline optimal de préparation des données et d'un modèle satisfisant pour prédire la pluie au lendemain sur un point du territoire australien." )
-
+    st.subheader("Etapes du projet")
+    diapo = Image.open('diapo.jpg')
+    st.image(diapo, caption= "Etapes depuis les données météo jusqu'à la prédiction ")
+    st.markdown("Vous pouvez découvrir les éléments clés du travail dans le cadre de ce projet en cliquant à gauche dans le menu")
+    
   #Présentation des créateurs :
   st.header("Les créateurs") 
   if st.button('Cliquez ici pour découvrir les créateurs du projet'):
@@ -223,8 +228,7 @@ elif rad == "Pipeline de préparation des données":
     st.write(heatmap)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
  
-#Si choix 4 :
-elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":  
+  st.subheader("Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":  
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.") 
   st.markdown(" Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprentissage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
   st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
@@ -269,7 +273,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   
   #potiron
   
-    
+#Si choix 4 :
 if rad == "Machine Learning":
     
     #le train set
