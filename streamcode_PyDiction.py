@@ -106,26 +106,25 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
 
 #Si choix 2 :
-elif rad == "Exploration des données":
-  #Présentation du jeu de données
+elif rad == "Exploration des données brutes":
+  #Exploration des données brutes :
   st.header("Présentation et exploration des données")
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
-  
   st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
   st.write(df_full)
-  st.markdown("Le nombre de lignes est:")
+  st.markdown("Le nombre de données est à priori, selon les critères usuels, assez conséquent pour entrainer un modèle de prédiction et le rendre performant :")
   st.write(len(df_full))
   
-  #Traitement des doublons et des manquantes :  
+  #Repérage doublons et des manquantes :  
   st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
-  st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
+  st.markdown("Affichons le pourcentage de ces valeurs manquantes, et ce pour chacune des variables :")
   percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df_full)    
 
-  #afficher les types des variables:
-  st.markdown("Affichons les types des différentes variables de notre jeu de données:")
-  st.write(df_full.dtypes.value_counts())
+  #Repérer les types de variables et leur définition :
+  st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite.")
+  st.write(df_full.info())
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
