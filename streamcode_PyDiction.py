@@ -93,8 +93,8 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.image(diapo, caption= "Etapes depuis les données météo jusqu'à la prédiction ")
     st.markdown("Les données sont issues de https://www.kaggle.com/jsphyg/weather-dataset-rattle-package et sont des données météorologiques de pluie, ensoleillement, température, pression, vent, humidité, pour plusieurs années et réparties sur 49 stations australiennes.")
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
-    st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un point du territoire australien, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
-    st.markdown("Cette application streamlit vise à montrer de manière intéractive les étapes ayant permis de conclure sur un pipeline optimal de préparation des données et sur un modèle satisfisant pour prédire RainTomorrow sur un point du territoire australien." )
+    st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un endroit quelconque du territoire australien, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+    st.markdown("Cette application streamlit vise à montrer de manière intéractive un résumé des étapes ayant permis de conclure sur un pipeline optimal de préparation des données et sur un modèle satisfisant pour prédire RainTomorrow sur un point du territoire australien." )
 
   #Présentation des créateurs :
   st.header("Les créateurs") 
