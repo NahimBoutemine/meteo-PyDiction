@@ -114,31 +114,29 @@ elif rad == "Exploration des données brutes":
   
   #Exploration des données brutes :
   st.header("Exploration des données brutes")
-  st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. pour Le traitement des données avant la modélisation peut se faire de différentes manières soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
+  st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. Le traitement des données avant la modélisation peut se faire de différentes manières, soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
   #Nombre de données, définitions et types des variables :
   st.subheader("Source des données et nombre :")   
-  st.markdown("Usuellement la première information à considérer sur les données brutes est leur nombre afin discriminer certains modèles (voir méthode de scikit). Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
+  st.markdown("Le nombre de données est un critère pour la préselection de modèles et le choix du remplacement des manquantes. Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.write('Le nombre de lignes du jeu de données est :', 
            len(df_full), 
            'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre performant.')
-  st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   
   #Les variables explicatives, définitions et types  :
-  st.subheader("Types des variables explicatives  :")    
-  st.write("Généralement ensuite les variables sont définies pour pouvoir les interpréter en conclusion, puis les types des variables sont étudiés afin de prévoir les encodages des catégorielles éventuels nécessaires (condition nécessaire pour les algoritmes de ML). Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
+  st.subheader("Types des variables explicatives pour évaluer la nécessité de l'encodage :")    
+  st.write("Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
   st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite.")
 
   #Repérage des doublons et des manquantes : 
-  st.subheader("Repérage des doublons et des valeurs manquantes")    
-  st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, il faut donc déjà vérifier leur existence: ")
+  st.subheader("Repérage des doublons et des valeurs manquantes éventuelles pour évaluer la nécessité de ces suppressions")    
   st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
-  if st.checkbox("Cocher pour afficher le pourcentage de  valeurs manquantes pour chacune des variables"):
+  if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes pour chacune des variables"):
     percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
     st.write(percent_missing_df_full)    
 
-  #Distribution des variables pour vérifier la normalité :
-  st.subheader("Etude de la distribution des variables pour vérifier la normalité")    
-  st.markdown("Les modèles de ML demandent en entrée des données aux distributions les plus gaussiennes possibles, vérifions cette condition :")
+  #Etude de la distribution des variables pour étudier l'intérêt de la normalisation :
+  st.subheader("Etude de la distribution des variables pour étudier l'intérêt de la normalisation")    
+  st.markdown("Les modèles de ML demandent en entrée des données aux distributions normales, vérifions cette condition :")
 
   #Distribution des numériques :
   st.markdown("Etude de la distribution des variables numériques - boxsplot :")
@@ -199,6 +197,9 @@ elif rad == "Exploration des données brutes":
     sns.countplot(data = df_full, x = 'RainTomorrow')
     st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, la vérification de cette hypothèse est présentée par la suite.")
+  
+  st.subheader("Préselection de modèles suite à l'exploration des données: )
+  st.markdown("Les modèles potentiellement adaptés selon la méthode de Scikit Learn et les études de ce type sont : KNN, regression logistique, arbre de décision et Random Forest  ")
 
 #Si choix 3:
 elif rad == "Pipeline de préparation des données": 
