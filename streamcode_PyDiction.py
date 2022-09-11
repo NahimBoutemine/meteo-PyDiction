@@ -31,8 +31,7 @@ from sklearn import metrics
 from PIL import Image
 from sklearn.preprocessing import StandardScaler
 
-#chargements préliminaires nécessaires : 
-
+#chargements préliminaires nécessaires :
 #création du jeu de données :
 df = pd.read_csv("weatherAUS.csv")
 df_full = df
@@ -76,7 +75,7 @@ y = df['RainTomorrow_encode']
 x = df.drop('RainTomorrow_encode', axis = 1)
 
 
-#Affichages des étapes du projet et des points clés :
+#Affichages des points clés des étapes du projet :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
@@ -111,22 +110,22 @@ elif rad == "Exploration des données":
   #Présentation du jeu de données
   st.header("Présentation et exploration des données")
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
-  st.markdown("Elles ne comprennent pas de doublons mais contiennent des données manquantes. ")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   
   st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
   st.write(df_full)
   st.markdown("Le nombre de lignes est:")
   st.write(len(df_full))
-
-  st.markdown("Par principe en ML, s'il existe des valeurs manquantes, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
+  
+  #Traitement des doublons et des manquantes :  
+  st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
   st.markdown("Affichons le pourcentage de ces fameuses valeurs manquantes, et ce pour chacune des variables :")
   percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df_full)    
 
   #afficher les types des variables:
   st.markdown("Affichons les types des différentes variables de notre jeu de données:")
-  df_full.dtypes.value_counts()
+  st.write(df_full.dtypes.value_counts())
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
@@ -152,16 +151,16 @@ elif rad == "Exploration des données":
   st.markdown("D'abord les catégorielles : ")
   #figures 2 par 2 en fonction du choix:
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
-                        ('MinTemp et MaxTemp', 
+                        ('températures min et max et vitesses du vent', 
                         'pressions (matin et après midi)',
                         'couverture nuageuse (matin et après midi) et températures (matin et après midi)', 
                         'pluie et évaporation, et évaporation et ensoleillement'
                         ))
-  if choice == 'MinTemp et MaxTemp':
+  if choice == 'températures min et max et vitesse du vent':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
     sns.boxplot(data=df_wind, color="green", ax=ax2 )
-    ax1.set_title("température min et max")
+    ax1.set_title("températures min et max")
     ax2.set_title("vitesse du vent (9pm et 3 am)")
     fig.set_tight_layout(True)
     st.pyplot(fig)  
