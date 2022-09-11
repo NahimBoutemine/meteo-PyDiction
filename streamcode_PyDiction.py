@@ -95,7 +95,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
     st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1), sur un endroit quelconque en Australie, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
     st.subheader("Objectifs de cette application web ")
-    st.markdown("Cette application streamlit vise à montrer de manière intéractive un résumé des étapes ayant permis de construction du pipeline optimal de préparation des données et d'un modèle satisfisant pour prédire la pluie au lendemain sur un point du territoire australien." )
+    st.markdown("Fournir de manière intéractive un résumé des étapes de construction du pipeline optimal de préparation des données et d'un modèle satisfisant pour prédire la pluie au lendemain sur un point du territoire australien." )
     st.subheader("Etapes du projet")
     diapo = Image.open('diapo.jpg')
     st.image(diapo, caption= "Etapes depuis les données météo jusqu'à la prédiction ")
