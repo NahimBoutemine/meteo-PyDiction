@@ -133,15 +133,15 @@ elif rad == "Exploration des données brutes":
   #Distribution des variables pour vérifier la normalité :
   st.subheader("Etude de la distribution des variables pour vérifier la normalité")    
   
-  #cible : 
+  #Distribution de la variable cible : 
   st.markdown("Variable cible, répartition des valeurs dans ses catégories :")
   fig = plt.figure(figsize=(3,3))
   sns.countplot(data = df_full, x = 'RainTomorrow')
   st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-  #catégorielles :
-  st.markdown("Variables catégorielles par boxsplot :")
+  #Distribution des numériques :
+  st.markdown("Etude de la distribution des variables numériques - boxsplot :")
 
   #création de sous dataframes
   df_minmaxtemp = df.iloc[:, 1:3]
@@ -231,7 +231,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
  
   #selection de la méthode de rééchantillonage :
-  choice = st.selectbox('Sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :', ('Aucun rééchantillonage', 'Undersampling', 'OverSampling SMOTE'))
+  choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :', ('Aucun rééchantillonage', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
   st.write('Vous avez sélectionné :', choice)
   choice = str(choice)
@@ -240,13 +240,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation
         
-    #afficher la répartition des valeurs dans la cible:
-    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-    fig = plt.figure()
-    sns.countplot(data = df, x = 'RainTomorrow_encode')
-    st.pyplot(fig)
-    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
-
   elif choice == 'Undersampling':
     rUs = RandomUnderSampler()
     x_ru, y_ru = rUs.fit_resample(x, y)
