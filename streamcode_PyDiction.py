@@ -131,7 +131,7 @@ elif rad == "Exploration des données brutes":
   #Repérage des doublons et des manquantes : 
   st.subheader("Repérage des doublons et des valeurs manquantes éventuelles pour évaluer la nécessité de ces suppressions")    
   import missingno as msno
-  fig = msno.matrix(df_full)
+  fig = sns.heatmap(df_full.isnull(), cbar=False)
   st.write(fig)
   st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
   if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes pour chacune des variables"):
