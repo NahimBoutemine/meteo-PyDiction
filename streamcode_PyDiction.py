@@ -111,7 +111,9 @@ elif rad == "Exploration des données brutes":
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   st.write('Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ', df_full)
-  st.write('Le nombre de lignes du jeu de données est :', len(df_full), 'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre performant )
+  st.write('Le nombre de lignes du jeu de données est :', 
+           len(df_full), 
+           'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre performant.')
   
   #Repérage doublons et des manquantes :  
   st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
@@ -120,7 +122,7 @@ elif rad == "Exploration des données brutes":
   st.write(percent_missing_df_full)    
 
   #Repérer les types de variables et leur définition :
-  st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite.")
+  st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite (condition nécessaire pour les algoritmes de ML).")
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
@@ -132,6 +134,12 @@ elif rad == "Exploration des données brutes":
   #visualiser la répartition de variables numériques
   st.markdown("Visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
 
+  
+  
+  st.markdown('Etudions à présent la distribution des variables qui doit être la plus gaussienne possible : ')
+  st.markdown("D'abord les catégorielles : ")
+  
+  #distribution des catégorielles :
   #création de sous dataframes
   df_minmaxtemp = df.iloc[:, 1:3]
   df_wind = df.iloc[:, 10:12]
@@ -141,11 +149,6 @@ elif rad == "Exploration des données brutes":
   df_temp = df.iloc[:, 18:20]
   df_rainfall_evaporation = df.iloc[:, 3:5]
   df_evaporation_sunshine = df.iloc[:, 4:6]
-  
-  st.markdown('Etudions à présent la distribution des variables qui doit être la plus gaussienne possible : ')
-  st.markdown("D'abord les catégorielles : ")
-  
-  #distribution des catégorielles :
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
                         ('températures min et max et vitesse du vent', 
                         'couverture nuageuse (matin et après midi) et températures (matin et après midi)',
