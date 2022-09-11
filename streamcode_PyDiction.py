@@ -193,8 +193,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
  
 #Si choix 3:
-elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
-
+elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives": 
   st.header("Pipeline de préparation des données partie 1 : Traitement des manquantes, des doublons, encodage et sélection des variables explicatives :")
 
   #Traitement des manquantes :
@@ -205,7 +204,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes par colonnes :"):
     st.write(percent_missing_df)
-  st.markdown("Affichons de nouveau le nombre de lignes", len(df)," ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
+  st.write("Affichons de nouveau le nombre de lignes", len(df), " ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
 
   #Affichage de l'encodage :
