@@ -124,7 +124,6 @@ elif rad == "Exploration des données brutes":
 
   #Repérer les types de variables et leur définition :
   st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite.")
-  st.write(df_full.info())
 
   #afficher la répartition des valeurs dans la cible:
   st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
