@@ -125,7 +125,7 @@ elif rad == "Exploration des données brutes":
   
   #Les variables explicatives, définitions et types  :
   st.subheader("Les variables explicatives, définitions et types  :")    
-  st.write('Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ', df_full)
+  st.write("Généralement ensuite les variables sont catégorisées afin de penser les tranformations éventuelles afin d'optimiser l'entrainement des modèles. Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
   st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite (condition nécessaire pour les algoritmes de ML).")
 
   #Repérage des doublons et des manquantes : 
