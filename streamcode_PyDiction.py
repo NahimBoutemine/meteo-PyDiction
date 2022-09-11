@@ -117,7 +117,7 @@ elif rad == "Exploration des données brutes":
   
   #Nombre de données, définitions et types des variables :
   st.subheader("Source des données et nombre :")    
-  st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
+  st.markdown("Usuellement la première information à considérer sur les données brutes est leur nombre afin discriminer certains modèles (voir méthode de scikit). Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.write('Le nombre de lignes du jeu de données est :', 
            len(df_full), 
            'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre performant.')
