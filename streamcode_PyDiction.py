@@ -196,10 +196,10 @@ elif rad == "Exploration des données brutes":
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
   st.markdown("Variable cible, répartition des valeurs dans ses catégories :")
   if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
-  fig = plt.figure(figsize=(3,3))
-  sns.countplot(data = df_full, x = 'RainTomorrow')
-  st.pyplot(fig)
-  st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+    fig = plt.figure(figsize=(3,3))
+    sns.countplot(data = df_full, x = 'RainTomorrow')
+    st.pyplot(fig)
+    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
   
 #Si choix 3:
