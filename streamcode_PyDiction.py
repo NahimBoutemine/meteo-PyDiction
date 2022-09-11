@@ -130,8 +130,8 @@ elif rad == "Exploration des données brutes":
 
   #Repérage des doublons et des manquantes : 
   st.subheader("Repérage des doublons et des valeurs manquantes éventuelles pour évaluer la nécessité de ces suppressions")    
-  import missingno as msno
-  fig = sns.heatmap(df_full.isnull(), cbar=False)
+  fig = plt.figure()  
+  sns.heatmap(df_full.isnull(), cbar=False)
   st.pyplot(fig)  
   st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
   if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes pour chacune des variables"):
@@ -335,8 +335,7 @@ if rad == "Machine Learning":
       model.fit(x_train,y_train)
       ##Précision et f1-score :
       y_pred_train = model.predict(x_train)
-      y_pred_test = model.predict(x_test)
-    
+      y_pred_test = model.predict(x_test)  
     
    
     st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
