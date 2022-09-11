@@ -87,8 +87,6 @@ if rad == "Introduction : Le projet et ses créateurs":
   st.header("Le projet 'PyDiction'")
   if st.button('Cliquez ici pour afficher la description du projet et de cette application'):
     st.subheader("Titre du projet ")
-    kangourou = Image.open('kangoufun.jpg')
-    st.image(kangourou, caption=' ')
     st.markdown("Le titre du projet 'PyDiction' est une synthèse des mots prédiction et python car l'on cherche ici à prédire la pluie et python a été employé pour cela ainsi que le Machine Learning. ")
     st.subheader("Définitions et objectifs du projet")
     st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
