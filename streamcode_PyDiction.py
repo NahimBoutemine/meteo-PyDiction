@@ -1,5 +1,4 @@
-#Première partie : imports et création des variables (jeux de données, indicateurs...) à afficher :
-
+#imports
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
