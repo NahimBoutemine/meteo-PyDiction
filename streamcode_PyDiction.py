@@ -230,10 +230,9 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
   st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
  
-  #selection de la méthode de rééchantillonage :
+  #Séelection de la méthode de rééchantillonnage et impact :
   choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonage', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
-  choice = str(choice)  
   if choice == 'Aucun rééchantillonage':
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation        
@@ -243,7 +242,7 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     #affectation de x et y
     x = x_ru
     y = y_ru    
-  elif choice == 'OverSampling SMOTE':
+  else choice == 'OverSampling SMOTE':
     st.write('Vous avez sélectionné :', choice)
     smo = SMOTE()
     x_sm, y_sm = smo.fit_resample(x, y)
@@ -256,10 +255,9 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.write('You have selected:', choice2)
 
   if choice2 == 'StandardScaler':
-    #affectation de x et y
-
     numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
     name_columns_numerics = x.select_dtypes(include=numerics).columns
+    
     #créer, Entrainer et transformer directement les colonnes numériques de x
     scaler =  StandardScaler()
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
