@@ -115,6 +115,7 @@ elif rad == "Exploration des données brutes":
   #Exploration des données brutes :
   st.header("Exploration des données brutes")
   st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. Le traitement des données avant la modélisation peut se faire de différentes manières, soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
+  
   #Nombre de données, définitions et types des variables :
   st.subheader("Source des données et nombre :")   
   st.markdown("Le nombre de données est un critère pour la préselection de modèles et le choix du remplacement des manquantes. Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
@@ -191,7 +192,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
 
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
-  st.subheader("Distribution de la variable cible pour évaluaer l'intérêt des méthodes de rééchantillonnage :")
+  st.subheader("Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage :")
   if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
     fig = plt.figure(figsize=(3,3))
     sns.countplot(data = df_full, x = 'RainTomorrow')
@@ -199,7 +200,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, la vérification de cette hypothèse est présentée par la suite.")
   
   st.subheader("Préselection de modèles suite à l'exploration des données" )
-  st.markdown("Les modèles potentiellement adaptés selon la méthode de Scikit Learn et les études de ce type sont : KNN, regression logistique, arbre de décision et Random Forest  ")
+  st.markdown("Les modèles potentiellement adaptés selon la méthode de Scikit Learn et les études de ce type sont : KNN, régression logistique, arbre de décision et Random Forest  ")
 
 #Si choix 3:
 elif rad == "Pipeline de préparation des données": 
@@ -234,7 +235,7 @@ elif rad == "Pipeline de préparation des données":
  
   st.subheader("Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage")
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.") 
-  st.markdown(" Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprentissage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
+  st.markdown("Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprentissage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
   st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
   st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
   
