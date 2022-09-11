@@ -229,7 +229,8 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.markdown(" Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprenisage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
   st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
   st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
- '''
+ 
+'''
   #Sélection de la méthode de rééchantillonnage et impact :
   choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonage', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
@@ -249,7 +250,8 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     #affectation de x et y
     x = x_sm
     y = y_sm
-    '''
+    
+ '''
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice2)
