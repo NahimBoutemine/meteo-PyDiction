@@ -3,3 +3,4 @@ matplotlib
 seaborn
 sklearn
 imblearn
+missingno
