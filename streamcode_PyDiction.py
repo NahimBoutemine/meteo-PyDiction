@@ -114,7 +114,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.write('Le nombre de lignes du jeu de données est :', 
            len(df_full), 
-           'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre perfo
+           'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre performant.')
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   st.subheader("variables : définitions et leurs types  :")    
   st.write('Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ', df_full)
