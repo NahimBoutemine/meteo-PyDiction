@@ -198,7 +198,7 @@ elif rad == "Exploration des données brutes":
     st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, la vérification de cette hypothèse est présentée par la suite.")
   
-  st.subheader("Préselection de modèles suite à l'exploration des données: )
+  st.subheader("Préselection de modèles suite à l'exploration des données" )
   st.markdown("Les modèles potentiellement adaptés selon la méthode de Scikit Learn et les études de ce type sont : KNN, regression logistique, arbre de décision et Random Forest  ")
 
 #Si choix 3:
