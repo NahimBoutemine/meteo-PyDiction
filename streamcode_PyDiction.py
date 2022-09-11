@@ -155,7 +155,7 @@ elif rad == "Exploration des données":
                         ('MinTemp et MaxTemp', 
                         'pressions (matin et après midi)',
                         'couverture nuageuse (matin et après midi) et températures (matin et après midi)', 
-                        'pluie et évaporation, et évaporation et ensoleillement:'
+                        'pluie et évaporation, et évaporation et ensoleillement'
                         ))
   if choice == 'MinTemp et MaxTemp':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
@@ -185,8 +185,8 @@ elif rad == "Exploration des données":
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_rainfall_evaporation, color="red", ax=ax1)
     sns.boxplot(data=df_evaporation_sunshine, color="green", ax=ax2 )
-    ax1.set_title("pluie et évaporation")
-    ax2.set_title("évaporation et ensoleillement")
+    ax1.set_title("pluie - évapo.")
+    ax2.set_title("évapo. et ensoleillement")
     fig.set_tight_layout(True)
     st.pyplot(fig)
   
