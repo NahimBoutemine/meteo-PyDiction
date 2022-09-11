@@ -93,7 +93,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.image(diapo, caption= "Etapes depuis les données météo jusqu'à la prédiction ")
     st.markdown("Les données sont issues de https://www.kaggle.com/jsphyg/weather-dataset-rattle-package et sont des données météorologiques de pluie, ensoleillement, température, pression, vent, humidité, pour plusieurs années et réparties sur 49 stations australiennes.")
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
-    st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un endroit quelconque du territoire australien, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+    st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un endroit quelconque en Australie, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
     st.markdown("Cette application streamlit vise à montrer de manière intéractive un résumé des étapes ayant permis de conclure sur un pipeline optimal de préparation des données et sur un modèle satisfisant pour prédire RainTomorrow sur un point du territoire australien." )
 
   #Présentation des créateurs :
@@ -146,12 +146,13 @@ elif rad == "Exploration des données brutes":
   
   st.markdown('Etudions à présent la distribution des variables qui doit être la plus gaussienne possible : ')
   st.markdown("D'abord les catégorielles : ")
-  #figures 2 par 2 en fonction du choix:
+  
+  #distribution des catégorielles :
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
                         ('températures min et max et vitesse du vent', 
-                        'pressions (matin et après midi)',
-                        'couverture nuageuse (matin et après midi) et températures (matin et après midi)', 
-                        'pluie et évaporation, et évaporation et ensoleillement'
+                        'couverture nuageuse (matin et après midi) et températures (matin et après midi',
+                        'humidité et pressions (matin et après-midi)', 
+                        'pluie-évaporation, et évaporation-ensoleillement'
                         ))
   if choice == 'températures min et max et vitesse du vent':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
@@ -177,7 +178,7 @@ elif rad == "Exploration des données brutes":
     ax2.set_title("pressions (9am, 3pm)")
     fig.set_tight_layout(True)
     st.pyplot(fig)
-  if choice == 'pluie et évaporation, et évaporation et ensoleillement':
+  if choice == 'pluie-évaporation, et évaporation-ensoleillement':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_rainfall_evaporation, color="red", ax=ax1)
     sns.boxplot(data=df_evaporation_sunshine, color="green", ax=ax2 )
