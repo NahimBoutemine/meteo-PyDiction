@@ -111,10 +111,11 @@ if rad == "Introduction : Le projet et ses créateurs":
 
 #Si choix 2 :
 elif rad == "Exploration des données brutes":
+  
   #Exploration des données brutes :
   st.header("Présentation et exploration des données")
   
-  #Nombre de données,  définitions et types des variables :
+  #Nombre de données, définitions et types des variables :
   st.subheader("Source des données et nombre :")    
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.write('Le nombre de lignes du jeu de données est :', 
@@ -131,19 +132,14 @@ elif rad == "Exploration des données brutes":
   st.subheader("Repérage des doublons et des valeurs manquantes")    
   st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, il faut donc déjà vérifier leur existence: ")
   st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
-  st.markdown("Pourcentage de  valeurs manquantes pour chacune des variables :")
-  percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
-  st.write(percent_missing_df_full)    
+  st.markdown(":")
+  if st.checkbox("Cocher pour afficher le pourcentage de  valeurs manquantes pour chacune des variables"):
+    percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
+    st.write(percent_missing_df_full)    
 
   #Distribution des variables pour vérifier la normalité :
   st.subheader("Etude de la distribution des variables pour vérifier la normalité")    
-  
-  #Distribution de la variable cible : 
-  st.markdown("Variable cible, répartition des valeurs dans ses catégories :")
-  fig = plt.figure(figsize=(3,3))
-  sns.countplot(data = df_full, x = 'RainTomorrow')
-  st.pyplot(fig)
-  st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+  st.markdown("Les modèles de ML demandent en entrée des données aux distributions les plus gaussiennes possibles, vérifions cette condition :")
 
   #Distribution des numériques :
   st.markdown("Etude de la distribution des variables numériques - boxsplot :")
@@ -196,7 +192,16 @@ elif rad == "Exploration des données brutes":
     fig.set_tight_layout(True)
     st.pyplot(fig)  
   st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
- 
+
+  #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
+  st.markdown("Variable cible, répartition des valeurs dans ses catégories :")
+  if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
+  fig = plt.figure(figsize=(3,3))
+  sns.countplot(data = df_full, x = 'RainTomorrow')
+  st.pyplot(fig)
+  st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+
+  
 #Si choix 3:
 elif rad == "Pipeline de préparation des données": 
   st.header("Pipeline de préparation des données")
