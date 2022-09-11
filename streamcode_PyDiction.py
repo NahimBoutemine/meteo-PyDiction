@@ -198,7 +198,7 @@ elif rad == "Exploration des données brutes":
     fig = plt.figure(figsize=(3,3))
     sns.countplot(data = df_full, x = 'RainTomorrow')
     st.pyplot(fig)
-    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, la vérification de cette hypothèse est présentée par la suite.")
+  st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, la vérification de cette hypothèse est présentée par la suite.")
 
   
 #Si choix 3:
