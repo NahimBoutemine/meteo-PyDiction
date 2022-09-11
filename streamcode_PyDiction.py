@@ -234,22 +234,22 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonnage', 'Undersampling', 'OverSampling SMOTE'))
   
   #afficher le choix sélectionné :
-  if choice == 'Aucun rééchantillonnage':
+  #if choice == 'Aucun rééchantillonnage':
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation        
-  elif choice == 'Undersampling':
-    rUs = RandomUnderSampler()
-    x_ru, y_ru = rUs.fit_resample(x, y)
+  #elif choice == 'Undersampling':
+   #rUs = RandomUnderSampler()
+    #x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
-    x = x_ru
-    y = y_ru    
-  else choice == 'OverSampling SMOTE':
-    st.write('Vous avez sélectionné :', choice)
-    smo = SMOTE()
-    x_sm, y_sm = smo.fit_resample(x, y)
+    #x = x_ru
+    #y = y_ru    
+  #else choice == 'OverSampling SMOTE':
+    #st.write('Vous avez sélectionné :', choice)
+    #smo = SMOTE()
+    #x_sm, y_sm = smo.fit_resample(x, y)
     #affectation de x et y
-    x = x_sm
-    y = y_sm
+    #x = x_sm
+    #y = y_sm
     
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
