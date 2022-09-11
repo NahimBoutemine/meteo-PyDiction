@@ -108,38 +108,38 @@ if rad == "Introduction : Le projet et ses créateurs":
 elif rad == "Exploration des données brutes":
   #Exploration des données brutes :
   st.header("Présentation et exploration des données")
+  
+  #Nombre de données,  définitions et types des variables :
+  st.subheader("Nombre de données et leur source,  définitions et types des variables :")    
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   st.write('Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ', df_full)
   st.write('Le nombre de lignes du jeu de données est :', 
            len(df_full), 
            'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre performant.')
-  
-  #Repérage doublons et des manquantes :  
-  st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
-  st.markdown("Affichons le pourcentage de ces valeurs manquantes, et ce pour chacune des variables :")
+  st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite (condition nécessaire pour les algoritmes de ML).")
+
+  #Repérage des doublons et des manquantes : 
+  st.subheader("Repérage des doublons et des valeurs manquantes")    
+  st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, il faut donc déjà vérifier leur existence: ")
+  st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
+  st.markdown("Pourcentage de  valeurs manquantes pour chacune des variables :")
   percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df_full)    
 
-  #Repérer les types de variables et leur définition :
-  st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite (condition nécessaire pour les algoritmes de ML).")
-
-  #afficher la répartition des valeurs dans la cible:
-  st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
+  #Distribution des variables pour vérifier la normalité :
+  st.subheader("Etude de la distribution des variables pour vérifier la normalité")    
+  
+  #cible : 
+  st.markdown("Variable cible, répartition des valeurs dans ses catégories :")
   fig = plt.figure(figsize=(3,3))
   sns.countplot(data = df_full, x = 'RainTomorrow')
   st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-  #visualiser la répartition de variables numériques
-  st.markdown("Visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
+  #catégorielles :
+  st.markdown("Variables catégorielles par boxsplot :")
 
-  
-  
-  st.markdown('Etudions à présent la distribution des variables qui doit être la plus gaussienne possible : ')
-  st.markdown("D'abord les catégorielles : ")
-  
-  #distribution des catégorielles :
   #création de sous dataframes
   df_minmaxtemp = df.iloc[:, 1:3]
   df_wind = df.iloc[:, 10:12]
@@ -187,33 +187,31 @@ elif rad == "Exploration des données brutes":
     ax2.set_title("évaporation - ensoleillement")
     fig.set_tight_layout(True)
     st.pyplot(fig)  
-  st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Les quelques outliers ne perturberont pas par hypothèse les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
+  st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
  
 #Si choix 3:
-elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
-  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
-  st.markdown("Voyons le pourcentage de valeurs manquantes")
-  #st.write(df_full.isna().sum())
-  percent_missing_df_full = df_full.isnull().sum() * 100 / len(df_full)
-  st.write(percent_missing_df_full)
+  st.header("Pipeline de préparation des données partie 1 : Traitement des manquantes, des doublons, encodage et sélection des variables explicatives :")
 
+elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
+  
+  #Traitement des manquantes :
+  st.subheader("Traitement des manquantes :")
+  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une autre valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   st.markdown("A présent affichons ci-dessous le pourcentage de données manquantes par colonne : on peut voir qu'il n'y en a plus!")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df)
-    
-  st.markdown("Affichons ci-dessous le pourcentage de valeurs non dupliquées pour vérifier qu'elles ont été supprimées: c'est vérifié. ")
-  percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
-  st.write(percentage_dupli)
-  st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
-  st.write(len(df))
+  st.markdown("Affichons de nouveau le nombre de lignes", len(df)," ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
-  st.write(df_nonencode)
-  st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
+
+  #Affichage de l'encodage :
+  st.subheader("Encodage des catégorielles :")
+  st.markdown("Les données encodées par Label Encoder sont de cette forme (ci-dessous),nous vérifions qu'elles sont bien toutes numériques: ")
   st.write(df_encode)
   
-  #heatmap
-  st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
+  #Sélection des variables par le test de Pearson :
+  st.subheader("Sélection des variables : par le test de Pearson :")
+  st.markdown("Il faut sélectionner les variables explicatives pour la modélisation avec un nombre final minimal sans perdre d'information pour éviter l'overfitting.")
   st.markdown("Pour cela, nous allons afficher la matrice des corrélations et filtrer les variables non corréllées à la RainTomorrow afin de ne garder que des variables informatives :")
   heatmap, ax = plt.subplots()
   sns.heatmap(df.corr(), ax=ax) 
