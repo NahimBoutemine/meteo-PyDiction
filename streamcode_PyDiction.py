@@ -150,7 +150,7 @@ elif rad == "Exploration des données brutes":
   #distribution des catégorielles :
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
                         ('températures min et max et vitesse du vent', 
-                        'couverture nuageuse (matin et après midi) et températures (matin et après midi',
+                        'couverture nuageuse (matin et après midi) et températures (matin et après midi)',
                         'humidité et pressions (matin et après-midi)', 
                         'pluie-évaporation, et évaporation-ensoleillement'
                         ))
