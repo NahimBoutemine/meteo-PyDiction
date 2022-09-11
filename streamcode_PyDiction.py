@@ -74,7 +74,6 @@ df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 y = df['RainTomorrow_encode']
 x = df.drop('RainTomorrow_encode', axis = 1)
 
-
 #Affichages des points clés des étapes du projet :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
@@ -91,7 +90,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.markdown("Ce projet est réalisé dans le cadre d'une formation professionnelle en Data Science.")
     st.markdown("C'est un travail autour de la météorologie et du Machine Learning (ML). ")
     diapo = Image.open('diapo.jpg')
-    st.image(diapo, caption="Etapes depuis les données météo jusqu'à la prédiction ")
+    st.image(diapo, caption= "Etapes depuis les données météo jusqu'à la prédiction ")
     st.markdown("Les données sont issues de https://www.kaggle.com/jsphyg/weather-dataset-rattle-package et sont des données météorologiques de pluie, ensoleillement, température, pression, vent, humidité, pour plusieurs années et réparties sur 49 stations australiennes.")
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
     st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un point du territoire australien, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
@@ -149,7 +148,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("D'abord les catégorielles : ")
   #figures 2 par 2 en fonction du choix:
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
-                        ('températures min et max et vitesses du vent', 
+                        ('températures min et max et vitesse du vent', 
                         'pressions (matin et après midi)',
                         'couverture nuageuse (matin et après midi) et températures (matin et après midi)', 
                         'pluie et évaporation, et évaporation et ensoleillement'
@@ -185,9 +184,8 @@ elif rad == "Exploration des données brutes":
     ax1.set_title("pluie - évaporation")
     ax2.set_title("évaporation - ensoleillement")
     fig.set_tight_layout(True)
-    st.pyplot(fig)
-  
-  st.markdown("Nous voyons que les distributions des variables sont symétriques")
+    st.pyplot(fig)  
+  st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Les quelques outliers ne perturberont pas par hypothèse les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
  
 #Si choix 3:
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
@@ -207,8 +205,6 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   st.write(percentage_dupli)
   st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
   st.write(len(df))
-    
-
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
   st.write(df_nonencode)
   st.markdown("Les données encodées par Label Encoder sont de cette forme : ")
@@ -221,8 +217,6 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   sns.heatmap(df.corr(), ax=ax) 
   st.write(heatmap)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
-
-
  
 #Si choix 4 :
 elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage":  
