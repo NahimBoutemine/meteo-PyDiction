@@ -194,7 +194,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
 
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
-  st.markdown("Variable cible, répartition des valeurs dans ses catégories :")
+  st.markdown("Distribution de la variable cible et évaluation de l'intérêt des méthodes de rééchantillonnage :")
   if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
     fig = plt.figure(figsize=(3,3))
     sns.countplot(data = df_full, x = 'RainTomorrow')
