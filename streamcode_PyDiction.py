@@ -108,10 +108,9 @@ if rad == "Introduction : Le projet et ses créateurs":
 elif rad == "Exploration des données brutes":
   #Exploration des données brutes :
   st.header("Présentation et exploration des données")
-  st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
+  st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
-  st.markdown("Voici le contenu des données, vous pouvez y voir déjà les noms des variables ainsi que la cible, RainTomorrow :")
-  st.write('contenu des données brutes : ', df_full)
+  st.write('Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ', df_full)
   st.markdown("Le nombre de données est à priori, selon les critères usuels, assez conséquent pour entrainer un modèle de prédiction et le rendre performant :")
   st.write('nombre de lignes du jeu de données :', len(df_full))
   
@@ -132,7 +131,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
   #visualiser la répartition de variables numériques
-  st.markdown("visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
+  st.markdown("Visualisons maintenant la répartition de quelques unes des variables numériques de notre jeu de données")
 
   #création de sous dataframes
   df_minmaxtemp = df.iloc[:, 1:3]
