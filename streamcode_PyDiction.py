@@ -111,8 +111,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   st.write('Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ', df_full)
-  st.markdown("Le nombre de données est à priori, selon les critères usuels, assez conséquent pour entrainer un modèle de prédiction et le rendre performant :")
-  st.write('nombre de lignes du jeu de données :', len(df_full))
+  st.write('Le nombre de lignes du jeu de données est :', len(df_full), 'donc selon les critères usuels, le nombre de données est assez conséquent pour entrainer un modèle de prédiction et le rendre performant )
   
   #Repérage doublons et des manquantes :  
   st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, de même que les doublons. ")
