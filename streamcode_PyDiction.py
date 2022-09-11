@@ -118,7 +118,6 @@ elif rad == "Exploration des données brutes":
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   st.subheader("variables : définitions et leurs types  :")    
   st.write('Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ', df_full)
-  rmant.')
   st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite (condition nécessaire pour les algoritmes de ML).")
 
   #Repérage des doublons et des manquantes : 
