@@ -233,28 +233,16 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   #selection de la méthode de rééchantillonage :
   choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonage', 'Undersampling', 'OverSampling SMOTE'))
   #afficher le choix sélectionné :
-  st.write('Vous avez sélectionné :', choice)
-  choice = str(choice)
-  
+  choice = str(choice)  
   if choice == 'Aucun rééchantillonage':
     #tenter le curseur glissant pour le split ? ou on reste à 20%
-    #selection de la normalisation
-        
+    #selection de la normalisation        
   elif choice == 'Undersampling':
     rUs = RandomUnderSampler()
     x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
     x = x_ru
-    y = y_ru
-    
-    #afficher la répartition des valeurs dans la cible:
-    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-    fig = plt.figure()
-    sns.countplot(data = df, x = 'RainTomorrow_encode')
-    st.pyplot(fig)
-    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
-
-    
+    y = y_ru    
   elif choice == 'OverSampling SMOTE':
     st.write('Vous avez sélectionné :', choice)
     smo = SMOTE()
@@ -263,19 +251,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     x = x_sm
     y = y_sm
     
-    #afficher la répartition des valeurs dans la cible:
-    st.markdown("Affichons la répartition des valeurs dans les catégories de la variable cible:")
-    fig = plt.figure()
-    sns.countplot(data = df, x = 'RainTomorrow_encode')
-    st.pyplot(fig)
-    
-    if choice == 'Undersampling':
-      st.markdown("Les données sont déséquilibrées")
-    elif choice == 'OverSampling SMOTE':
-      st.markdown("Les données sont déséquilibrées")
-    elif choice == 'Aucun rééchantillonage':
-      st.markdown("Les données sont déséquilibrées")  
-  
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice2)
