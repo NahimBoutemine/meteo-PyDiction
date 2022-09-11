@@ -77,7 +77,7 @@ x = df.drop('RainTomorrow_encode', axis = 1)
 #Affichages des points clés des étapes du projet :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données brutes", "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives", "Préparation des données - partie 2 : Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage", "Machine Learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données brutes", "Pipeline de préparation des données", "Machine Learning", "Conclusion et perspectives"])
 
 #Si choix 1 :
 if rad == "Introduction : Le projet et ses créateurs":
@@ -93,8 +93,8 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.image(diapo, caption= "Etapes depuis les données météo jusqu'à la prédiction ")
     st.markdown("Les données sont issues de https://www.kaggle.com/jsphyg/weather-dataset-rattle-package et sont des données météorologiques de pluie, ensoleillement, température, pression, vent, humidité, pour plusieurs années et réparties sur 49 stations australiennes.")
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
-    st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un endroit quelconque en Australie, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
-    st.markdown("Cette application streamlit vise à montrer de manière intéractive un résumé des étapes ayant permis de conclure sur un pipeline optimal de préparation des données et sur un modèle satisfisant pour prédire RainTomorrow sur un point du territoire australien." )
+    st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1), sur un endroit quelconque en Australie, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
+    st.markdown("Cette application streamlit vise à montrer de manière intéractive un résumé des étapes ayant permis de construction du pipeline optimal de préparation des données et d'un modèle satisfisant pour prédire la pluie au lendemain sur un point du territoire australien." )
 
   #Présentation des créateurs :
   st.header("Les créateurs") 
