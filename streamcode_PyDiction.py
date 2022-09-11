@@ -114,7 +114,7 @@ elif rad == "Exploration des données brutes":
   
   #Exploration des données brutes :
   st.header("Présentation et exploration des données")
-  
+  st.markdown("Le traitement des données avant la modélisation peut se faire de différentes manières soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
   #Nombre de données, définitions et types des variables :
   st.subheader("Source des données et nombre :")   
   st.markdown("Usuellement la première information à considérer sur les données brutes est leur nombre afin discriminer certains modèles (voir méthode de scikit). Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
@@ -125,7 +125,7 @@ elif rad == "Exploration des données brutes":
   
   #Les variables explicatives, définitions et types  :
   st.subheader("Types des variables explicatives  :")    
-  st.write("Généralement ensuite les variables sont définies pour pouvoir les interpréter ensuite, puis les types des variables sont étudiés afin de prévoir les encodages des catégorielles éventuels nécessaires (condition nécessaire pour les algoritmes de ML). Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
+  st.write("Généralement ensuite les variables sont définies pour pouvoir les interpréter en conclusion, puis les types des variables sont étudiés afin de prévoir les encodages des catégorielles éventuels nécessaires (condition nécessaire pour les algoritmes de ML). Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
   st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite.")
 
   #Repérage des doublons et des manquantes : 
