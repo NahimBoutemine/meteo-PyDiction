@@ -148,58 +148,62 @@ elif rad == "Exploration des données":
   df_rainfall_evaporation = df.iloc[:, 3:5]
   df_evaporation_sunshine = df.iloc[:, 4:6]
   
-  #figures 2 par 2:
-  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
-  sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
-  sns.boxplot(data=df_wind, color="green", ax=ax2 )
-  ax1.set_title("températures journalières min et max")
-  ax2.set_title("vitesse du vent (9pm et 3 am)")
-  fig.set_tight_layout(True)
-  st.pyplot(fig)  
-    
-  #figures 2 par 2:
-  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
-  sns.boxplot(data=df_humidity, color="red", ax=ax1)
-  sns.boxplot(data=df_pressure, color="green", ax=ax2 )
-  ax1.set_title("humidité journalière")
-  ax2.set_title("pression (matin et après midi)")
-  fig.set_tight_layout(True)
-  st.pyplot(fig)
-  
-  #figures 2 par 2:
-  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
-  sns.boxplot(data=df_cloud, color="red", ax=ax1)
-  sns.boxplot(data=df_temp, color="green", ax=ax2 )
-  ax1.set_title("couverture nuageuse (matin et après midi)")
-  ax2.set_title("températures (matin et après midi)")
-  fig.set_tight_layout(True)
-  st.pyplot(fig)
-  
-  #figures 2 par 2:
-  fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
-  sns.boxplot(data=df_rainfall_evaporation, color="red", ax=ax1)
-  sns.boxplot(data=df_evaporation_sunshine, color="green", ax=ax2 )
-  ax1.set_title("evaporation")
-  ax2.set_title("sunshine")
-  fig.set_tight_layout(True)
-  st.pyplot(fig)
+
+  #figures 2 par 2 en fonction du choix:
+  choice = st.selectbox('Sélectionnez les catégorielles à afficher :', 
+                        ('MinTemp et MaxTemp', 
+                        'pressions (matin et après midi)',
+                        'couverture nuageuse (matin et après midi) et températures (matin et après midi)', 
+                        'pluie et évaporation, et évaporation et ensoleillement:'))
+  if choice = 'MinTemp et MaxTemp':
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
+    sns.boxplot(data=df_wind, color="green", ax=ax2 )
+    ax1.set_title("températures journalières min et max")
+    ax2.set_title("vitesse du vent (9pm et 3 am)")
+    fig.set_tight_layout(True)
+    st.pyplot(fig)  
+  if choice = 'couverture nuageuse (matin et après midi) et températures (matin et après midi)':
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    sns.boxplot(data=df_cloud, color="red", ax=ax1)
+    sns.boxplot(data=df_temp, color="green", ax=ax2 )
+    ax1.set_title("couverture nuageuse (matin et après midi)")
+    ax2.set_title("températures (matin et après midi)")
+    fig.set_tight_layout(True)
+    st.pyplot(fig)
+  if choice = 'pressions (matin et après midi)':
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    sns.boxplot(data=df_humidity, color="red", ax=ax1)
+    sns.boxplot(data=df_pressure, color="green", ax=ax2 )
+    ax1.set_title("humidité journalière")
+    ax2.set_title("pressions (matin et après midi)")
+    fig.set_tight_layout(True)
+    st.pyplot(fig)
+  if choice = 'pluie et évaporation, et évaporation et ensoleillement:'
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    sns.boxplot(data=df_rainfall_evaporation, color="red", ax=ax1)
+    sns.boxplot(data=df_evaporation_sunshine, color="green", ax=ax2 )
+    ax1.set_title("pluie et évaporation")
+    ax2.set_title("évaporation et ensoleillement")
+    fig.set_tight_layout(True)
+    st.pyplot(fig)
   
   st.markdown("Nous voyons que les distributions des variables sont symétriques")
  
 #Si choix 3:
 elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
-  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été pour ce cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
+  st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   st.markdown("Voyons le pourcentage de valeurs manquantes")
   #st.write(df_full.isna().sum())
   percent_missing_df_full = df_full.isnull().sum() * 100 / len(df_full)
   st.write(percent_missing_df_full)
 
-  st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
-  st.markdown("A présent le nombre de données manquantes : on peut voir qu'il n'y en a plus!")
+  st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une autre valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
+  st.markdown("A présent affichons ci-dessous le pourcentage de données manquantes par colonne : on peut voir qu'il n'y en a plus!")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   st.write(percent_missing_df)
     
-  st.markdown("Affichons le pourcentage de valeurs non en doublon pour vérifier qu'elles ont été supprimées:")
+  st.markdown("Affichons ci-dessous le pourcentage de valeurs non dupliquées pour vérifier qu'elles ont été supprimées: c'est vérifié. ")
   percentage_dupli = df.duplicated(keep=False).value_counts(normalize=True) * 100
   st.write(percentage_dupli)
   st.markdown("Affichons de nouveau le nombre de lignes, ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
@@ -213,7 +217,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   
   #heatmap
   st.markdown("A présent, il faut sélectionner les variables explicatives pour la modélisation.")
-  st.markdown("Pour cela, nous allons afficher la matrice des corrélations")
+  st.markdown("Pour cela, nous allons afficher la matrice des corrélations et filtrer les variables non corréllées à la RainTomorrow afin de ne garder que des variables informatives :")
   heatmap, ax = plt.subplots()
   sns.heatmap(df.corr(), ax=ax) 
   st.write(heatmap)
@@ -234,7 +238,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
   st.write('Vous avez sélectionné :', choice)
   choice = str(choice)
   
-
   if choice == 'Aucun rééchantillonage':
     #tenter le curseur glissant pour le split ? ou on reste à 20%
     #selection de la normalisation
