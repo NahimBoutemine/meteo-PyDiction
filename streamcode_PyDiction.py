@@ -116,7 +116,7 @@ elif rad == "Exploration des données brutes":
   st.header("Présentation et exploration des données")
   
   #Nombre de données, définitions et types des variables :
-  st.subheader("Source des données et nombre :")    
+  st.subheader("Source des données et nombre :")   
   st.markdown("Usuellement la première information à considérer sur les données brutes est leur nombre afin discriminer certains modèles (voir méthode de scikit). Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.write('Le nombre de lignes du jeu de données est :', 
            len(df_full), 
@@ -124,9 +124,9 @@ elif rad == "Exploration des données brutes":
   st.markdown("La pluie est considérée comme présente au jour J si elle est strictement supérieure à 1mm. ")
   
   #Les variables explicatives, définitions et types  :
-  st.subheader("Les variables explicatives, définitions et types  :")    
-  st.write("Généralement ensuite les variables sont catégorisées afin de penser les tranformations éventuelles afin d'optimiser l'entrainement des modèles. Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
-  st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite (condition nécessaire pour les algoritmes de ML).")
+  st.subheader("Types des variables explicatives  :")    
+  st.write("Généralement ensuite les variables sont définies pour pouvoir les interpréter ensuite, puis les types des variables sont étudiés afin de prévoir les encodages des catégorielles éventuels nécessaires (condition nécessaire pour les algoritmes de ML). Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
+  st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite.")
 
   #Repérage des doublons et des manquantes : 
   st.subheader("Repérage des doublons et des valeurs manquantes")    
@@ -200,7 +200,6 @@ elif rad == "Exploration des données brutes":
     st.pyplot(fig)
   st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, la vérification de cette hypothèse est présentée par la suite.")
 
-  
 #Si choix 3:
 elif rad == "Pipeline de préparation des données": 
   st.header("Pipeline de préparation des données")
