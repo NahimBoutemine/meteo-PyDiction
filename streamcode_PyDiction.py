@@ -132,7 +132,6 @@ elif rad == "Exploration des données brutes":
   st.subheader("Repérage des doublons et des valeurs manquantes")    
   st.markdown("Par principe en ML, s'il existe des valeurs manquantes ou en doublons, elles sont à enlever pour le bon déroulement de la modélisation, il faut donc déjà vérifier leur existence: ")
   st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
-  st.markdown(":")
   if st.checkbox("Cocher pour afficher le pourcentage de  valeurs manquantes pour chacune des variables"):
     percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
     st.write(percent_missing_df_full)    
@@ -199,7 +198,7 @@ elif rad == "Exploration des données brutes":
     fig = plt.figure(figsize=(3,3))
     sns.countplot(data = df_full, x = 'RainTomorrow')
     st.pyplot(fig)
-    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
+    st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, la vérification de cette hypothèse est présentée par la suite.")
 
   
 #Si choix 3:
