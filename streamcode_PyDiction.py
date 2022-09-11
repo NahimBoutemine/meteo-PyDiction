@@ -78,6 +78,8 @@ x = df.drop('RainTomorrow_encode', axis = 1)
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données brutes", "Pipeline de préparation des données", "Machine Learning", "Conclusion et perspectives"])
+kangourou = Image.open('kangoufun.jpg')
+st.sidebar.image("
 
 #Si choix 1 :
 if rad == "Introduction : Le projet et ses créateurs":
