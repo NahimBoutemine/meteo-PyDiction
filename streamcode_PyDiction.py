@@ -99,7 +99,7 @@ if rad == "Introduction : Le projet et ses créateurs":
   #Présentation des créateurs :
   st.header("Les créateurs") 
   if st.button('Cliquez ici pour découvrir les créateurs du projet'):
-    Richard = Image.open('richard.jpg')
+    Richard = Image.open('richard-modified.png')
     st.image(Richard, caption= "Richard, anciennement assistant de recherche en spectrométrie infrarouge, en reconversion dans la data science", width = 200)
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
@@ -190,10 +190,10 @@ elif rad == "Exploration des données brutes":
   st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
  
 #Si choix 3:
+elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
+
   st.header("Pipeline de préparation des données partie 1 : Traitement des manquantes, des doublons, encodage et sélection des variables explicatives :")
 
-elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives":  
-  
   #Traitement des manquantes :
   st.subheader("Traitement des manquantes :")
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
@@ -242,7 +242,6 @@ elif rad == "Préparation des données - partie 2 : Méthodes de normalisation, 
     st.pyplot(fig)
     st.markdown("Les données sont déséquilibrées ce qui est classique en météorologie. Nous avons posé l'hypothèse que le rééquilibrage des données par rééchantillonnage sera utile sur les performances globales des modèles, les effets rééls de ce rééchantillonnage sont présntés ensuite et en conclusion.")
 
-    
   elif choice == 'Undersampling':
     rUs = RandomUnderSampler()
     x_ru, y_ru = rUs.fit_resample(x, y)
