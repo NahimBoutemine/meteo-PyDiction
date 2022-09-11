@@ -193,11 +193,11 @@ elif rad == "Exploration des données brutes":
   st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
  
 #Si choix 3:
-elif rad == "Préparation des données - partie 1 : élimination des manquantes, encodage et sélection des variables explicatives": 
-  st.header("Pipeline de préparation des données partie 1 : Traitement des manquantes, des doublons, encodage et sélection des variables explicatives :")
-
+elif rad == "Pipeline de préparation des données": 
+  st.header("Pipeline de préparation des données")
+  
   #Traitement des manquantes :
-  st.subheader("Traitement des manquantes :")
+  st.subheader("Traitement des manquantes et des doublons :")
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une autre valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   st.markdown("A présent affichons ci-dessous le pourcentage de données manquantes par colonne : on peut voir qu'il n'y en a plus!")
@@ -209,7 +209,7 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
 
   #Affichage de l'encodage :
   st.subheader("Encodage des catégorielles :")
-  st.markdown("Les données encodées par Label Encoder sont de cette forme (ci-dessous),nous vérifions qu'elles sont bien toutes numériques: ")
+  st.markdown("Les données ont été encodées par Label Encoder, elles sont après encodage de cette forme (ci-dessous), nous vérifions qu'elles sont bien toutes numériques: ")
   if st.checkbox("Cocher pour afficher le tableau des données encodées :"):
     st.write(df_encode)
   
