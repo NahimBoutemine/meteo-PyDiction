@@ -200,22 +200,25 @@ elif rad == "Préparation des données - partie 1 : élimination des manquantes,
   st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une autre valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
   st.markdown("A présent affichons ci-dessous le pourcentage de données manquantes par colonne : on peut voir qu'il n'y en a plus!")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
-  st.write(percent_missing_df)
+  if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes par colonnes :"):
+    st.write(percent_missing_df)
   st.markdown("Affichons de nouveau le nombre de lignes", len(df)," ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
   st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
 
   #Affichage de l'encodage :
   st.subheader("Encodage des catégorielles :")
   st.markdown("Les données encodées par Label Encoder sont de cette forme (ci-dessous),nous vérifions qu'elles sont bien toutes numériques: ")
-  st.write(df_encode)
+  if st.checkbox("Cocher pour afficher le tableau des données encodées :"):
+    st.write(df_encode)
   
   #Sélection des variables par le test de Pearson :
   st.subheader("Sélection des variables : par le test de Pearson :")
   st.markdown("Il faut sélectionner les variables explicatives pour la modélisation avec un nombre final minimal sans perdre d'information pour éviter l'overfitting.")
   st.markdown("Pour cela, nous allons afficher la matrice des corrélations et filtrer les variables non corréllées à la RainTomorrow afin de ne garder que des variables informatives :")
   heatmap, ax = plt.subplots()
-  sns.heatmap(df.corr(), ax=ax) 
-  st.write(heatmap)
+  sns.heatmap(df.corr(), ax=ax)
+  if st.checkbox("Cocher pour afficher la heatmap"):
+    st.write(heatmap)
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
  
 #Si choix 4 :
