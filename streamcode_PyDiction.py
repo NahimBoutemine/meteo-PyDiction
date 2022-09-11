@@ -148,14 +148,16 @@ elif rad == "Exploration des données":
   df_rainfall_evaporation = df.iloc[:, 3:5]
   df_evaporation_sunshine = df.iloc[:, 4:6]
   
-
+  st.markdown('Etudions à présent la distribution des variables qui doit être la plus gaussienne possible : ')
+  st.markdown("D'abord les catégorielles : ")
   #figures 2 par 2 en fonction du choix:
-  choice = st.selectbox('Sélectionnez les catégorielles à afficher :', 
+  choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
                         ('MinTemp et MaxTemp', 
                         'pressions (matin et après midi)',
                         'couverture nuageuse (matin et après midi) et températures (matin et après midi)', 
-                        'pluie et évaporation, et évaporation et ensoleillement:'))
-  if choice = 'MinTemp et MaxTemp':
+                        'pluie et évaporation, et évaporation et ensoleillement:'
+                        ))
+  if choice == 'MinTemp et MaxTemp':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
     sns.boxplot(data=df_wind, color="green", ax=ax2 )
@@ -163,7 +165,7 @@ elif rad == "Exploration des données":
     ax2.set_title("vitesse du vent (9pm et 3 am)")
     fig.set_tight_layout(True)
     st.pyplot(fig)  
-  if choice = 'couverture nuageuse (matin et après midi) et températures (matin et après midi)':
+  if choice == 'couverture nuageuse (matin et après midi) et températures (matin et après midi)':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_cloud, color="red", ax=ax1)
     sns.boxplot(data=df_temp, color="green", ax=ax2 )
@@ -171,7 +173,7 @@ elif rad == "Exploration des données":
     ax2.set_title("températures (matin et après midi)")
     fig.set_tight_layout(True)
     st.pyplot(fig)
-  if choice = 'pressions (matin et après midi)':
+  if choice == 'pressions (matin et après midi)':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_humidity, color="red", ax=ax1)
     sns.boxplot(data=df_pressure, color="green", ax=ax2 )
@@ -179,7 +181,7 @@ elif rad == "Exploration des données":
     ax2.set_title("pressions (matin et après midi)")
     fig.set_tight_layout(True)
     st.pyplot(fig)
-  if choice = 'pluie et évaporation, et évaporation et ensoleillement:'
+  if choice == 'pluie et évaporation, et évaporation et ensoleillement:'
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_rainfall_evaporation, color="red", ax=ax1)
     sns.boxplot(data=df_evaporation_sunshine, color="green", ax=ax2 )
@@ -318,7 +320,7 @@ if rad == "Machine Learning":
         
     
     #selection du modèle
-    choice3 = st.selectbox('Select the items you want?',('KNN','arbre de décision','régression logistique','Random forest'))
+    choice3 = st.selectbox('Selecttionez les modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
     if choice3 == 'KNN':
       model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
