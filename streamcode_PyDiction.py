@@ -116,8 +116,8 @@ elif rad == "Exploration des données brutes":
   st.header("Exploration des données brutes")
   st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. Le traitement des données avant la modélisation peut se faire de différentes manières, soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
   
-  #Nombre de données, définitions et types des variables :
-  st.subheader("Source des données et nombre :")   
+  #Nombre de données, et source :
+  st.subheader("Source des données et nombre pour aider la préselction des modèles de ML :")   
   st.markdown("Le nombre de données est un critère pour la préselection de modèles et le choix du remplacement des manquantes. Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
   st.write('Le nombre de lignes du jeu de données est :', 
            len(df_full), 
@@ -130,6 +130,8 @@ elif rad == "Exploration des données brutes":
 
   #Repérage des doublons et des manquantes : 
   st.subheader("Repérage des doublons et des valeurs manquantes éventuelles pour évaluer la nécessité de ces suppressions")    
+  import missingno as msno
+  msno.matrix(df_full)
   st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
   if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes pour chacune des variables"):
     percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
