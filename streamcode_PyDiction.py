@@ -113,8 +113,8 @@ if rad == "Introduction : Le projet et ses créateurs":
 elif rad == "Exploration des données brutes":
   
   #Exploration des données brutes :
-  st.header("Présentation et exploration des données")
-  st.markdown("Le traitement des données avant la modélisation peut se faire de différentes manières soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
+  st.header("Exploration des données brutes")
+  st.markdown("Avant la modélisation, une présélection de modèles potentiellement intéressants est classiquement faite en fonction du nombre de données présent, étudié ici, et des sources bibliographiques. pour Le traitement des données avant la modélisation peut se faire de différentes manières soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
   #Nombre de données, définitions et types des variables :
   st.subheader("Source des données et nombre :")   
   st.markdown("Usuellement la première information à considérer sur les données brutes est leur nombre afin discriminer certains modèles (voir méthode de scikit). Les données sont présentes sur 49 stations australiennes, sur plusieurs années, et comprennent les informations journalières de : ensoleillement, humidité, vitesse et sens du vent, quantité de nuages, températures minimales et maximales etc.")
@@ -193,7 +193,7 @@ elif rad == "Exploration des données brutes":
   st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
 
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
-  st.subheader("Distribution de la variable cible et évaluation de l'intérêt des méthodes de rééchantillonnage :")
+  st.subheader("Distribution de la variable cible pour évaluaer l'intérêt des méthodes de rééchantillonnage :")
   if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
     fig = plt.figure(figsize=(3,3))
     sns.countplot(data = df_full, x = 'RainTomorrow')
