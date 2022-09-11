@@ -70,7 +70,7 @@ df_encode = df#stocjage à ce stade du df aux variables encodées
 #suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 
-#préparation du split
+#Préparation du split :
 #(méthode courante d'évaluation):
 y = df['RainTomorrow_encode']
 x = df.drop('RainTomorrow_encode', axis = 1)
@@ -96,7 +96,7 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.markdown("Les données sont issues de https://www.kaggle.com/jsphyg/weather-dataset-rattle-package et sont des données météorologiques de pluie, ensoleillement, température, pression, vent, humidité, pour plusieurs années et réparties sur 49 stations australiennes.")
     st.markdown("Le but a été de contruire un modèle de prédiction de la variable nommée 'RainTomorrow'. ")
     st.markdown("'RainTomorrow' représente la présence de pluie au lendemain d'un jour J (J + 1) sur un point du territoire australien, elle vaut tout simplement 1 si la pluie est > 1mm, 0 sinon.")
-    st.markdown("Cette application streamlit vise à montrer les étapes ayant permis de conclure sur une méthode optimale de préparation des données et sur un modèle au taux de prédiction satisfisant pour ce type de données." )
+    st.markdown("Cette application streamlit vise à montrer de manière intéractive les étapes ayant permis de conclure sur un pipeline optimal de préparation des données et sur un modèle satisfisant pour prédire RainTomorrow sur un point du territoire australien." )
 
   #Présentation des créateurs :
   st.header("Les créateurs") 
@@ -181,7 +181,7 @@ elif rad == "Exploration des données":
     ax2.set_title("pressions (matin et après midi)")
     fig.set_tight_layout(True)
     st.pyplot(fig)
-  if choice == 'pluie et évaporation, et évaporation et ensoleillement:'
+  if choice == 'pluie et évaporation, et évaporation et ensoleillement':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_rainfall_evaporation, color="red", ax=ax1)
     sns.boxplot(data=df_evaporation_sunshine, color="green", ax=ax2 )
