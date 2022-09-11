@@ -130,10 +130,11 @@ elif rad == "Exploration des données brutes":
 
   #Repérage des doublons et des manquantes : 
   st.subheader("Repérage des doublons et des valeurs manquantes éventuelles pour évaluer la nécessité de ces suppressions")    
-  fig = plt.figure()  
-  sns.heatmap(df_full.isnull(), cbar=False)
-  st.pyplot(fig)  
   st.markdown("Ici il n'y a pas de doublons, mais des manquantes (voir ci-dessous) ")
+  if st.checkbox("Cocher pour afficher les positions des données manquantes"):
+    st.markdown("fig = plt.figure()  
+    sns.heatmap(df_full.isnull(), cbar=False)
+    st.pyplot(fig)  
   if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes pour chacune des variables"):
     percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
     st.write(percent_missing_df_full)    
