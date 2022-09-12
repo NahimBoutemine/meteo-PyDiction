@@ -325,6 +325,8 @@ elif rad == "Pipeline de préparation des données":
   if choice2 == 'Aucune normalisation':
     #affectation de x et y
     
+    df_minmaxtemp = df.iloc[:, 1:3]
+    
     fig = plt.figure(figsize=(3,3))
     sns.boxplot(data=df_minmaxtemp, color="red")
     #ax1.set_title("températures min et max")
