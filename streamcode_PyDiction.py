@@ -79,12 +79,18 @@ x = df.drop('RainTomorrow_encode', axis = 1)
 smo = SMOTE()
 x_sm, y_sm = smo.fit_resample(x, y)
 
+df_sm = x_sm
+df_sm = df_sm.assign(RainTomorrow_encode = y_sm)
+
+
 #undersampling random
 rUs = RandomUnderSampler()
 x_ru, y_ru = rUs.fit_resample(x, y)
 
 df_ru = x_ru
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
+
+
 
 
 #Affichages des points clés des étapes du projet :
@@ -272,8 +278,6 @@ elif rad == "Pipeline de préparation des données":
         st.pyplot(fig)
         
   elif choice == 'Undersampling':
-    #rUs = RandomUnderSampler()
-    #x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
     #x = x_ru
     #y = y_ru    
@@ -284,7 +288,9 @@ elif rad == "Pipeline de préparation des données":
         fig = plt.figure(figsize=(3,3))
         sns.countplot(data = df_ru, x = 'RainTomorrow_encode')
         st.pyplot(fig)
-       
+        
+  elif choice == 'OverSampling SMOTE':
+      #nopthong 
       
  #if choice == 'OverSampling SMOTE':
     #st.write('Vous avez sélectionné :', choice)
