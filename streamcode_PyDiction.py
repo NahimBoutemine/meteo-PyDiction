@@ -73,6 +73,14 @@ df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 y = df['RainTomorrow_encode']
 x = df.drop('RainTomorrow_encode', axis = 1)
 
+
+#préparation des resampling
+#OverSampling SMOTE':
+smo = SMOTE()
+x_sm, y_sm = smo.fit_resample(x, y)
+
+
+
 #Affichages des points clés des étapes du projet :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
