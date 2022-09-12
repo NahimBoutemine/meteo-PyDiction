@@ -91,6 +91,15 @@ df_ru = x_ru
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
 
+#normalisation
+x_norm = x
+numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+name_columns_numerics = x_norm.select_dtypes(include=numerics).columns
+    
+#créer, Entrainer et transformer directement les colonnes numériques de x_norm
+scaler =  StandardScaler()
+x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numerics])
+
 
 
 #Affichages des points clés des étapes du projet :
@@ -321,6 +330,18 @@ elif rad == "Pipeline de préparation des données":
     #créer, Entrainer et transformer directement les colonnes numériques de x
     scaler =  StandardScaler()
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
+    
+    x_norm_minmaxtemp = x_norm.iloc[:, 1:3]
+    x_norm_wind = df.iloc[:, 10:12]
+    
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    sns.boxplot(data=x_norm_minmaxtemp, color="red", ax=ax1)
+    sns.boxplot(data=x_norm_wind, color="green", ax=ax2 )
+    ax1.set_title("températures min et max")
+    ax2.set_title("vitesse du vent (9pm et 3 am)")
+    fig.set_tight_layout(True)
+    st.pyplot(fig)  
+    
     
   #elif choice2 == 'Aucune normalisation':
     #affectation de x et y
