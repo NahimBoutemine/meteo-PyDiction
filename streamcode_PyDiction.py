@@ -333,10 +333,10 @@ elif rad == "Pipeline de préparation des données":
     
     x_norm_minmaxtemp = x_norm.iloc[:, 1:3]
     
-    fig, (ax1) = plt.subplots(1, 2, figsize=(6, 4))
-    sns.boxplot(data=x_norm_minmaxtemp, color="red", ax=ax1)
-    ax1.set_title("températures min et max")
-    st.pyplot(fig)  
+    #fig, (ax1) = plt.subplots(1, 2, figsize=(6, 4))
+    #sns.boxplot(data=x_norm_minmaxtemp, color="red", ax=ax1)
+    #ax1.set_title("températures min et max")
+    #st.pyplot(fig)  
     
     
   #elif choice2 == 'Aucune normalisation':
