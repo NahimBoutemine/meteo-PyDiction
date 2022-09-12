@@ -332,14 +332,10 @@ elif rad == "Pipeline de préparation des données":
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
     
     x_norm_minmaxtemp = x_norm.iloc[:, 1:3]
-    x_norm_wind = df.iloc[:, 10:12]
     
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    fig, (ax1) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=x_norm_minmaxtemp, color="red", ax=ax1)
-    sns.boxplot(data=x_norm_wind, color="green", ax=ax2 )
     ax1.set_title("températures min et max")
-    ax2.set_title("vitesse du vent (9pm et 3 am)")
-    fig.set_tight_layout(True)
     st.pyplot(fig)  
     
     
