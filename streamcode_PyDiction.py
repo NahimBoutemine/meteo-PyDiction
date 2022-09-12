@@ -269,12 +269,19 @@ elif rad == "Pipeline de préparation des données":
         sns.countplot(data = df, x = 'RainTomorrow_encode')
         st.pyplot(fig)
         
-  #if choice == 'Undersampling':
+  if choice == 'Undersampling':
     #rUs = RandomUnderSampler()
     #x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
     #x = x_ru
     #y = y_ru    
+    
+      st.write("le nombre de lignes reste inchangé :", len(x_ru))
+    
+      if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
+        fig = plt.figure(figsize=(3,3))
+        sns.countplot(data = df, x_ru = 'RainTomorrow_encode')
+        st.pyplot(fig)
     
     
     
