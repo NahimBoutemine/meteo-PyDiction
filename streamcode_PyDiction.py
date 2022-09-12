@@ -289,8 +289,17 @@ elif rad == "Pipeline de préparation des données":
         sns.countplot(data = df_ru, x = 'RainTomorrow_encode')
         st.pyplot(fig)
         
-  elif choice == 'OverSampling SMOTE':
-      #nopthong 
+  elif choice == 'Oversampling SMOTE':
+    #affectation de x et y
+    #x = x_ru
+    #y = y_ru    
+    
+      st.write("le nombre de lignes reste inchangé :", len(x_ru))
+    
+      if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
+        fig = plt.figure(figsize=(3,3))
+        sns.countplot(data = df_ru, x = 'RainTomorrow_encode')
+        st.pyplot(fig)
       
  #if choice == 'OverSampling SMOTE':
     #st.write('Vous avez sélectionné :', choice)
@@ -299,7 +308,8 @@ elif rad == "Pipeline de préparation des données":
     #affectation de x et y
     #x = x_sm
     #y = y_sm
-    
+  
+  st.markdown("La question de la normalisation s'est aussi posée")
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice2)
