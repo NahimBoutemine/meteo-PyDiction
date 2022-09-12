@@ -79,6 +79,10 @@ x = df.drop('RainTomorrow_encode', axis = 1)
 smo = SMOTE()
 x_sm, y_sm = smo.fit_resample(x, y)
 
+#undersampling random
+rUs = RandomUnderSampler()
+x_ru, y_ru = rUs.fit_resample(x, y)
+
 
 
 #Affichages des points clés des étapes du projet :
@@ -255,16 +259,26 @@ elif rad == "Pipeline de préparation des données":
   choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonnage', 'Undersampling', 'OverSampling SMOTE'))
   
   #afficher le choix sélectionné :
-  #if choice == 'Aucun rééchantillonnage':
-    #tenter le curseur glissant pour le split ? ou on reste à 20%
-    #selection de la normalisation        
-  #elif choice == 'Undersampling':
-   #rUs = RandomUnderSampler()
+  if choice == 'Aucun rééchantillonnage':
+    #nothing
+    
+      st.write("le nombre de lignes reste inchangé :", len(df))
+    
+      if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
+        fig = plt.figure(figsize=(3,3))
+        sns.countplot(data = df, x = 'RainTomorrow_encode')
+        st.pyplot(fig)
+        
+  elif choice == 'Undersampling':
+    #rUs = RandomUnderSampler()
     #x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
     #x = x_ru
     #y = y_ru    
-  #else choice == 'OverSampling SMOTE':
+    
+    
+    
+  else choice == 'OverSampling SMOTE':
     #st.write('Vous avez sélectionné :', choice)
     #smo = SMOTE()
     #x_sm, y_sm = smo.fit_resample(x, y)
