@@ -92,13 +92,13 @@ df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
 
 #normalisation
-x_norm = x
-numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
-name_columns_numerics = x_norm.select_dtypes(include=numerics).columns
+#x_norm = x
+#numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+#name_columns_numerics = x_norm.select_dtypes(include=numerics).columns
     
 #créer, Entrainer et transformer directement les colonnes numériques de x_norm
-scaler =  StandardScaler()
-x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numerics])
+#scaler =  StandardScaler()
+#x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numerics])
 
 
 
