@@ -84,7 +84,7 @@ rUs = RandomUnderSampler()
 x_ru, y_ru = rUs.fit_resample(x, y)
 
 df_ru = x_ru
-df_ru = df_ru.assign('RainTomorrow_encode' = y_ru)
+df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
 
 #Affichages des points clés des étapes du projet :
