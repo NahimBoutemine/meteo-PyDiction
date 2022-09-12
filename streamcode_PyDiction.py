@@ -331,7 +331,7 @@ elif rad == "Pipeline de préparation des données":
     scaler =  StandardScaler()
     x[name_columns_numerics] = scaler.fit_transform(x[name_columns_numerics])
     
-    x_norm_minmaxtemp = x_norm.iloc[:, 1:3]
+    #x_norm_minmaxtemp = x_norm.iloc[:, 1:3]
     
     #fig, (ax1) = plt.subplots(1, 2, figsize=(6, 4))
     #sns.boxplot(data=x_norm_minmaxtemp, color="red", ax=ax1)
