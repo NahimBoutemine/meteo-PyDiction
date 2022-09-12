@@ -321,8 +321,16 @@ elif rad == "Pipeline de préparation des données":
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
   st.write('You have selected:', choice2)
-
-  if choice2 == 'StandardScaler':
+  
+  if choice2 == 'Aucune normalisation':
+    #affectation de x et y
+    
+    fig = plt.figure(figsize=(3,3))
+    sns.boxplot(data=df_minmaxtemp, color="red")
+    #ax1.set_title("températures min et max")
+    st.pyplot(fig)  
+  
+  elif choice2 == 'StandardScaler':
     numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
     name_columns_numerics = x.select_dtypes(include=numerics).columns
     
