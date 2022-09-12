@@ -269,7 +269,7 @@ elif rad == "Pipeline de préparation des données":
         sns.countplot(data = df, x = 'RainTomorrow_encode')
         st.pyplot(fig)
         
-  elif choice == 'Undersampling':
+  #if choice == 'Undersampling':
     #rUs = RandomUnderSampler()
     #x_ru, y_ru = rUs.fit_resample(x, y)
     #affectation de x et y
@@ -278,7 +278,7 @@ elif rad == "Pipeline de préparation des données":
     
     
     
-  else choice == 'OverSampling SMOTE':
+  #if choice == 'OverSampling SMOTE':
     #st.write('Vous avez sélectionné :', choice)
     #smo = SMOTE()
     #x_sm, y_sm = smo.fit_resample(x, y)
