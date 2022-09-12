@@ -284,12 +284,7 @@ elif rad == "Pipeline de préparation des données":
         st.pyplot(fig)
        
       
-  elif choice == 'Oversampling SMOTE':
-    #nothing
-    
-    
-    
-  #if choice == 'OverSampling SMOTE':
+ #if choice == 'OverSampling SMOTE':
     #st.write('Vous avez sélectionné :', choice)
     #smo = SMOTE()
     #x_sm, y_sm = smo.fit_resample(x, y)
