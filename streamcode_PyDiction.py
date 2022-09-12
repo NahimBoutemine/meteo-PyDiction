@@ -280,8 +280,12 @@ elif rad == "Pipeline de préparation des données":
     
       if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
         fig = plt.figure(figsize=(3,3))
-        sns.countplot(data = df, x_ru = 'RainTomorrow_encode')
+        sns.countplot(data = y_ru, y_ru = 'RainTomorrow_encode')
         st.pyplot(fig)
+       
+      
+  if choice == 'Oversampling SMOTE':
+    #nothing
     
     
     
