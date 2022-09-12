@@ -282,7 +282,7 @@ elif rad == "Pipeline de préparation des données":
     
       if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
         fig = plt.figure(figsize=(3,3))
-        sns.countplot(data = y_ru, hue=y_ru)
+        sns.countplot(data = df_ru, x = 'RainTomorrow_encode')
         st.pyplot(fig)
        
       
