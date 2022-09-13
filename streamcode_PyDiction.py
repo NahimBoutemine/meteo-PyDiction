@@ -412,7 +412,7 @@ if rad == "Machine Learning":
    
     st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
     
-    choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','matrice de confusion','AUC et ROC Curve','MAE'))
+    choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
     if choice4 == 'accuracy':
       acc_train  = accuracy_score(y_train, y_pred_train)
@@ -424,8 +424,8 @@ if rad == "Machine Learning":
       f1score_test = f1_score(y_test, y_pred_test, average='macro')
       st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
 
-    elif choice4 == 'matrice de confusion' :
-      st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    #elif choice4 == 'matrice de confusion' :
+      #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
     elif choice4 == 'AUC et ROC Curve' :
       st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
