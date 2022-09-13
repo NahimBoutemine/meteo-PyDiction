@@ -283,7 +283,7 @@ elif rad == "Pipeline de préparation des données":
     x_def = x
     y_def = y
     
-      st.write("le nombre de lignes reste inchangé :", len(df))
+    st.write("le nombre de lignes reste inchangé :", len(df))
     
       if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
         fig = plt.figure(figsize=(3,3))
@@ -295,7 +295,7 @@ elif rad == "Pipeline de préparation des données":
     x_def = x_ru
     y_def = y_ru
     
-      st.write("le nombre de lignes reste inchangé :", len(x_ru))
+    st.write("le nombre de lignes reste inchangé :", len(x_ru))
     
       if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
         fig = plt.figure(figsize=(3,3))
@@ -307,7 +307,7 @@ elif rad == "Pipeline de préparation des données":
     x_def = x_sm
     y_def = y_sm   
     
-      st.write("le nombre de lignes reste inchangé :", len(x_sm))
+    st.write("le nombre de lignes reste inchangé :", len(x_sm))
     
       if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
         fig = plt.figure(figsize=(3,3))
