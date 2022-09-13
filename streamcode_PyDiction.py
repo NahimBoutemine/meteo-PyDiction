@@ -99,6 +99,9 @@ name_columns_numerics = x_norm.select_dtypes(include=numerics).columns
 scaler =  StandardScaler()
 x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numerics])
 
+#les variables définitives
+x_def = 0
+y_def = 0
 
 
 #Affichages des points clés des étapes du projet :
@@ -277,6 +280,8 @@ elif rad == "Pipeline de préparation des données":
   #afficher le choix sélectionné :
   if choice == 'Aucun rééchantillonnage':
     #nothing
+    x_def = x
+    y_def = y
     
       st.write("le nombre de lignes reste inchangé :", len(df))
     
@@ -287,8 +292,8 @@ elif rad == "Pipeline de préparation des données":
         
   elif choice == 'Undersampling':
     #affectation de x et y
-    #x = x_ru
-    #y = y_ru    
+    x_def = x_ru
+    y_def = y_ru
     
       st.write("le nombre de lignes reste inchangé :", len(x_ru))
     
@@ -299,8 +304,8 @@ elif rad == "Pipeline de préparation des données":
         
   elif choice == 'OverSampling SMOTE':
     #affectation de x et y
-    #x = x_sm
-    #y = y_sm   
+    x_def = x_sm
+    y_def = y_sm   
     
       st.write("le nombre de lignes reste inchangé :", len(x_sm))
     
@@ -363,11 +368,11 @@ if rad == "Machine Learning":
     y.reshape(-1, 1)
     #le split
     y = y.astype(float)
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(x_def, y_def, test_size=0.20, random_state=42)
         
     
     #selection du modèle
-    choice3 = st.selectbox('Selecttionez les modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
+    choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
     if choice3 == 'KNN':
       model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
@@ -379,6 +384,8 @@ if rad == "Machine Learning":
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)
       
+      model.save_model('KNN_model.json')
+      
     elif choice3 == 'arbre de décision' :
       model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
 
@@ -388,6 +395,8 @@ if rad == "Machine Learning":
       ##Précision et f1-score :
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)
+      
+      model.save_model('tree_model.json')
       
     elif choice3 == 'régression logistique' :
       model = LogisticRegression(C=0.01, penalty= 'l2')
@@ -399,6 +408,8 @@ if rad == "Machine Learning":
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)
       
+      model.save_model('logreg_model.json')
+      
     elif choice3 == 'Random forest' :
       model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
     
@@ -408,13 +419,20 @@ if rad == "Machine Learning":
       ##Précision et f1-score :
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)  
+      
+      model.save_model('forest_model.json')
     
    
     st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
     
+    
+    #model.load_model('xgb_model.json')
+    
+    
     choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
     if choice4 == 'accuracy':
+      
       acc_train  = accuracy_score(y_train, y_pred_train)
       acc_test  = accuracy_score(y_test, y_pred_test)
       st.write("acc_train : ", acc_train, "acc_test :", acc_test)
