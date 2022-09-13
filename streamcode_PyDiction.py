@@ -285,10 +285,10 @@ elif rad == "Pipeline de préparation des données":
     
     st.write("le nombre de lignes reste inchangé :", len(df))
     
-      if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
-        fig = plt.figure(figsize=(3,3))
-        sns.countplot(data = df, x = 'RainTomorrow_encode')
-        st.pyplot(fig)
+    if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
+      fig = plt.figure(figsize=(3,3))
+      sns.countplot(data = df, x = 'RainTomorrow_encode')
+      st.pyplot(fig)
         
   elif choice == 'Undersampling':
     #affectation de x et y
@@ -297,10 +297,10 @@ elif rad == "Pipeline de préparation des données":
     
     st.write("le nombre de lignes reste inchangé :", len(x_ru))
     
-      if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
-        fig = plt.figure(figsize=(3,3))
-        sns.countplot(data = df_ru, x = 'RainTomorrow_encode')
-        st.pyplot(fig)
+    if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
+      fig = plt.figure(figsize=(3,3))
+      sns.countplot(data = df_ru, x = 'RainTomorrow_encode')
+      st.pyplot(fig)
         
   elif choice == 'OverSampling SMOTE':
     #affectation de x et y
@@ -309,10 +309,10 @@ elif rad == "Pipeline de préparation des données":
     
     st.write("le nombre de lignes reste inchangé :", len(x_sm))
     
-      if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
-        fig = plt.figure(figsize=(3,3))
-        sns.countplot(data = df_sm, x = 'RainTomorrow_encode')
-        st.pyplot(fig)
+    if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
+      fig = plt.figure(figsize=(3,3))
+      sns.countplot(data = df_sm, x = 'RainTomorrow_encode')
+      st.pyplot(fig)
       
  #if choice == 'OverSampling SMOTE':
     #st.write('Vous avez sélectionné :', choice)
