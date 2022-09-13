@@ -29,6 +29,8 @@ from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn import metrics
 from PIL import Image
 from sklearn.preprocessing import StandardScaler
+from joblib import dump, load
+
 
 #chargements préliminaires nécessaires :
 #création du jeu de données :
@@ -387,16 +389,7 @@ if rad == "Machine Learning":
 
      
  #if choice == 'OverSampling SMOTE':
-    #st.write('Vous avez sélectionné :', choice)
-    #smo = SMOTE()
-    #x_sm, y_sm = smo.fit_resample(x, y)
-    #affectation de x et y
-    #x = x_sm
-    #y = y_sm
-    
-    
-    
-    
+   
     #le train set
     #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
     y_def = np.array(y_def)
@@ -419,7 +412,8 @@ if rad == "Machine Learning":
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)
       
-      model.save_model('KNN_model.json')
+      #model.save_model('KNN_model.json')
+      dump(model, 'KNN_model.joblib') 
       
     elif choice3 == 'arbre de décision' :
       model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
@@ -431,7 +425,8 @@ if rad == "Machine Learning":
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)
       
-      model.save_model('tree_model.json')
+      #model.save_model('tree_model.json')
+      dump(model, 'tree_model.joblib')
       
     elif choice3 == 'régression logistique' :
       model = LogisticRegression(C=0.01, penalty= 'l2')
@@ -443,7 +438,8 @@ if rad == "Machine Learning":
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)
       
-      model.save_model('logreg_model.json')
+      #model.save_model('logreg_model.json')
+      dump(model, 'logreg_model.joblib')
       
     elif choice3 == 'Random forest' :
       model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
@@ -455,7 +451,8 @@ if rad == "Machine Learning":
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)  
       
-      model.save_model('forest_model.json')
+      #model.save_model('forest_model.json')
+      dump(model, 'forest_model.joblib')
     
    
     st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
