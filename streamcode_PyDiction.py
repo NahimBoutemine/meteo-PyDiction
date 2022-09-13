@@ -362,6 +362,41 @@ elif rad == "Pipeline de préparation des données":
 #Si choix 4 :
 if rad == "Machine Learning":
     
+    
+  #Sélection de la méthode de rééchantillonnage et impact :
+  choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonnage', 'Undersampling', 'OverSampling SMOTE'))
+  
+  #afficher le choix sélectionné :
+  if choice == 'Aucun rééchantillonnage':
+    #nothing
+    x_def = x
+    y_def = y
+    
+   
+  elif choice == 'Undersampling':
+    #affectation de x et y
+    x_def = x_ru
+    y_def = y_ru
+    
+       
+  elif choice == 'OverSampling SMOTE':
+    #affectation de x et y
+    x_def = x_sm
+    y_def = y_sm   
+    
+
+     
+ #if choice == 'OverSampling SMOTE':
+    #st.write('Vous avez sélectionné :', choice)
+    #smo = SMOTE()
+    #x_sm, y_sm = smo.fit_resample(x, y)
+    #affectation de x et y
+    #x = x_sm
+    #y = y_sm
+    
+    
+    
+    
     #le train set
     #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
     y_def = np.array(y_def)
