@@ -295,7 +295,7 @@ elif rad == "Pipeline de préparation des données":
     x_def = x_ru
     y_def = y_ru
     
-    st.write("le nombre de lignes reste inchangé :", len(x_ru))
+    st.write("le nombre de lignes diminue :", len(x_ru))
     
     if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
       fig = plt.figure(figsize=(3,3))
@@ -307,7 +307,7 @@ elif rad == "Pipeline de préparation des données":
     x_def = x_sm
     y_def = y_sm   
     
-    st.write("le nombre de lignes reste inchangé :", len(x_sm))
+    st.write("le nombre de lignes augmente :", len(x_sm))
     
     if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
       fig = plt.figure(figsize=(3,3))
@@ -364,10 +364,10 @@ if rad == "Machine Learning":
     
     #le train set
     #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
-    y = np.array(y)
-    y.reshape(-1, 1)
+    y_def = np.array(y_def)
+    y_def.reshape(-1, 1)
     #le split
-    y = y.astype(float)
+    y_def = y_def.astype(float)
     x_train, x_test, y_train, y_test = train_test_split(x_def, y_def, test_size=0.20, random_state=42)
         
     
