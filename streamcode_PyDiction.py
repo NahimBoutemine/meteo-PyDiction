@@ -376,61 +376,61 @@ if rad == "Machine Learning":
   x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
       
   #sélection du modèle
-  choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
+  #choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
-  if choice3 == 'KNN':
+  #if choice3 == 'KNN':
       #lis sous com car entrainement doit etre stocké (temps) : model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
       #itération du modèle :
       #st.markdown('itération du modèle')
       #model.fit(x_train,y_train)
       
-      #mis sous comm plus haut lentraineemnt pour ne pas recharger à chaque fois mais plutôt comme demandé depuis un fichier ou est stocké le modele entrainé
-      filename = "KNN2.joblib"
-      loaded_model = joblib.load(filename)
-      result = loaded_model.score(x_test, y_test)
-      print(result)
+    #mis sous comm plus haut lentraineemnt pour ne pas recharger à chaque fois mais plutôt comme demandé depuis un fichier ou est stocké le modele entrainé
+    filename = "KNN2.joblib"
+    loaded_model = joblib.load(filename)
+    result = loaded_model.score(x_test, y_test)
+    print(result)
+
+    ##Précision et f1-score :
+    y_pred_train
+    y_pred_test
+    y_pred_train = model.predict(x_train)
+    y_pred_test = model.predict(x_test)      
       
-      ##Précision et f1-score :
-      y_pred_train
-      y_pred_test
-      y_pred_train = model.predict(x_train)
-      y_pred_test = model.predict(x_test)      
-      
-  elif choice3 == 'arbre de décision' :
-      model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+  #elif choice3 == 'arbre de décision' :
+   #   model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
 
       #itération du modèle :
-      st.markdown('itération du modèle')
-      model.fit(x_train,y_train)
+    #  st.markdown('itération du modèle')
+     # model.fit(x_train,y_train)
       ##Précision et f1-score :
-      y_pred_train = model.predict(x_train)
-      y_pred_test = model.predict(x_test)
+      #y_pred_train = model.predict(x_train)
+      #y_pred_test = model.predict(x_test)
       
       #model.save_model('tree_model.json')
       #dump(model, 'tree_model.joblib')
       
-  elif choice3 == 'régression logistique' :
-      model = LogisticRegression(C=0.01, penalty= 'l2')
+  #elif choice3 == 'régression logistique' :
+   #   model = LogisticRegression(C=0.01, penalty= 'l2')
 
       #itération du modèle :
-      st.markdown('itération du modèle')
-      model.fit(x_train,y_train)
+    #  st.markdown('itération du modèle')
+     # model.fit(x_train,y_train)
       ##Précision et f1-score :
-      y_pred_train = model.predict(x_train)
-      y_pred_test = model.predict(x_test)
+      #y_pred_train = model.predict(x_train)
+      #y_pred_test = model.predict(x_test)
       
       #model.save_model('logreg_model.json')
       #dump(model, 'logreg_model.joblib')
       
-  elif choice3 == 'Random forest' :
-      model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
+  #elif choice3 == 'Random forest' :
+   #   model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
     
       #itération du modèle :
-      st.markdown('itération du modèle')
-      model.fit(x_train,y_train)
+     # st.markdown('itération du modèle')
+    #  model.fit(x_train,y_train)
       ##Précision et f1-score :
-      y_pred_train = model.predict(x_train)
-      y_pred_test = model.predict(x_test)  
+      #y_pred_train = model.predict(x_train)
+      #y_pred_test = model.predict(x_test)  
       
       #model.save_model('forest_model.json')
       #dump(model, 'forest_model.joblib')
