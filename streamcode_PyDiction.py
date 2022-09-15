@@ -366,9 +366,7 @@ elif rad == "Pipeline de préparation des données":
   #elif choice2 == 'Aucune normalisation':
     #affectation de x et y
 
-  
-  #potiron
-  
+    
 #Si choix 4 :
 if rad == "Machine Learning":
     
@@ -410,17 +408,23 @@ if rad == "Machine Learning":
   choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
   if choice3 == 'KNN':
-      model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
+      #model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
       
       #itération du modèle :
-      st.markdown('itération du modèle')
-      model.fit(x_train,y_train)
+      #st.markdown('itération du modèle')
+      #model.fit(x_train,y_train)
+      
+      #mis sous comm plus haut lentraineemnt pour ne pas recharger à chaque fois mais plutôt comme demandé depuis un fichier ou est stocké le modele entrainé
+      filename = "KNN2.joblib"
+      loaded_model = joblib.load(filename)
+      result = loaded_model.score(x_test, y_test)
+      print(result)
+      
       ##Précision et f1-score :
+      y_pred_train
+      y_pred_test
       y_pred_train = model.predict(x_train)
       y_pred_test = model.predict(x_test)
-      
-      #model.save_model('KNN_model.json')
-      #dump(model, 'KNN_model.joblib') 
       
       
   elif choice3 == 'arbre de décision' :
