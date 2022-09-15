@@ -456,7 +456,7 @@ if rad == "Machine Learning":
   
   st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
                 
-  choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+  choice5 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
   if choice5 == 'accuracy':
       
