@@ -367,7 +367,7 @@ elif rad == "Pipeline de préparation des données":
     
 #Si choix 4 :
 if rad == "Machine Learning":
-  st.mardown("comme vu précédemment, le pipeline optimal est : sélectionner certaines variables et rééchantillonnage SMOTE.")
+  st.markdown("comme vu précédemment, le pipeline optimal est : sélectionner certaines variables et rééchantillonnage SMOTE.")
   st.markdown("Puis le jeu de données est découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
   #séparation des données à partir du jeu rééchantillonné en SMOTE et préparé selon le pipeline optimal (voir début) :
   y_sm = np.array(y_sm)#reformatage des dimensions de y_sm pour permettre de rentrer les données dans traintestsplit :
@@ -379,8 +379,7 @@ if rad == "Machine Learning":
   choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
   if choice3 == 'KNN':
-      #model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
-      
+      #lis sous com car entrainement doit etre stocké (temps) : model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
       #itération du modèle :
       #st.markdown('itération du modèle')
       #model.fit(x_train,y_train)
@@ -395,8 +394,7 @@ if rad == "Machine Learning":
       y_pred_train
       y_pred_test
       y_pred_train = model.predict(x_train)
-      y_pred_test = model.predict(x_test)
-      
+      y_pred_test = model.predict(x_test)      
       
   elif choice3 == 'arbre de décision' :
       model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
@@ -439,11 +437,9 @@ if rad == "Machine Learning":
     
    
   st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
-    
-    
+        
     #model.load_model('xgb_model.json')
-    
-    
+        
   choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
   if choice4 == 'accuracy':
