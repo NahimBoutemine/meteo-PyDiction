@@ -396,13 +396,13 @@ if rad == "Machine Learning":
  
   #if choice == 'OverSampling SMOTE':
    
-    #le train set
-    #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
-    y_def = np.array(y_def)
-    y_def.reshape(-1, 1)
-    #le split
-    y_def = y_def.astype(float)
-    x_train, x_test, y_train, y_test = train_test_split(x_def, y_def, test_size=0.20, random_state=42)
+  #le train set
+  #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
+  y_def = np.array(y_def)
+  y_def.reshape(-1, 1)
+  #le split
+  y_def = y_def.astype(float)
+  x_train, x_test, y_train, y_test = train_test_split(x_def, y_def, test_size=0.20, random_state=42)
         
     
     #selection du modèle
