@@ -399,7 +399,7 @@ if rad == "Machine Learning : KNN":
   y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
   
-  st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
+  st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle :")
                 
   choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
