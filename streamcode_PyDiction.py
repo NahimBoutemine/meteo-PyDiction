@@ -87,14 +87,12 @@ x_sm, y_sm = smo.fit_resample(x, y)
 df_sm = x_sm
 df_sm = df_sm.assign(RainTomorrow_encode = y_sm)
 
-
 #undersampling random
 rUs = RandomUnderSampler()
 x_ru, y_ru = rUs.fit_resample(x, y)
 
 df_ru = x_ru
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
-
 
 #normalisation
 x_norm = x
@@ -248,9 +246,9 @@ elif rad == "Pipeline de préparation des données":
   
   #introduction de section : objectif
   st.subheader("L'objectif de la section, créer un pipeline optimal :")
-  st.markdown("Afin d'obtenir un modèle aux performances optimales, il est généralement conseillé de préparer les données sur ces critères. Voici les étapes généralement effectuées et le pipeline optimal et sa construction.") 
+  st.markdown("Afin d'obtenir un modèle aux performances optimales, il est généralement conseillé de préparer les données sur ces critères suivants. Voici donc les étapes généralement effectuées pour préparer au mieux les données, le pipeline optimal retenu et sa construction.") 
 
-  #Traitement des manquantes :
+  #Traitement des données manquantes et des doublons:
   st.subheader("Traitement des manquantes et des doublons :")
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
   #st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une autre valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
@@ -360,51 +358,22 @@ elif rad == "Pipeline de préparation des données":
     sns.boxplot(data=x_norm_minmaxtemp, color="red")
     #ax1.set_title("températures min et max")
     st.pyplot(fig)  
-  
-  
+   
   if st.checkbox("Cocher pour afficher notre conclusion quant à la normalisation :"):
     st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'amélioration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
     
   #elif choice2 == 'Aucune normalisation':
     #affectation de x et y
-
     
 #Si choix 4 :
 if rad == "Machine Learning":
-    
-    
-  #Sélection de la méthode de rééchantillonnage et impact :
-  choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonnage', 'Undersampling', 'OverSampling SMOTE'))
-  
-  #afficher le choix sélectionné :
-  if choice == 'Aucun rééchantillonnage':
-    #nothing
-    x_def = x
-    y_def = y
-    
-   
-  elif choice == 'Undersampling':
-    #affectation de x et y
-    x_def = x_ru
-    y_def = y_ru
-    
-       
-  elif choice == 'OverSampling SMOTE':
-    #affectation de x et y
-    x_def = x_sm
-    y_def = y_sm   
-    
-  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
- 
-  #if choice == 'OverSampling SMOTE':
-   
-  #le train set
-  #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
-  y_def = np.array(y_def)
-  y_def.reshape(-1, 1)
-  #le split
-  y_def = y_def.astype(float)
-  x_train, x_test, y_train, y_test = train_test_split(x_def, y_def, test_size=0.20, random_state=42)
+  st.mardown("comme vu précédemment, le pipeline optimal est : sélectionner certaines variables et rééchantillonnage SMOTE.")
+  st.markdown("Puis le jeu de données est découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
+  #séparation des données à partir du jeu rééchantillonné en SMOTE et préparé selon le pipeline optimal (voir début) :
+  y_sm = np.array(y_sm)#reformatage des dimensions de y_sm pour permettre de rentrer les données dans traintestsplit :
+  y_sm.reshape(-1, 1)  
+  y_sm = y_sm.astype(float)  
+  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
       
   #sélection du modèle
   choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
