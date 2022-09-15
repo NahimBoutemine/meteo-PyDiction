@@ -152,7 +152,7 @@ if rad == "Introduction : Le projet et ses créateurs":
 elif rad == "Exploration des données brutes":
   
   #Exploration des données brutes :
-  st.header("Exploration des données brutes")
+  st.header("Exploration des données brutes : préparer la suite...")
   st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. Le traitement des données avant la modélisation peut se faire de différentes manières, soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
   
   #Nombre de données, et source :
@@ -272,7 +272,7 @@ elif rad == "Pipeline de préparation des données":
     st.write(df_encode)
   
   #Sélection des variables par le test de Pearson :
-  st.subheader("Sélection des variables : par le test de Pearson :")
+  st.subheader("Sélection des variables, test de Pearson :")
   st.markdown("Il faut sélectionner les variables explicatives pour la modélisation avec un nombre final minimal sans perdre d'information pour éviter l'overfitting.")
   st.markdown("Pour cela, nous allons afficher la matrice des corrélations et filtrer les variables non corréllées à la RainTomorrow afin de ne garder que des variables informatives :")
   heatmap, ax = plt.subplots()
