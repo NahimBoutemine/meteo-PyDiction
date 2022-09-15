@@ -246,7 +246,7 @@ elif rad == "Pipeline de préparation des données":
   
   #introduction de section : objectif
   st.subheader("L'objectif de la section, créer un pipeline optimal :")
-  st.markdown("Afin d'obtenir un modèle aux performances optimales, généralement les données sont préparées, de même que parfois les données doivent être modifiées pour permettre aux algorithme de s'entrainer. Voici ici les étapes généralement effectuées sur un dataset de ce type.") 
+  st.markdown("Afin d'obtenir un modèle aux performances optimales, il est généralement conseillé de préparer les données sur ces critères. Voici les étapes généralement effectuées et le pipeline optimal et sa construction.") 
 
   #Traitement des manquantes :
   st.subheader("Traitement des manquantes et des doublons :")
