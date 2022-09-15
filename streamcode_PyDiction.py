@@ -391,8 +391,8 @@ if rad == "Machine Learning":
     x_def = x_sm
     y_def = y_sm   
     
-
- st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
+  #bouh !
+  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
  
   #if choice == 'OverSampling SMOTE':
    
