@@ -79,7 +79,6 @@ df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 y = df['RainTomorrow_encode']
 x = df.drop('RainTomorrow_encode', axis = 1)
 
-
 #préparation des resampling
 #OverSampling SMOTE':
 smo = SMOTE()
@@ -107,7 +106,6 @@ x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numeric
 x_def = 0
 y_def = 0
 
-
 #Affichages des points clés des étapes du projet :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
@@ -115,9 +113,9 @@ rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs",
                                "Exploration des données brutes", 
                                "Pipeline de préparation des données", 
                                "Machine Learning : KNN",
-                               "Machine Learning : log reg",
                                "Machine Learning : DTC",
-                               "Machine Learning : RFC"
+                               "Machine Learning : Log Reg",
+                               "Machine Learning : RFC",
                                "Conclusion et perspectives"])
 nuages_sidebar = Image.open('nuages_sidebar.jpg')
 st.sidebar.image(nuages_sidebar)
