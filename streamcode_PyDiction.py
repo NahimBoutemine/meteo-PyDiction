@@ -386,9 +386,7 @@ if rad == "Machine Learning":
       
     #mis sous comm plus haut lentraineemnt pour ne pas recharger à chaque fois mais plutôt comme demandé depuis un fichier ou est stocké le modele entrainé
   filename = "KNN2.joblib"
-  loaded_model = joblib.load(filename)
-  result = loaded_model.score(x_test, y_test)
-  print(result)
+  model = joblib.load(filename)
 
   ##Précision et f1-score :
   y_pred_train
@@ -433,13 +431,10 @@ if rad == "Machine Learning":
       #y_pred_test = model.predict(x_test)  
       
       #model.save_model('forest_model.json')
-      #dump(model, 'forest_model.joblib')
-    
+      #dump(model, 'forest_model.joblib')    
    
-  st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
-        
-    #model.load_model('xgb_model.json')
-        
+  st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
+                
   choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
   if choice4 == 'accuracy':
