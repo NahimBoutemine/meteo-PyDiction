@@ -31,6 +31,8 @@ from PIL import Image
 from sklearn.preprocessing import StandardScaler
 from joblib import dump, load
 from sklearn.decomposition import PCA
+import pickle
+import joblib
 
 
 #chargements préliminaires nécessaires :
