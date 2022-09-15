@@ -274,7 +274,7 @@ elif rad == "Pipeline de préparation des données":
   #Sélection des variables par le test de Pearson :
   st.subheader("Sélection des variables, test de Pearson :")
   st.markdown("Il faut sélectionner les variables explicatives pour la modélisation avec un nombre final minimal sans perdre d'information pour éviter l'overfitting.")
-  st.markdown("Pour cela, nous allons afficher la matrice des corrélations et filtrer les variables non corréllées à la RainTomorrow afin de ne garder que des variables informatives :")
+  st.markdown("Pour cela, nous allons présenter la méthode de réduction de dimensions qui a donné les meilleures améliorations parmi les classiques testées (ACP, select kbest, pearson) :  afficher la matrice des corrélations et filtrer les variables non corréllées à la RainTomorrow afin de ne garder que des variables informatives :")
   heatmap, ax = plt.subplots()
   sns.heatmap(df.corr(), ax=ax)
   if st.checkbox("Cocher pour afficher la heatmap"):
@@ -285,7 +285,7 @@ elif rad == "Pipeline de préparation des données":
   st.markdown("Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données sont mises en oeuvre afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprentissage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
 
   #Sélection de la méthode de rééchantillonnage et impact :
-  choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonnage', 'Undersampling', 'OverSampling SMOTE'))
+  choice = st.selectbox("Voici un affichage de l'effet des rééchantillonnages sur la distribution des valeurs dans la cible, optionnel en pratique mais utile ici pour comprendre sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonnage', 'Undersampling', 'OverSampling SMOTE'))
   
   #afficher le choix sélectionné :
   if choice == 'Aucun rééchantillonnage':
