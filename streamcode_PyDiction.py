@@ -338,7 +338,7 @@ elif rad == "Pipeline de préparation des données":
   st.markdown("La question de la normalisation s'est aussi posée")
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
-  st.write('You have selected:', choice2)
+  st.write('Vous avez sélectionné :', choice2)
   
   if choice2 == 'Aucune normalisation':
     #affectation de x et y
@@ -365,7 +365,7 @@ elif rad == "Pipeline de préparation des données":
     #ax1.set_title("températures min et max")
     st.pyplot(fig)  
    
-  if st.checkbox("Cocher pour afficher notre conclusion quant à la normalisation :"):
+  if st.checkbox("Cocher pour afficher notre conclusion quant à la normalisation et aux méthodes de réduction de dimensions:"):
     st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'amélioration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
     
   #elif choice2 == 'Aucune normalisation':
