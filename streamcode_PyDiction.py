@@ -388,7 +388,7 @@ if rad == "Machine Learning":
   model.fit(x_train,y_train)
       
   #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
-  filename = "KNN2.joblib"
+  filename = "KNN22.joblib"
   joblib.dump(model, filename)
 
   #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
