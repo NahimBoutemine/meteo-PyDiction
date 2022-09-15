@@ -257,7 +257,7 @@ elif rad == "Pipeline de préparation des données":
 
   #Affichage de l'encodage :
   st.subheader("Encodage des catégorielles :")
-  st.markdown("Une fois les données manquantes traitées, les variables catégorielles doivent être encodées pour réaliser le test de pearson et donc la sélection des variables.")
+  st.markdown("Une fois les données manquantes traitées, les variables catégorielles doivent être encodées pour réaliser la sélection des variables.")
   st.markdown("Les données ont été encodées par Label Encoder. L'encodage sous forme de données numériques doit etre vérifié.")
   if st.checkbox("Cocher pour afficher le tableau des données encodées :"):
     st.write(df_encode)
@@ -533,7 +533,7 @@ if rad == "Conclusion et perspectives":
 
   st.markdown("Autres modèles : Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
 
-
+  st.markdown("Nous aurons pu aussi tenter de filter le jeu de données selon ses quartiles, afin d'écarter les ouliers")
 
 
 
