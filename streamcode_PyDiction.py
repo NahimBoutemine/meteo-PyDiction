@@ -244,7 +244,8 @@ elif rad == "Exploration des données brutes":
 elif rad == "Pipeline de préparation des données": 
   st.header("Pipeline de préparation des données")
   
-  st.subheader("L'objectif de la section : Créer un pipeline optimal :")
+  #introduction de section : objectif
+  st.subheader("L'objectif de la section, créer un pipeline optimal :")
   st.markdown("Afin d'obtenir un modèle aux performances optimales, généralement les données sont préparées, de même que parfois les données doivent être modifiées pour permettre aux algorithme de s'entrainer. Voici ici les étapes généralement effectuées sur un dataset de ce type.") 
 
   #Traitement des manquantes :
@@ -257,7 +258,6 @@ elif rad == "Pipeline de préparation des données":
     st.write(percent_missing_df)
   st.write("Affichons de nouveau le nombre de lignes", len(df), " ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
   
-
   #Affichage de l'encodage :
   st.subheader("Encodage des catégorielles :")
   st.markdown("Une fois les données manquantes traitées, les variables catégorielles doivent être encodées pour réaliser la sélection des variables.")
@@ -394,7 +394,6 @@ if rad == "Machine Learning":
     x_def = x_sm
     y_def = y_sm   
     
-  #bouh !
   st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
  
   #if choice == 'OverSampling SMOTE':
@@ -406,9 +405,8 @@ if rad == "Machine Learning":
   #le split
   y_def = y_def.astype(float)
   x_train, x_test, y_train, y_test = train_test_split(x_def, y_def, test_size=0.20, random_state=42)
-        
-    
-  #selection du modèle
+      
+  #sélection du modèle
   choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
   if choice3 == 'KNN':
@@ -422,7 +420,8 @@ if rad == "Machine Learning":
       y_pred_test = model.predict(x_test)
       
       #model.save_model('KNN_model.json')
-      dump(model, 'KNN_model.joblib') 
+      #dump(model, 'KNN_model.joblib') 
+      
       
   elif choice3 == 'arbre de décision' :
       model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
@@ -435,7 +434,7 @@ if rad == "Machine Learning":
       y_pred_test = model.predict(x_test)
       
       #model.save_model('tree_model.json')
-      dump(model, 'tree_model.joblib')
+      #dump(model, 'tree_model.joblib')
       
   elif choice3 == 'régression logistique' :
       model = LogisticRegression(C=0.01, penalty= 'l2')
@@ -448,7 +447,7 @@ if rad == "Machine Learning":
       y_pred_test = model.predict(x_test)
       
       #model.save_model('logreg_model.json')
-      dump(model, 'logreg_model.joblib')
+      #dump(model, 'logreg_model.joblib')
       
   elif choice3 == 'Random forest' :
       model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
@@ -461,7 +460,7 @@ if rad == "Machine Learning":
       y_pred_test = model.predict(x_test)  
       
       #model.save_model('forest_model.json')
-      dump(model, 'forest_model.joblib')
+      #dump(model, 'forest_model.joblib')
     
    
   st.markdown('Maintenant que le modèle est entrainé, voyons la qualité de la prédiction')
