@@ -232,7 +232,7 @@ elif rad == "Exploration des données brutes":
     ax2.set_title("évaporation - ensoleillement")
     fig.set_tight_layout(True)
     st.pyplot(fig)  
-  st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et sont conervés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
+  st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et ils sont conservés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
 
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
   st.subheader("Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage :")
