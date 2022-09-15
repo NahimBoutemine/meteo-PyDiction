@@ -379,7 +379,7 @@ if rad == "Machine Learning":
   #choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
   #if choice3 == 'KNN':
-      #lis sous com car entrainement doit etre stocké (temps) : model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
+      #mis sous com car entrainement doit etre stocké (temps) : model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
       #itération du modèle :
       #st.markdown('itération du modèle')
       #model.fit(x_train,y_train)
@@ -389,8 +389,6 @@ if rad == "Machine Learning":
   model = joblib.load(filename)
 
   ##Précision et f1-score :
-  y_pred_train
-  y_pred_test
   y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test)      
 
