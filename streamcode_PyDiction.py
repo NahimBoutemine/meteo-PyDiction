@@ -444,7 +444,7 @@ if rad == "Machine Learning":
   model.fit(x_train,y_train)
       
   #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
-  filename = "KNNbest.joblib"
+  filename = "DTCbest.joblib"
   joblib.dump(model, filename)
 
   #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
@@ -458,13 +458,13 @@ if rad == "Machine Learning":
                 
   choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
-  if choice4 == 'accuracy':
+  if choice5 == 'accuracy':
       
       acc_train  = accuracy_score(y_train, y_pred_train)
       acc_test  = accuracy_score(y_test, y_pred_test)
       st.write("acc_train : ", acc_train, "acc_test :", acc_test)
       
-  elif choice4 == 'F1-score' :
+  elif choice5 == 'F1-score' :
       f1score_train = f1_score(y_train, y_pred_train, average='macro')
       f1score_test = f1_score(y_test, y_pred_test, average='macro')
       st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
@@ -472,7 +472,7 @@ if rad == "Machine Learning":
     #elif choice4 == 'matrice de confusion' :
       #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
-  elif choice4 == 'AUC et ROC Curve' :
+  elif choice5 == 'AUC et ROC Curve' :
       st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
       false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
       roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
@@ -491,7 +491,7 @@ if rad == "Machine Learning":
       st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
       st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
-  elif choice4 == 'MAE' :
+  elif choice5 == 'MAE' :
       MAE = mae(y_test, y_pred_test)
       st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
@@ -513,15 +513,15 @@ if rad == "Machine Learning":
   
   st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
                 
-  choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+  choice6 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
-  if choice4 == 'accuracy':
+  if choice6 == 'accuracy':
       
       acc_train  = accuracy_score(y_train, y_pred_train)
       acc_test  = accuracy_score(y_test, y_pred_test)
       st.write("acc_train : ", acc_train, "acc_test :", acc_test)
       
-  elif choice4 == 'F1-score' :
+  elif choice6 == 'F1-score' :
       f1score_train = f1_score(y_train, y_pred_train, average='macro')
       f1score_test = f1_score(y_test, y_pred_test, average='macro')
       st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
@@ -529,7 +529,7 @@ if rad == "Machine Learning":
     #elif choice4 == 'matrice de confusion' :
       #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
-  elif choice4 == 'AUC et ROC Curve' :
+  elif choice6 == 'AUC et ROC Curve' :
       st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
       false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
       roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
@@ -548,7 +548,7 @@ if rad == "Machine Learning":
       st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
       st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
-  elif choice4 == 'MAE' :
+  elif choice6 == 'MAE' :
       MAE = mae(y_test, y_pred_test)
       st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
       
@@ -570,15 +570,15 @@ if rad == "Machine Learning":
   
   st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
                 
-  choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+  choice7 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
-  if choice4 == 'accuracy':
+  if choice7 == 'accuracy':
       
       acc_train  = accuracy_score(y_train, y_pred_train)
       acc_test  = accuracy_score(y_test, y_pred_test)
       st.write("acc_train : ", acc_train, "acc_test :", acc_test)
       
-  elif choice4 == 'F1-score' :
+  elif choice7 == 'F1-score' :
       f1score_train = f1_score(y_train, y_pred_train, average='macro')
       f1score_test = f1_score(y_test, y_pred_test, average='macro')
       st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
@@ -586,7 +586,7 @@ if rad == "Machine Learning":
     #elif choice4 == 'matrice de confusion' :
       #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
-  elif choice4 == 'AUC et ROC Curve' :
+  elif choice7 == 'AUC et ROC Curve' :
       st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
       false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
       roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
@@ -605,7 +605,7 @@ if rad == "Machine Learning":
       st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
       st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
-  elif choice4 == 'MAE' :
+  elif choice7 == 'MAE' :
       MAE = mae(y_test, y_pred_test)
       st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
