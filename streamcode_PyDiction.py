@@ -336,7 +336,7 @@ elif rad == "Pipeline de préparation des données":
     st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
   
   st.markdown("La question de la normalisation s'est aussi posée")
-  choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
+  choice2 = st.selectbox("Voici une visualisation montrant que la normalisation a bien un effet ici", ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
   st.write('Vous avez sélectionné :', choice2)
   
@@ -373,7 +373,7 @@ elif rad == "Pipeline de préparation des données":
     
 #Si choix 4 :
 if rad == "Machine Learning : KNN":
-  st.markdown("Comme vu précédemment, le pipeline optimal est : sélectionner certaines variables et rééchantillonnage SMOTE.")
+  st.markdown("Comme vu précédemment, le pipeline optimal est : conserver les variables corréllées à RainTomorrow puis méthode de rééchantillonnage SMOTE.")
   st.markdown("Puis le jeu de données est découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
