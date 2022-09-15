@@ -30,6 +30,7 @@ from sklearn import metrics
 from PIL import Image
 from sklearn.preprocessing import StandardScaler
 from joblib import dump, load
+from sklearn.decomposition import PCA
 
 
 #chargements préliminaires nécessaires :
@@ -246,17 +247,18 @@ elif rad == "Pipeline de préparation des données":
   #Traitement des manquantes :
   st.subheader("Traitement des manquantes et des doublons :")
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
-  st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une autre valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
-  st.markdown("A présent affichons ci-dessous le pourcentage de données manquantes par colonne : on peut voir qu'il n'y en a plus!")
+  #st.markdown("Les valeurs manquantes sont ici enlevées car, même si en général elles sont remplacées par une autre valeur (imputation statistique), selon notre expérience dans ce cas de prédiction cela ne fait que rajouter du temps de calcul")
+  #st.markdown("A présent affichons ci-dessous le pourcentage de données manquantes par colonne : on peut voir qu'il n'y en a plus!")
   percent_missing_df = df.isnull().sum() * 100 / len(df)
   if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes par colonnes :"):
     st.write(percent_missing_df)
   st.write("Affichons de nouveau le nombre de lignes", len(df), " ce nombre est réduit par rapport au départ : plus de 50% de suppression. Le score de prédiction étant le même avec les données manquantes enlevées ou traitées par imputation statistique, nous avons choisi de conserver le jeu de données réduit.")
-  st.markdown("Une fois ces données manquantes enlevées, les données doivent être encodées pour réaliser le test de pearson et donc la sélection des variables. Avant encodage elles sont ainsi :")
+  
 
   #Affichage de l'encodage :
   st.subheader("Encodage des catégorielles :")
-  st.markdown("Les données ont été encodées par Label Encoder, elles sont après encodage de cette forme (ci-dessous), nous vérifions qu'elles sont bien toutes numériques: ")
+  st.markdown("Une fois les données manquantes traitées, les variables catégorielles doivent être encodées pour réaliser le test de pearson et donc la sélection des variables.")
+  st.markdown("Les données ont été encodées par Label Encoder. L'encodage sous forme de données numériques doit etre vérifié.")
   if st.checkbox("Cocher pour afficher le tableau des données encodées :"):
     st.write(df_encode)
   
@@ -271,11 +273,8 @@ elif rad == "Pipeline de préparation des données":
   st.markdown("Suppression des variables explicatives corréllées à moins de 5% à la cible selon le test de Pearson qui sont 'WindDir3pm','Temp9am','WindDir9am'") 
  
   st.subheader("Méthodes de normalisation, de réduction de dimensions et de rééchantillonnage")
-  st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.") 
-  st.markdown("Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprentissage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
-  st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
-  st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'améloration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
-  
+  st.markdown("Une fois les manquantes et les doublons enlevés et les données encodées, les méthodes de préparations classiques des données sont mises en oeuvre afin d'assurer de bons résultats en machine learning sur un jeu de données déséquilibré au niveau de la variable cible : méthodes de normalisation (pour éviter les problèmes liés aux échelles trop différentes), réduction de dimension (pour limiter le surapprentissage sur des données inutiles) et de rééchantillonnage (pour compenser le déséquilibre de répartition évoqué précédemment) ")
+
   #Sélection de la méthode de rééchantillonnage et impact :
   choice = st.selectbox("Nous avons posé l'hypothèse que le rééchantillonnage améliore les performances, sélectionnez la méthode de rééchantillonnage que vous voulez appliquer aux données :", ('Aucun rééchantillonnage', 'Undersampling', 'OverSampling SMOTE'))
   
@@ -324,6 +323,9 @@ elif rad == "Pipeline de préparation des données":
     #x = x_sm
     #y = y_sm
   
+  if st.checkbox("Cocher pour afficher notre conclusion quant au resampling :"):
+    st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec. ")
+  
   st.markdown("La question de la normalisation s'est aussi posée")
   choice2 = st.selectbox('Select the items you want?', ('Aucune normalisation','StandardScaler'))
   #displaying the selected option
@@ -353,7 +355,10 @@ elif rad == "Pipeline de préparation des données":
     sns.boxplot(data=x_norm_minmaxtemp, color="red")
     #ax1.set_title("températures min et max")
     st.pyplot(fig)  
-    
+  
+  
+  if st.checkbox("Cocher pour afficher notre conclusion quant à la normalisation :"):
+    st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'amélioration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
     
   #elif choice2 == 'Aucune normalisation':
     #affectation de x et y
@@ -387,8 +392,9 @@ if rad == "Machine Learning":
     y_def = y_sm   
     
 
-     
- #if choice == 'OverSampling SMOTE':
+ st.markdown("Le jeu de données est ensuite découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
+ 
+  #if choice == 'OverSampling SMOTE':
    
     #le train set
     #reformatage des dimensions de y pour permettre de rentrer les données dans traintestsplit :
@@ -525,7 +531,7 @@ if rad == "Conclusion et perspectives":
 
   st.markdown("Traitement des outliers : nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier, même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix. La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
 
-  st.markdown("Autres modèles : Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
+  st.markdown("Autres modèles : Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
 
 
 
