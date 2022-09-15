@@ -4,3 +4,5 @@ seaborn
 sklearn
 imblearn
 missingno
+joblib
+pickle
