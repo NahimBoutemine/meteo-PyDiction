@@ -33,6 +33,7 @@ from joblib import dump, load
 from sklearn.decomposition import PCA
 import pickle
 import joblib
+from joblib import dump, load
 
 
 #chargements préliminaires nécessaires :
@@ -379,13 +380,18 @@ if rad == "Machine Learning":
   #choice3 = st.selectbox('Selectionez le modèle :',('KNN','arbre de décision','régression logistique','Random forest'))
 
   #if choice3 == 'KNN':
-      #mis sous com car entrainement doit etre stocké (temps) : model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
+      #mis sous com car entrainement doit etre stocké (temps) : 
       #itération du modèle :
       #st.markdown('itération du modèle')
-      #model.fit(x_train,y_train)
+  
+  model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
+  model.fit(x_train,y_train)
       
-    #mis sous comm plus haut lentraineemnt pour ne pas recharger à chaque fois mais plutôt comme demandé depuis un fichier ou est stocké le modele entrainé
+  #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
   filename = "KNN2.joblib"
+  joblib.dump(model, filename)
+
+  #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
   model = joblib.load(filename)
 
   ##Précision et f1-score :
