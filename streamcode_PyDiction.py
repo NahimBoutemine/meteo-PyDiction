@@ -69,7 +69,7 @@ le = preprocessing.LabelEncoder()
 df_nonencode = df#sauvegarde du df pour l'affichage ultérieur
 for var in df.select_dtypes(include='object').columns:
   df[var] = le.fit_transform(df[var])
-df_encode = df#stocjage à ce stade du df aux variables encodées
+df_encode = df#stockage à ce stade du df aux variables encodées
 
 #suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
@@ -111,7 +111,14 @@ y_def = 0
 #Affichages des points clés des étapes du projet :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
-rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", "Exploration des données brutes", "Pipeline de préparation des données", "Machine Learning", "Conclusion et perspectives"])
+rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", 
+                               "Exploration des données brutes", 
+                               "Pipeline de préparation des données", 
+                               "Machine Learning : KNN",
+                               "Machine Learning : log reg",
+                               "Machine Learning : DTC",
+                               "Machine Learning : RFC"
+                               "Conclusion et perspectives"])
 nuages_sidebar = Image.open('nuages_sidebar.jpg')
 st.sidebar.image(nuages_sidebar)
 
@@ -367,10 +374,11 @@ elif rad == "Pipeline de préparation des données":
     #affectation de x et y
     
 #Si choix 4 :
-if rad == "Machine Learning":
+if rad == "Machine Learning : KNN":
   st.markdown("Comme vu précédemment, le pipeline optimal est : sélectionner certaines variables et rééchantillonnage SMOTE.")
   st.markdown("Puis le jeu de données est découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
-  st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Sciki Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
+  st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
+  st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
   #séparation des données à partir du jeu rééchantillonné en SMOTE et préparé selon le pipeline optimal (voir début) :
   y_sm = np.array(y_sm)#reformatage des dimensions de y_sm pour permettre de rentrer les données dans traintestsplit :
   y_sm.reshape(-1, 1)  
@@ -438,6 +446,9 @@ if rad == "Machine Learning":
   st.markdown("Les prédictions sont plutôt bonnes !")
   st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
     
+#Si choix 5 
+if rad == "Machine Learning : DTC":
+
  #   model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
   st.subheader("DTC optimisé")
   model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
@@ -495,7 +506,10 @@ if rad == "Machine Learning":
       MAE = mae(y_test, y_pred_test)
       st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
- #   model = LogisticRegression(C=0.01, penalty= 'l2')
+#Si choix 6
+if rad == "Machine Learning : Log Reg":
+
+  #   model = LogisticRegression(C=0.01, penalty= 'l2')
   st.subheader("logreg optimisé")
   model = LogisticRegression(C=0.01, penalty= 'l2')
   model.fit(x_train,y_train)
@@ -552,7 +566,10 @@ if rad == "Machine Learning":
       MAE = mae(y_test, y_pred_test)
       st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
       
- #   model optimisé = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
+#Si choix 7
+if rad == "Machine Learning : RFC":
+ 
+#   model optimisé = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
   st.subheader("RFC optimisé")
   model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
   model.fit(x_train,y_train)
