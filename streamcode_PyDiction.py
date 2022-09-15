@@ -449,12 +449,12 @@ if rad == "Machine Learning : DTC":
 
  #   model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
   st.subheader("DTC optimisé")
-  model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
-  model.fit(x_train,y_train)
+  model2 = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+  model2.fit(x_train,y_train)
       
   #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
   filename = "DTCbest.joblib"
-  joblib.dump(model, filename)
+  joblib.dump(model2, filename)
 
   #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
   model = joblib.load(filename)
@@ -566,8 +566,8 @@ if rad == "Machine Learning : Log Reg":
       
 #Si choix 7
 if rad == "Machine Learning : RFC":
- 
-#   model optimisé = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
+  
+  #   model optimisé = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
   st.subheader("RFC optimisé")
   model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
   model.fit(x_train,y_train)
