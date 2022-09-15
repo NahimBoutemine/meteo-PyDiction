@@ -385,17 +385,17 @@ if rad == "Machine Learning":
       #model.fit(x_train,y_train)
       
     #mis sous comm plus haut lentraineemnt pour ne pas recharger à chaque fois mais plutôt comme demandé depuis un fichier ou est stocké le modele entrainé
-    filename = "KNN2.joblib"
-    loaded_model = joblib.load(filename)
-    result = loaded_model.score(x_test, y_test)
-    print(result)
+  filename = "KNN2.joblib"
+  loaded_model = joblib.load(filename)
+  result = loaded_model.score(x_test, y_test)
+  print(result)
 
-    ##Précision et f1-score :
-    y_pred_train
-    y_pred_test
-    y_pred_train = model.predict(x_train)
-    y_pred_test = model.predict(x_test)      
-      
+  ##Précision et f1-score :
+  y_pred_train
+  y_pred_test
+  y_pred_train = model.predict(x_train)
+  y_pred_test = model.predict(x_test)      
+
   #elif choice3 == 'arbre de décision' :
    #   model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
 
