@@ -244,6 +244,9 @@ elif rad == "Exploration des données brutes":
 elif rad == "Pipeline de préparation des données": 
   st.header("Pipeline de préparation des données")
   
+  st.subheader("L'objectif de la section : Créer un pipeline optimal :")
+  st.markdown("Afin d'obtenir un modèle aux performances optimales, généralement les données sont préparées, de même que parfois les données doivent être modifiées pour permettre aux algorithme de s'entrainer. Voici ici les étapes généralement effectuées sur un dataset de ce type.") 
+
   #Traitement des manquantes :
   st.subheader("Traitement des manquantes et des doublons :")
   st.markdown("Les données manquantes doivent être enlevées car elles empêchent le bon fonctionnement des algorithmes. La meilleure option a été dans notre cas de choisir d'enlever toutes les données manquantes en une fois puisque l'imputation statistique n'a pas amené de meilleures performances des modèles et il faut par principe conserver le jeu de données le plus léger.")
