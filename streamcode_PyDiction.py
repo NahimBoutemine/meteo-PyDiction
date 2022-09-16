@@ -385,7 +385,7 @@ if rad == "Machine Learning : KNN":
   
   #modele KNN optimisé
   st.subheader("knn optimisé")
-  filename = "C:\Users\asus\Downloads\KNN2.joblib"
+  filename = "KNN2.joblib"
 
   #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps sinon app lente)
   model = joblib.load(filename)
