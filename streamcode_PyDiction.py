@@ -385,14 +385,9 @@ if rad == "Machine Learning : KNN":
   
   #modele KNN optimisé
   st.subheader("knn optimisé")
-  model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance')
-  model.fit(x_train,y_train)
-      
-  #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
-  filename = "KNNbest.joblib"
-  joblib.dump(model, filename)
+  filename = "KNN2.joblib"
 
-  #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
+  #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps sinon app lente)
   model = joblib.load(filename)
 
   ##Précision et f1-score :
