@@ -377,17 +377,63 @@ if rad == "Machine Learning : KNN":
   st.markdown("Puis le jeu de données est découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
-  #séparation des données à partir du jeu rééchantillonné en SMOTE et préparé selon le pipeline optimal (voir début) :
-  y_sm = np.array(y_sm)#reformatage des dimensions de y_sm pour permettre de rentrer les données dans traintestsplit :
-  y_sm.reshape(-1, 1)  
-  y_sm = y_sm.astype(float)  
-  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
   
+  df = pd.read_csv("weatherAUS.csv")
+
+  df = df.drop_duplicates()
+  df['year'] = pd.to_datetime(df['Date']).dt.year
+  df['month'] = pd.to_datetime(df['Date']).dt.month
+  df['day'] = pd.to_datetime(df['Date']).dt.day
+
+  #réenregistrement des variables year, month, et day, en tant que int.
+
+  df['year'] = df['year'].astype(int)
+  df['month'] = df['month'].astype(int)
+  df['day'] = df['day'].astype(int)
+
+  df = df.drop('Date', axis = 1)
+
+  ##Renommer pour lisibilité les booléénnes : 
+  df['RainToday_encode'] = df['RainToday']
+  df['RainTomorrow_encode'] = df['RainTomorrow']
+  df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
+
+  #import: 
+  from sklearn import preprocessing
+  le = preprocessing.LabelEncoder()
+
+  #encodage : 
+  for var in df.select_dtypes(include='object').columns:
+      df[var] = le.fit_transform(df[var])
+
+  #vérifier si toutes les colonnes sont bien numérisées :
+  print(df.head())
+
+  df = df.drop(['day','month','Location', 'year'], axis = 1)
+  df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
+  df_bourrin = df.dropna()
+  df_bourrin.shape
+  y = df_bourrin['RainTomorrow_encode']
+  x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
+
+  y = np.array(y)
+  y.reshape(-1, 1)
+
+  y = y.astype(float)
+  x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
+  smo = SMOTE()
+  x_sm, y_sm = smo.fit_resample(x, y)
+  print('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
+  x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+
+ 
+
+    
   #modele KNN optimisé
   st.subheader("knn optimisé")
-  filename = "KNNbest_pipeline_opti.joblib"
 
   #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps sinon app lente)
+  filename = "KNNbest_pipeline_opti.joblib"
   model = joblib.load(filename)
 
   ##Précision et f1-score :
