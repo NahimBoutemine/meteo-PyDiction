@@ -418,14 +418,13 @@ if rad == "Machine Learning : KNN":
 
   y = np.array(y)
   y.reshape(-1, 1)
-
   y = y.astype(float)
-  x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
+
   smo = SMOTE()
   x_sm, y_sm = smo.fit_resample(x, y)
   print('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
-  x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
-
+  #x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
  
 
     
