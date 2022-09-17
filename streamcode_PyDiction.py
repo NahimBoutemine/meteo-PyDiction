@@ -115,10 +115,7 @@ y_def = 0
 #split des x et y issus de l'oversampling SMOTE
 x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
 
-
-
-
-#Affichages des points clés des étapes du projet :
+#Affichages des points clés de compréhension pour chaque étape du projet :
 
 #Création du menu de choix à gauche et le choix est stocké sous la variable "rad": 
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", 
@@ -176,7 +173,8 @@ elif rad == "Exploration des données brutes":
   
   #Les variables explicatives, définitions et types  :
   st.subheader("Types des variables explicatives pour évaluer la nécessité de l'encodage :")    
-  st.write("Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ", df_full)
+  st.write("Affichons le contenu des données brutes pour repérer le nom des variables explicatives et leur type : ")
+  st.dataframe(data=df_full)
   st.markdown("Les variables sont numériques ou catégorielles, il faudra donc encoder les catégorielles par la suite.")
 
   #Repérage des doublons et des manquantes : 
