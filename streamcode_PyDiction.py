@@ -378,223 +378,223 @@ if rad == "Machine Learning : KNN":
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
   
-  #modele KNN optimisé
-  st.subheader("knn optimisé")
+  model_choice = st.selectbox('KNN optimisé', 'DTC optimisé', 'log reg optimisé', 'RFC optimisé')
+  if model_choice = 'KNN optimisé':
 
-  #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps sinon app lente)
-  #filename = "KNNbest_pipeline_opti.joblib"
-  #model = joblib.load(filename)
-  
-  #entrainement du meilleur knn sur les jeux d'entrainement et de test
-  model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
-  model.fit(x_train, y_train)
+    #modele KNN optimisé
+    st.subheader("knn optimisé")
 
-  ##Précision et f1-score : sur x_train (jeu entrainement issu de pipeline optimal) et x_test (jeu test issu du pipeline optimal)
-  y_pred_train = model.predict(x_train)
-  y_pred_test = model.predict(x_test) 
-  
-  st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle :")
-                
-  choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+    #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps sinon app lente)
+    #filename = "KNNbest_pipeline_opti.joblib"
+    #model = joblib.load(filename)
 
-  if choice4 == 'accuracy':      
-      acc_train  = accuracy_score(y_train, y_pred_train)
-      acc_test  = accuracy_score(y_test, y_pred_test)
-      st.write("acc_train : ", acc_train, "acc_test :", acc_test)
-      
-  elif choice4 == 'F1-score' :
-      f1score_train = f1_score(y_train, y_pred_train, average='macro')
-      f1score_test = f1_score(y_test, y_pred_test, average='macro')
-      st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+    #entrainement du meilleur knn sur les jeux d'entrainement et de test
+    model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
+    model.fit(x_train, y_train)
 
-    #elif choice4 == 'matrice de confusion' :
-      #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    ##Précision et f1-score : sur x_train (jeu entrainement issu de pipeline optimal) et x_test (jeu test issu du pipeline optimal)
+    y_pred_train = model.predict(x_train)
+    y_pred_test = model.predict(x_test) 
 
-  elif choice4 == 'AUC et ROC Curve' :
-      st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-      false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
-      roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+    st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle :")
+
+    index_choice = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+
+    if index_choice == 'accuracy':      
+        acc_train  = accuracy_score(y_train, y_pred_train)
+        acc_test  = accuracy_score(y_test, y_pred_test)
+        st.write("acc_train : ", acc_train, "acc_test :", acc_test)
+
+    elif index_choice == 'F1-score' :
+        f1score_train = f1_score(y_train, y_pred_train, average='macro')
+        f1score_test = f1_score(y_test, y_pred_test, average='macro')
+        st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+
+      #elif index_choice == 'matrice de confusion' :
+        #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+
+    elif index_choice == 'AUC et ROC Curve' :
+        st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
+        false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
+        roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+
+        #la courbe ROC
+        fig = plt.figure();
+        plt.plot(false_positive_rate, true_positive_rate);
+        plt.plot([0, 1], ls="--");
+        plt.plot([0, 0], [1, 0] , c=".7"), 
+        plt.plot([1, 1] , c=".7");
+        plt.ylabel('True Positive Rate');
+        plt.xlabel('False Positive Rate');
+        st.pyplot(fig);
+        st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+        st.markdown('Le score AUC ici est donc acceptable. ')
+        st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
+        st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+
+      elif index_choice == 'MAE' :
+        MAE = mae(y_test, y_pred_test)
+        st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
+
+    #résultats :
+    st.markdown("Les prédictions sont plutôt bonnes !")
+    st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
+
+  if model_choice = 'DTC optimisé':if rad == "Machine Learning : DTC":
     
-      #la courbe ROC
-      fig = plt.figure();
-      plt.plot(false_positive_rate, true_positive_rate);
-      plt.plot([0, 1], ls="--");
-      plt.plot([0, 0], [1, 0] , c=".7"), 
-      plt.plot([1, 1] , c=".7");
-      plt.ylabel('True Positive Rate');
-      plt.xlabel('False Positive Rate');
-      st.pyplot(fig);
-      st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-      st.markdown('Le score AUC ici est donc acceptable. ')
-      st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
-      st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+    #entrainement du meilleur DTC sur les jeux entrainement et test issus du pipeline optimal
+    st.subheader("DTC optimisé")
+    model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+    model.fit(x_train,y_train)
 
-  elif choice4 == 'MAE' :
-      MAE = mae(y_test, y_pred_test)
-      st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
+    ##Précision et f1-score :
+    y_pred_train = model.predict(x_train)
+    y_pred_test = model.predict(x_test) 
 
-  #résultats :
-  st.markdown("Les prédictions sont plutôt bonnes !")
-  st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
+    st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
 
-#Si choix 5 
-if rad == "Machine Learning : DTC":
-    
-  #entrainement du meilleur DTC sur les jeux entrainement et test issus du pipeline optimal
-  st.subheader("DTC optimisé")
-  model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
-  model.fit(x_train,y_train)
-      
-  ##Précision et f1-score :
-  y_pred_train = model.predict(x_train)
-  y_pred_test = model.predict(x_test) 
+    choice5 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+
+    if choice5 == 'accuracy':
+
+        acc_train  = accuracy_score(y_train, y_pred_train)
+        acc_test  = accuracy_score(y_test, y_pred_test)
+        st.write("acc_train : ", acc_train, "acc_test :", acc_test)
+
+    elif choice5 == 'F1-score' :
+        f1score_train = f1_score(y_train, y_pred_train, average='macro')
+        f1score_test = f1_score(y_test, y_pred_test, average='macro')
+        st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+
+      #elif choice4 == 'matrice de confusion' :
+        #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+
+    elif choice5 == 'AUC et ROC Curve' :
+        st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
+        false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
+        roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+
+        #la courbe ROC
+        fig = plt.figure();
+        plt.plot(false_positive_rate, true_positive_rate);
+        plt.plot([0, 1], ls="--");
+        plt.plot([0, 0], [1, 0] , c=".7"), 
+        plt.plot([1, 1] , c=".7");
+        plt.ylabel('True Positive Rate');
+        plt.xlabel('False Positive Rate');
+        st.pyplot(fig);
+        st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+        st.markdown('Le score AUC ici est donc acceptable. ')
+        st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
+        st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+
+    elif choice5 == 'MAE' :
+        MAE = mae(y_test, y_pred_test)
+        st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
   
-  st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
-                
-  choice5 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+  if model_choice = 'log reg optimisé':
 
-  if choice5 == 'accuracy':
-      
-      acc_train  = accuracy_score(y_train, y_pred_train)
-      acc_test  = accuracy_score(y_test, y_pred_test)
-      st.write("acc_train : ", acc_train, "acc_test :", acc_test)
-      
-  elif choice5 == 'F1-score' :
-      f1score_train = f1_score(y_train, y_pred_train, average='macro')
-      f1score_test = f1_score(y_test, y_pred_test, average='macro')
-      st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+    #entrainement du meilleur logreg sur les jeux entrainement et test issus du pipeline optimal
+    st.subheader("logreg optimisé")
+    model = LogisticRegression(C=0.01, penalty= 'l2')
+    model.fit(x_train,y_train)
 
-    #elif choice4 == 'matrice de confusion' :
-      #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    ##Précision et f1-score :
+    y_pred_train = model.predict(x_train)
+    y_pred_test = model.predict(x_test) 
 
-  elif choice5 == 'AUC et ROC Curve' :
-      st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-      false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
-      roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
-    
-      #la courbe ROC
-      fig = plt.figure();
-      plt.plot(false_positive_rate, true_positive_rate);
-      plt.plot([0, 1], ls="--");
-      plt.plot([0, 0], [1, 0] , c=".7"), 
-      plt.plot([1, 1] , c=".7");
-      plt.ylabel('True Positive Rate');
-      plt.xlabel('False Positive Rate');
-      st.pyplot(fig);
-      st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-      st.markdown('Le score AUC ici est donc acceptable. ')
-      st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
-      st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+    st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
 
-  elif choice5 == 'MAE' :
-      MAE = mae(y_test, y_pred_test)
-      st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
+    choice6 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
-#Si choix 6
-if rad == "Machine Learning : Log Reg":
+    if choice6 == 'accuracy':
 
-  #entrainement du meilleur logreg sur les jeux entrainement et test issus du pipeline optimal
-  st.subheader("logreg optimisé")
-  model = LogisticRegression(C=0.01, penalty= 'l2')
-  model.fit(x_train,y_train)
-      
-  ##Précision et f1-score :
-  y_pred_train = model.predict(x_train)
-  y_pred_test = model.predict(x_test) 
+        acc_train  = accuracy_score(y_train, y_pred_train)
+        acc_test  = accuracy_score(y_test, y_pred_test)
+        st.write("acc_train : ", acc_train, "acc_test :", acc_test)
+
+    elif choice6 == 'F1-score' :
+        f1score_train = f1_score(y_train, y_pred_train, average='macro')
+        f1score_test = f1_score(y_test, y_pred_test, average='macro')
+        st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+
+      #elif choice4 == 'matrice de confusion' :
+        #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+
+    elif choice6 == 'AUC et ROC Curve' :
+        st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
+        false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
+        roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+
+        #la courbe ROC
+        fig = plt.figure();
+        plt.plot(false_positive_rate, true_positive_rate);
+        plt.plot([0, 1], ls="--");
+        plt.plot([0, 0], [1, 0] , c=".7"), 
+        plt.plot([1, 1] , c=".7");
+        plt.ylabel('True Positive Rate');
+        plt.xlabel('False Positive Rate');
+        st.pyplot(fig);
+        st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+        st.markdown('Le score AUC ici est donc acceptable. ')
+        st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
+        st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+
+    elif choice6 == 'MAE' :
+        MAE = mae(y_test, y_pred_test)
+        st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
   
-  st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
-                
-  choice6 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+  if model_choice = 'RFC optimisé':
 
-  if choice6 == 'accuracy':
-      
-      acc_train  = accuracy_score(y_train, y_pred_train)
-      acc_test  = accuracy_score(y_test, y_pred_test)
-      st.write("acc_train : ", acc_train, "acc_test :", acc_test)
-      
-  elif choice6 == 'F1-score' :
-      f1score_train = f1_score(y_train, y_pred_train, average='macro')
-      f1score_test = f1_score(y_test, y_pred_test, average='macro')
-      st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+    #entrainement du meilleur RFC sur les jeux entrainement et test issus du pipeline optimal
+    st.subheader("RFC optimisé")
+    model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
+    model.fit(x_train,y_train)
 
-    #elif choice4 == 'matrice de confusion' :
-      #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+    ##Précision et f1-score :
+    y_pred_train = model.predict(x_train)
+    y_pred_test = model.predict(x_test) 
 
-  elif choice6 == 'AUC et ROC Curve' :
-      st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-      false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
-      roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
-    
-      #la courbe ROC
-      fig = plt.figure();
-      plt.plot(false_positive_rate, true_positive_rate);
-      plt.plot([0, 1], ls="--");
-      plt.plot([0, 0], [1, 0] , c=".7"), 
-      plt.plot([1, 1] , c=".7");
-      plt.ylabel('True Positive Rate');
-      plt.xlabel('False Positive Rate');
-      st.pyplot(fig);
-      st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-      st.markdown('Le score AUC ici est donc acceptable. ')
-      st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
-      st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+    st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
 
-  elif choice6 == 'MAE' :
-      MAE = mae(y_test, y_pred_test)
-      st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
-      
-#Si choix 7
-if rad == "Machine Learning : RFC":
-     
-  #entrainement du meilleur RFC sur les jeux entrainement et test issus du pipeline optimal
-  st.subheader("RFC optimisé")
-  model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
-  model.fit(x_train,y_train)
-      
-  ##Précision et f1-score :
-  y_pred_train = model.predict(x_train)
-  y_pred_test = model.predict(x_test) 
-  
-  st.markdown("Maintenant que l'entrainement du modele est chargé, voyons la qualité de la prédiction")
-                
-  choice7 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+    choice7 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
-  if choice7 == 'accuracy':
-      
-      acc_train  = accuracy_score(y_train, y_pred_train)
-      acc_test  = accuracy_score(y_test, y_pred_test)
-      st.write("acc_train : ", acc_train, "acc_test :", acc_test)
-      
-  elif choice7 == 'F1-score' :
-      f1score_train = f1_score(y_train, y_pred_train, average='macro')
-      f1score_test = f1_score(y_test, y_pred_test, average='macro')
-      st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+    if choice7 == 'accuracy':
 
-    #elif choice4 == 'matrice de confusion' :
-      #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+        acc_train  = accuracy_score(y_train, y_pred_train)
+        acc_test  = accuracy_score(y_test, y_pred_test)
+        st.write("acc_train : ", acc_train, "acc_test :", acc_test)
 
-  elif choice7 == 'AUC et ROC Curve' :
-      st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-      false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
-      roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
-    
-      #la courbe ROC
-      fig = plt.figure();
-      plt.plot(false_positive_rate, true_positive_rate);
-      plt.plot([0, 1], ls="--");
-      plt.plot([0, 0], [1, 0] , c=".7"), 
-      plt.plot([1, 1] , c=".7");
-      plt.ylabel('True Positive Rate');
-      plt.xlabel('False Positive Rate');
-      st.pyplot(fig);
-      st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-      st.markdown('Le score AUC ici est donc acceptable. ')
-      st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
-      st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+    elif choice7 == 'F1-score' :
+        f1score_train = f1_score(y_train, y_pred_train, average='macro')
+        f1score_test = f1_score(y_test, y_pred_test, average='macro')
+        st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
 
-  elif choice7 == 'MAE' :
-      MAE = mae(y_test, y_pred_test)
-      st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
+      #elif choice4 == 'matrice de confusion' :
+        #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+
+    elif choice7 == 'AUC et ROC Curve' :
+        st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
+        false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
+        roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+
+        #la courbe ROC
+        fig = plt.figure();
+        plt.plot(false_positive_rate, true_positive_rate);
+        plt.plot([0, 1], ls="--");
+        plt.plot([0, 0], [1, 0] , c=".7"), 
+        plt.plot([1, 1] , c=".7");
+        plt.ylabel('True Positive Rate');
+        plt.xlabel('False Positive Rate');
+        st.pyplot(fig);
+        st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+        st.markdown('Le score AUC ici est donc acceptable. ')
+        st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
+        st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+
+    elif choice7 == 'MAE' :
+        MAE = mae(y_test, y_pred_test)
+        st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
 if rad == "Conclusion et perspectives":
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
