@@ -393,8 +393,8 @@ if rad == "Machine Learning : KNN":
   y = df_bourrin['RainTomorrow_encode']
   x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
 
-  #y = np.array(y)
-  #y.reshape(-1, 1)
+  y = np.array(y)
+  y.reshape(-1, 1)
   y = y.astype(float)
 
   smo = SMOTE()
