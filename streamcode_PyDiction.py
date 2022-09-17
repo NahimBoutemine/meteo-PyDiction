@@ -389,53 +389,53 @@ if rad == "Machine Learning : KNN":
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
   
-  df = pd.read_csv("weatherAUS.csv")
+  #df = pd.read_csv("weatherAUS.csv")
 
-  df = df.drop_duplicates()
-  df['year'] = pd.to_datetime(df['Date']).dt.year
-  df['month'] = pd.to_datetime(df['Date']).dt.month
-  df['day'] = pd.to_datetime(df['Date']).dt.day
+  #df = df.drop_duplicates()
+  #df['year'] = pd.to_datetime(df['Date']).dt.year
+  #df['month'] = pd.to_datetime(df['Date']).dt.month
+  #df['day'] = pd.to_datetime(df['Date']).dt.day
 
   #réenregistrement des variables year, month, et day, en tant que int.
 
-  df['year'] = df['year'].astype(int)
-  df['month'] = df['month'].astype(int)
-  df['day'] = df['day'].astype(int)
+  #df['year'] = df['year'].astype(int)
+  #df['month'] = df['month'].astype(int)
+  #df['day'] = df['day'].astype(int)
 
-  df = df.drop('Date', axis = 1)
+  #df = df.drop('Date', axis = 1)
 
   ##Renommer pour lisibilité les booléénnes : 
-  df['RainToday_encode'] = df['RainToday']
-  df['RainTomorrow_encode'] = df['RainTomorrow']
-  df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
+  #df['RainToday_encode'] = df['RainToday']
+  #df['RainTomorrow_encode'] = df['RainTomorrow']
+  #df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
   #import: 
-  from sklearn import preprocessing
-  le = preprocessing.LabelEncoder()
+  #from sklearn import preprocessing
+  #le = preprocessing.LabelEncoder()
 
   #encodage : 
-  for var in df.select_dtypes(include='object').columns:
-      df[var] = le.fit_transform(df[var])
+  #for var in df.select_dtypes(include='object').columns:
+  #    df[var] = le.fit_transform(df[var])
 
   #vérifier si toutes les colonnes sont bien numérisées :
-  print(df.head())
+  #print(df.head())
 
-  df = df.drop(['day','month','Location', 'year'], axis = 1)
-  df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-  df_bourrin = df.dropna()
-  df_bourrin.shape
-  y = df_bourrin['RainTomorrow_encode']
-  x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
+  #df = df.drop(['day','month','Location', 'year'], axis = 1)
+  #df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
+  #df_bourrin = df.dropna()
+  #df_bourrin.shape
+  #y = df_bourrin['RainTomorrow_encode']
+  #x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
 
-  y = np.array(y)
-  y.reshape(-1, 1)
-  y = y.astype(float)
+  #y = np.array(y)
+  #y.reshape(-1, 1)
+  #y = y.astype(float)
 
-  smo = SMOTE()
-  x_sm, y_sm = smo.fit_resample(x, y)
+  #smo = SMOTE()
+  #x_sm, y_sm = smo.fit_resample(x, y)
   print('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
   #x_sm_train, x_sm_test, y_sm_train, y_sm_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
-  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+  #x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
  
 
     
