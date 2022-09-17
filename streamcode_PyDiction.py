@@ -557,11 +557,6 @@ if rad == "Machine Learning : DTC":
 
 #Si choix 6
 if rad == "Machine Learning : Log Reg":
-  #séparation des données à partir du jeu rééchantillonné en SMOTE et préparé selon le pipeline optimal (voir début) :
-  y_sm = np.array(y_sm)#reformatage des dimensions de y_sm pour permettre de rentrer les données dans traintestsplit :
-  y_sm.reshape(-1, 1)  
-  y_sm = y_sm.astype(float)  
-  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)  
 
   #   model = LogisticRegression(C=0.01, penalty= 'l2')
   st.subheader("logreg optimisé")
@@ -622,12 +617,7 @@ if rad == "Machine Learning : Log Reg":
       
 #Si choix 7
 if rad == "Machine Learning : RFC":
-  #séparation des données à partir du jeu rééchantillonné en SMOTE et préparé selon le pipeline optimal (voir début) :
-  y_sm = np.array(y_sm)#reformatage des dimensions de y_sm pour permettre de rentrer les données dans traintestsplit :
-  y_sm.reshape(-1, 1)  
-  y_sm = y_sm.astype(float)  
-  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
-    
+     
   #   model optimisé = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
   st.subheader("RFC optimisé")
   model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
