@@ -425,7 +425,7 @@ if rad == "Machine Learning : KNN":
 
   if choice4 == 'accuracy':
       
-      #acc_train  = accuracy_score(y_train, y_pred_train)
+      acc_train  = accuracy_score(y_train, y_pred_train)
       acc_test  = accuracy_score(y_test, y_pred_test)
       st.write("acc_train : ", acc_train, "acc_test :", acc_test)
       
