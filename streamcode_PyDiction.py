@@ -240,7 +240,7 @@ elif rad == "Exploration des données brutes":
   
   #distribution de WindGustDir :
   fig_vents = Image.open('fig vents.png')
-  st.image(fig_vents, width = 200, caption= "répartition de chaque valeur dans les catégories de WindGustDir, en piechart pour voir facilement les noms des directions simultanément")
+  st.image(fig_vents, width = 300, caption= "répartition de chaque valeur dans les catégories de WindGustDir, en piechart pour voir facilement les noms des directions simultanément")
     
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
   st.subheader("Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage :")
