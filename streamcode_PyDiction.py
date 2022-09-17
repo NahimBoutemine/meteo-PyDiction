@@ -240,9 +240,8 @@ elif rad == "Exploration des données brutes":
   
   #distribution de WindGustDir :
   fig_vents = Image.open('fig vents.png')
-  st.image(fig_vents, caption= "répartition de chaque valeur dans les catégories de WindGustDir, en piechart pour voir facilement les noms des directions simultanément")
-  
-  
+  st.image(fig_vents, width = 200, caption= "répartition de chaque valeur dans les catégories de WindGustDir, en piechart pour voir facilement les noms des directions simultanément")
+    
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
   st.subheader("Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage :")
   if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
@@ -402,8 +401,6 @@ if rad == "Machine Learning : KNN":
   #x_sm, y_sm = smo.fit_resample(x, y)
   print('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
   #x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
- 
-
     
   #modele KNN optimisé
   st.subheader("knn optimisé")
@@ -420,8 +417,7 @@ if rad == "Machine Learning : KNN":
                 
   choice4 = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
-  if choice4 == 'accuracy':
-      
+  if choice4 == 'accuracy':      
       acc_train  = accuracy_score(y_train, y_pred_train)
       acc_test  = accuracy_score(y_test, y_pred_test)
       st.write("acc_train : ", acc_train, "acc_test :", acc_test)
