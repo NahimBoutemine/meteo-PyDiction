@@ -73,6 +73,7 @@ df_encode = df#stockage à ce stade du df aux variables encodées
 
 #suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
 df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
+df = df.drop(['day','month','Location', 'year'], axis = 1)
 
 #Préparation du split :
 #(méthode courante d'évaluation):
@@ -415,7 +416,7 @@ if rad == "Machine Learning : KNN":
   model = joblib.load(filename)
 
   ##Précision et f1-score :
-  #y_pred_train = model.predict(x_train)
+  y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
   
   st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle :")
