@@ -185,10 +185,6 @@ elif rad == "Exploration des données brutes":
   st.subheader("Etude de la distribution des variables pour étudier l'intérêt de la normalisation")    
   st.markdown("Les modèles de ML demandent en entrée des données aux distributions normales, vérifions cette condition :")
   
-  #distribution de WindGustDir :
-  fig_vents = Image.open('fig vents.png')
-  st.image(fig_vents, caption= "répartition de chaque valeur dans les catégories de WindGustDir ")
-  
   #Distribution des numériques :
   st.markdown("Etude de la distribution des variables numériques - boxsplot :")
 
@@ -239,8 +235,14 @@ elif rad == "Exploration des données brutes":
     ax2.set_title("évaporation - ensoleillement")
     fig.set_tight_layout(True)
     st.pyplot(fig)  
-  st.markdown("Nous voyons que les distributions des variables sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et ils sont conservés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
-
+  st.markdown("Nous voyons que les distributions des variables numériques sont globalement gaussiennes. Nous avons posé l'hypothèse que les quelques outliers ne perturberont pas les entrainements des modèles vu leur nombre, et ils sont conservés pour permettre au modèle de s'adapter à de nouvelles données parfois extrêmes (changement climatique voir GIEC).")
+  st.markdown("Etudions à présent la distribution de WindGustDir (direction des vents de la journée), en piechart pour voir les modalités et l'importance relative de chacune d'entre elles en nombre de valeurs correspondantes : ")
+  
+  #distribution de WindGustDir :
+  fig_vents = Image.open('fig vents.png')
+  st.image(fig_vents, caption= "répartition de chaque valeur dans les catégories de WindGustDir, en piechart pour voir facilement les noms des directions simultanément")
+  
+  
   #Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage: 
   st.subheader("Distribution de la variable cible pour évaluer l'intérêt des méthodes de rééchantillonnage :")
   if st.checkbox("Cocher pour afficher la distribution de RainTomorrow :"):
