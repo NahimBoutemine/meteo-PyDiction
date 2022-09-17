@@ -110,10 +110,7 @@ x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numeric
 rad = st.sidebar.radio("Menu",["Introduction : Le projet et ses créateurs", 
                                "Exploration des données brutes", 
                                "Pipeline de préparation des données", 
-                               "Machine Learning : KNN",
-                               "Machine Learning : DTC",
-                               "Machine Learning : Log Reg",
-                               "Machine Learning : RFC",
+                               "Evaluation de la performance des modèles pré-sélectionnés",
                                "Conclusion et perspectives"])
 nuages_sidebar = Image.open('nuages_sidebar.jpg')
 st.sidebar.image(nuages_sidebar)
@@ -372,7 +369,7 @@ elif rad == "Pipeline de préparation des données":
     st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'amélioration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
     
 #Si choix 4 :
-if rad == "Machine Learning : KNN":
+if rad == "Evaluation de la performance des modèles pré-sélectionnés":
   st.markdown("Comme vu précédemment, le pipeline optimal est : conserver les variables corréllées à RainTomorrow puis méthode de rééchantillonnage SMOTE.")
   st.markdown("Puis le jeu de données est découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
