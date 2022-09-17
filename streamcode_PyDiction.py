@@ -67,31 +67,26 @@ df['RainToday_encode'] = df['RainToday']
 df['RainTomorrow_encode'] = df['RainTomorrow']
 df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
-#-encodage des restantes:     
+#-encodage des restantes sur df:     
 le = preprocessing.LabelEncoder()
 df_nonencode = df#sauvegarde du df pour l'affichage ultérieur pour montrer affichage 
 for var in df.select_dtypes(include='object').columns:#encodage
   df[var] = le.fit_transform(df[var])
 df_encode = df#stockage pour une figure ultérieure
 
-#Préparation du split (explo des données et options de pipeline)
-#(méthode courante d'évaluation):
-y = df['RainTomorrow_encode']
+#création du jeu des explicatives x_sm et de cible y_sm : issus du pipeline optimal (dropna, sélection pearson, encodage et SMOTE):
 x = df.drop('RainTomorrow_encode', axis = 1)
-
-#reshape de y (explo des données et options de pipeline)
-y = np.array(y)
+y = df['RainTomorrow_encode']
+y = np.array(y)#reshape de y (explo des données et options de pipeline)
 y.reshape(-1, 1)
 y = y.astype(float)
-
-#préparation des resampling (explo des données et options de pipeline)
-#OverSampling SMOTE':
 smo = SMOTE()
 x_sm, y_sm = smo.fit_resample(x, y)
+
 df_sm = x_sm#pour figure
 df_sm = df_sm.assign(RainTomorrow_encode = y_sm)#pour figure
 
-#split des x et y issus de l'oversampling SMOTE
+#creation des jeux d'entrainement x_train et test x_test issus du pipeline optimal
 x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
 
 #undersampling random (explo des données et options de pipeline)
@@ -107,6 +102,7 @@ name_columns_numerics = x_norm.select_dtypes(include=numerics).columns
 #créer, Entrainer et transformer directement les colonnes numériques de x_norm
 scaler =  StandardScaler()
 x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numerics])
+
 
 #Affichages des points clés de compréhension pour chaque étape du projet :
 
@@ -351,8 +347,7 @@ elif rad == "Pipeline de préparation des données":
   if choice2 == 'Aucune normalisation':
     #affectation de x et y
     
-    df_minmaxtemp = df.iloc[:, 1:3]
-    
+    df_minmaxtemp = df.iloc[:, 1:3]    
     fig = plt.figure(figsize=(3,3))
     sns.boxplot(data=df_minmaxtemp, color="red")
     #ax1.set_title("températures min et max")
@@ -386,22 +381,6 @@ if rad == "Machine Learning : KNN":
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
   
-  df = pd.read_csv("weatherAUS.csv")
-  df = df.dropna()
-  df = df.drop(['day','month','Location', 'year'], axis = 1)
-  df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-  y = df['RainTomorrow_encode']
-  x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
-
-  y = np.array(y)
-  y.reshape(-1, 1)
-  y = y.astype(float)
-
-  smo = SMOTE()
-  x_sm, y_sm = smo.fit_resample(x, y)
-  print('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
-  #x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
-    
   #modele KNN optimisé
   st.subheader("knn optimisé")
 
@@ -409,7 +388,7 @@ if rad == "Machine Learning : KNN":
   filename = "KNNbest_pipeline_opti.joblib"
   model = joblib.load(filename)
 
-  ##Précision et f1-score :
+  ##Précision et f1-score : sur x_train (jeu entrainement issu de pipeline optimal) et x_test (jeu test issu du pipeline optimal)
   y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
   
