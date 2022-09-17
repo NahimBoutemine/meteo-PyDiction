@@ -195,14 +195,14 @@ elif rad == "Exploration des données brutes":
   st.markdown("Etude de la distribution des variables numériques - boxsplot :")
 
   #création de sous dataframes
-  df_minmaxtemp = df.loc[:, ['MinTemp', 'MaxTemp']] 
-  df_wind = df.loc[:, ['WindSpeed9am', 'WindSpeed3pm']]
-  df_humidity = df.loc[:, ['Humidity9am', 'Humidity3pm']]
-  df_pressure = df.loc[:, ['Pressure9am', 'Pressure3pm']]
-  df_cloud = df.loc[:, ['Cloud9am', 'Cloud3pm']]
-  df_temp = df.loc[:, ['Temp9am', 'Temp3pm']]
+  df_minmaxtemp = df_full.loc[:, ['MinTemp', 'MaxTemp']] 
+  df_wind = df_full.loc[:, ['WindSpeed9am', 'WindSpeed3pm']]
+  df_humidity = df_full.loc[:, ['Humidity9am', 'Humidity3pm']]
+  df_pressure = df_full.loc[:, ['Pressure9am', 'Pressure3pm']]
+  df_cloud = df_full.loc[:, ['Cloud9am', 'Cloud3pm']]
+  df_temp = df_full.loc[:, ['Temp9am', 'Temp3pm']]
   df_rainfall_evaporation = df.loc[:, ['Rainfall', 'Evaporation']]
-  df_evaporation_sunshine = df.loc[:, ['Evaporation', 'Sunshine']]
+  df_evaporation_sunshine = df_full.loc[:, ['Evaporation', 'Sunshine']]
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
                         ('températures min et max et vitesse du vent', 
                        'couverture nuageuse (matin et après midi) et températures (matin et après midi)',
