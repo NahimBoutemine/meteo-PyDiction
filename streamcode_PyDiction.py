@@ -416,51 +416,49 @@ if rad == "Machine Learning : KNN":
 
   st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle :")
   
-  if st.checkbox("cliquez pour choisir et afficher les indices de performances du modèle (refermer avant de changer de modèle"):
   ##Précision et f1-score : sur x_train (jeu entrainement issu de pipeline optimal) et x_test (jeu test issu du pipeline optimal)
-    y_pred_train = model.predict(x_train)
-    y_pred_test = model.predict(x_test) 
+  y_pred_train = model.predict(x_train)
+  y_pred_test = model.predict(x_test) 
+  index_choice = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
 
-    index_choice = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+  if index_choice == 'accuracy':      
+      acc_train  = accuracy_score(y_train, y_pred_train)
+      acc_test  = accuracy_score(y_test, y_pred_test)
+      st.write("acc_train : ", acc_train, "acc_test :", acc_test)
 
-    if index_choice == 'accuracy':      
-        acc_train  = accuracy_score(y_train, y_pred_train)
-        acc_test  = accuracy_score(y_test, y_pred_test)
-        st.write("acc_train : ", acc_train, "acc_test :", acc_test)
+  elif index_choice == 'F1-score' :
+      f1score_train = f1_score(y_train, y_pred_train, average='macro')
+      f1score_test = f1_score(y_test, y_pred_test, average='macro')
+      st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
 
-    elif index_choice == 'F1-score' :
-        f1score_train = f1_score(y_train, y_pred_train, average='macro')
-        f1score_test = f1_score(y_test, y_pred_test, average='macro')
-        st.write("F1score_train : ", f1score_train, "F1score_test : ", f1score_test)
+    #elif index_choice == 'matrice de confusion' :
+      #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
 
-      #elif index_choice == 'matrice de confusion' :
-        #st.write(pd.crosstab(y_sm_test, y_pred_test, rownames=['Classe réelle'], colnames=['Classe prédite']))
+  elif index_choice == 'AUC et ROC Curve' :
+      st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
+      false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
+      roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
 
-    elif index_choice == 'AUC et ROC Curve' :
-        st.markdown('Imprimons à présent la courbe ROC de ce modèle : ')
-        false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, model.predict(x_test), pos_label = 1)
-        roc_auc_score = roc_auc_score(y_test, model.predict(x_test))
+      #la courbe ROC
+      fig = plt.figure();
+      plt.plot(false_positive_rate, true_positive_rate);
+      plt.plot([0, 1], ls="--");
+      plt.plot([0, 0], [1, 0] , c=".7"), 
+      plt.plot([1, 1] , c=".7");
+      plt.ylabel('True Positive Rate');
+      plt.xlabel('False Positive Rate');
+      st.pyplot(fig);
+      st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+      st.markdown('Le score AUC ici est donc acceptable. ')
+      st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
+      st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
-        #la courbe ROC
-        fig = plt.figure();
-        plt.plot(false_positive_rate, true_positive_rate);
-        plt.plot([0, 1], ls="--");
-        plt.plot([0, 0], [1, 0] , c=".7"), 
-        plt.plot([1, 1] , c=".7");
-        plt.ylabel('True Positive Rate');
-        plt.xlabel('False Positive Rate');
-        st.pyplot(fig);
-        st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
-        st.markdown('Le score AUC ici est donc acceptable. ')
-        st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
-        st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
+   elif index_choice == 'MAE' :
+    MAE = mae(y_test, y_pred_test)
+    st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
-      elif index_choice == 'MAE' :
-        MAE = mae(y_test, y_pred_test)
-        st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
-
-    #résultats :
-    st.markdown("Les prédictions sont plutôt bonnes !")
+  #résultats :
+  st.markdown("Les prédictions sont plutôt bonnes !")
 
 if rad == "Conclusion et perspectives":
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
