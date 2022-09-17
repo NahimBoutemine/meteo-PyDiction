@@ -153,7 +153,7 @@ if rad == "Introduction : Le projet et ses créateurs":
 #Si choix 2 :
 elif rad == "Exploration des données brutes":
   fig = plt.figure(figsize=(3,3))
-  fig = df['WindGustDir'].value_counts().plot(kind='pie')
+  df['WindGustDir'].value_counts().plot(kind='pie')
   st.pyplot(fig) 
     
     
