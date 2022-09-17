@@ -72,7 +72,7 @@ for var in df.select_dtypes(include='object').columns:
 df_encode = df#stockage à ce stade du df aux variables encodées
 
 #suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
-df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
+df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 df = df.drop(['day','month','Location', 'year'], axis = 1)
 
 #Préparation du split :
@@ -166,8 +166,6 @@ elif rad == "Exploration des données brutes":
   #Exploration des données brutes :
   st.header("Exploration des données brutes : préparer la suite...")
   st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. Le traitement des données avant la modélisation peut se faire de différentes manières, soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
-  
-  st.write(df_sm.head(10))
   
   #Nombre de données, et source :
   st.subheader("Source des données et nombre pour aider la préselction des modèles de ML :")   
