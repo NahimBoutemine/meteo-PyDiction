@@ -463,11 +463,11 @@ if rad == "Conclusion et perspectives":
   
   st.subheader("Conclusion")
   
-  st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes."(
+  st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes.")
   st.markdown("Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
   #st.markdown("Au final, deux algorithmes offrent des performances satisfaisantes à la fois en terme de métriques et de temps d/'execution sont: KNN et Régression Logistique.") 
-  st.markdown("Nous n'avons pas eu recours à un stockage des entrainements via joblib en raison du relatif court temps d'execution de nos modèles, et des problèmes de connexion et d'instabilité du streamlit que cela engendrait")
-  st.markdown("A titre d'indication, nous listons ci dessous les métriques du KNN.")
+  #st.markdown("Nous n'avons pas eu recours à un stockage des entrainements via joblib en raison du relatif court temps d'execution de nos modèles, et des problèmes de connexion et d'instabilité du streamlit que cela engendrait")
+  #st.markdown("A titre d'indication, nous listons ci dessous les métriques du KNN.")
     
   st.markdown("acc_train :  1.0, acc_test : 0.86.")
   st.markdown("F1score_train :  1.0 F1score_test : 0.86.")
