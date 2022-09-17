@@ -152,11 +152,11 @@ if rad == "Introduction : Le projet et ses créateurs":
 
 #Si choix 2 :
 elif rad == "Exploration des données brutes":
-  fig, ax = plt.subplots()    
-  sns.pieplot(data=df_full.loc[:, ['WindGustDir']])
-  ax.set_title("Directions des vents")
-  fig.set_tight_layout(True)
-  st.pyplot(fig)
+  fig = plt.figure(figsize=(3,3))
+  fig = df['WindGustDir'].value_counts().plot(kind='pie')
+  st.pyplot(fig) 
+    
+    
   #Exploration des données brutes :
   st.header("Exploration des données brutes : préparer la suite...")
   st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. Le traitement des données avant la modélisation peut se faire de différentes manières, soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
