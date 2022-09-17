@@ -465,7 +465,7 @@ if rad == "Conclusion et perspectives":
   
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes."(
   st.markdown("Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
-  st.markdown("Au final, deux algorithmes offrent des performances satisfaisantes à la fois en terme de métriques et de temps d'execution sont: KNN et Régression Logistique") 
+  st.markdown("Au final, deux algorithmes offrent des performances satisfaisantes à la fois en terme de métriques et de temps d/'execution sont: KNN et Régression Logistique.") 
   st.markdown("Nous n'avons pas eu recours à un stockage des entrainements via joblib en raison du relatif court temps d'execution de nos modèles, et des problèmes de connexion et d'instabilité du streamlit que cela engendrait")
   st.markdown("A titre d'indication, nous listons ci dessous les métriques du KNN.")
     
@@ -490,7 +490,8 @@ if rad == "Conclusion et perspectives":
   st.markdown("Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.")
 
   
-
+  if st.checkbox("Cocher pour afficher la surprise !:"):
+    st.markdown("Un rééchantillonnage SMOTE a été retenu pour la préparation optimale de ce jeu puisque nous avons de meilleures performances avec... sérieusement, vous vous attendiez à quoi ? ")
 
 
 
