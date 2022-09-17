@@ -79,6 +79,11 @@ df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 y = df['RainTomorrow_encode']
 x = df.drop('RainTomorrow_encode', axis = 1)
 
+#reshape de y
+y = np.array(y)
+y.reshape(-1, 1)
+y = y.astype(float)
+
 #préparation des resampling
 #OverSampling SMOTE':
 smo = SMOTE()
@@ -105,6 +110,12 @@ x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numeric
 #les variables définitives
 x_def = 0
 y_def = 0
+
+#split des x et y issus de l'oversampling SMOTE
+x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+
+
+
 
 #Affichages des points clés des étapes du projet :
 
@@ -486,13 +497,8 @@ if rad == "Machine Learning : KNN":
     
 #Si choix 5 
 if rad == "Machine Learning : DTC":
-  #séparation des données à partir du jeu rééchantillonné en SMOTE et préparé selon le pipeline optimal (voir début) :
-  y_sm = np.array(y_sm)#reformatage des dimensions de y_sm pour permettre de rentrer les données dans traintestsplit :
-  y_sm.reshape(-1, 1)  
-  y_sm = y_sm.astype(float)  
-  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
-  
- #   model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+    
+  #model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
   st.subheader("DTC optimisé")
   model2 = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
   model2.fit(x_train,y_train)
