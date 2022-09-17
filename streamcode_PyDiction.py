@@ -188,7 +188,11 @@ elif rad == "Exploration des données brutes":
   #Etude de la distribution des variables pour étudier l'intérêt de la normalisation :
   st.subheader("Etude de la distribution des variables pour étudier l'intérêt de la normalisation")    
   st.markdown("Les modèles de ML demandent en entrée des données aux distributions normales, vérifions cette condition :")
-
+  
+  #distribution de WindGustDir :
+  fig_vents = Image.open('fig vents.png')
+  st.image(fig_vents, caption= "répartition de chaque valeur dans les catégories de WindGustDir ")
+  
   #Distribution des numériques :
   st.markdown("Etude de la distribution des variables numériques - boxsplot :")
 
