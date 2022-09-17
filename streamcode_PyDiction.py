@@ -88,10 +88,8 @@ y = y.astype(float)
 #OverSampling SMOTE':
 smo = SMOTE()
 x_sm, y_sm = smo.fit_resample(x, y)
-
-#création de df_sm, pour la figure de l'oversampling smote partie 3
-df_sm = x_sm
-df_sm = df_sm.assign(RainTomorrow_encode = y_sm)
+df_sm = x_sm#pour figure
+df_sm = df_sm.assign(RainTomorrow_encode = y_sm)#pour figure
 
 #split des x et y issus de l'oversampling SMOTE
 x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
@@ -99,8 +97,6 @@ x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, 
 #undersampling random (explo des données et options de pipeline)
 rUs = RandomUnderSampler()
 x_ru, y_ru = rUs.fit_resample(x, y)
-
-#création de df_sm, pour la figure de l'undersampling partie 3
 df_ru = x_ru 
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
@@ -390,19 +386,19 @@ if rad == "Machine Learning : KNN":
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
   
-  #df = df.drop(['day','month','Location', 'year'], axis = 1)
-  #df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-  #df_bourrin = df.dropna()
-  #df_bourrin.shape
-  #y = df_bourrin['RainTomorrow_encode']
-  #x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
+  df = df.drop(['day','month','Location', 'year'], axis = 1)
+  df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
+  df_bourrin = df.dropna()
+  df_bourrin.shape
+  y = df_bourrin['RainTomorrow_encode']
+  x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
 
   #y = np.array(y)
   #y.reshape(-1, 1)
-  #y = y.astype(float)
+  y = y.astype(float)
 
-  #smo = SMOTE()
-  #x_sm, y_sm = smo.fit_resample(x, y)
+  smo = SMOTE()
+  x_sm, y_sm = smo.fit_resample(x, y)
   print('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
   #x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
     
