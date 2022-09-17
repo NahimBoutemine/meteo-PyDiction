@@ -377,7 +377,7 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
   
   model_choice = st.selectbox('choisir le modèle à charger', ('KNN optimisé', 'DTC optimisé', 'log reg optimisé', 'RFC optimisé'))
   st.subheader("vous avez choisi de charger")
-  st.write(model_choice)
+  st.subheader(model_choice)
 
   model1 = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
   model2 = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
