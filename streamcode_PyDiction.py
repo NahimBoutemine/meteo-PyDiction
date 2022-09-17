@@ -404,7 +404,7 @@ if rad == "Machine Learning : KNN":
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
     model.fit(x_train, y_train)
     
-  else model_choice == 'RFC optimisé':
+  elif model_choice == 'RFC optimisé':
     model = model4
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
     model.fit(x_train, y_train)
