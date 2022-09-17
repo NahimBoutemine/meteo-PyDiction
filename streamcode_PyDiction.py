@@ -88,6 +88,8 @@ y = y.astype(float)
 #OverSampling SMOTE':
 smo = SMOTE()
 x_sm, y_sm = smo.fit_resample(x, y)
+
+#création de df_sm, pour la figure de l'oversampling smote partie 3
 df_sm = x_sm
 df_sm = df_sm.assign(RainTomorrow_encode = y_sm)
 
@@ -97,6 +99,8 @@ x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, 
 #undersampling random (explo des données et options de pipeline)
 rUs = RandomUnderSampler()
 x_ru, y_ru = rUs.fit_resample(x, y)
+
+#création de df_sm, pour la figure de l'undersampling partie 3
 df_ru = x_ru 
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
