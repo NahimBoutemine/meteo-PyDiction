@@ -206,7 +206,7 @@ elif rad == "Exploration des données brutes":
   df_evaporation_sunshine = df.iloc[:, 4:6]
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
                         ('températures min et max et vitesse du vent', 
-                        'couverture nuageuse (matin et après midi) et températures (matin et après midi)',
+                        #mis de côté car pb affichage incompris'couverture nuageuse (matin et après midi) et températures (matin et après midi)',
                         'humidité et pressions (matin et après-midi)', 
                         'pluie-évaporation, et évaporation-ensoleillement'
                         ))
@@ -218,14 +218,14 @@ elif rad == "Exploration des données brutes":
     ax2.set_title("vitesse du vent (9pm et 3 am)")
     fig.set_tight_layout(True)
     st.pyplot(fig)  
-  if choice == 'couverture nuageuse (matin et après midi) et températures (matin et après midi)':
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
-    sns.boxplot(data=df_cloud, color="red", ax=ax1)
-    sns.boxplot(data=df_temp, color="green", ax=ax2 )
-    ax1.set_title("couverture nuageuse (9am, 3pm)")
-    ax2.set_title("températures (9am, 3pm)")
-    fig.set_tight_layout(True)
-    st.pyplot(fig)
+  #if choice == 'couverture nuageuse (matin et après midi) et températures (matin et après midi)':
+   # fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    #sns.boxplot(data=df_cloud, color="red", ax=ax1)
+    #sns.boxplot(data=df_temp, color="green", ax=ax2 )
+    #ax1.set_title("couverture nuageuse (9am, 3pm)")
+    #ax2.set_title("températures (9am, 3pm)")
+    #fig.set_tight_layout(True)
+    #st.pyplot(fig)
   if choice == 'humidité et pressions (matin et après-midi)':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_humidity, color="red", ax=ax1)
