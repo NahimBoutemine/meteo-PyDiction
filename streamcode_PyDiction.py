@@ -38,14 +38,15 @@ from joblib import dump, load
 
 #chargements préliminaires nécessaires :
 #création du jeu de données :
-df = pd.read_csv("weatherAUS.csv")
-df_full = df
-df = df.dropna()
+df_full = pd.read_csv("weatherAUS.csv")
+
+#Création d'un jeu sans manquantes ni doublons : 
+df = df_full.dropna()
 df = df.drop_duplicates()
 
 #Encodage des données et stockage des variables à afficher dans l'application :
-#-Traitement de la variable 'date' :
 
+#-Traitement de la variable 'date' :
 #dt.datetime pour extraire année, mois, et jour
 df['year'] = pd.to_datetime(df['Date']).dt.year
 df['month'] = pd.to_datetime(df['Date']).dt.month
@@ -71,36 +72,34 @@ for var in df.select_dtypes(include='object').columns:
   df[var] = le.fit_transform(df[var])
 df_encode = df#stockage à ce stade du df aux variables encodées
 
-#suppression des variables non explicatives (fonction du test de pearson, voir rapport et expliqué dans le streamlit également pour la présentation) :
+#suppression des variables non explicatives non corrélées :
 df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
 df = df.drop(['day','month','Location', 'year'], axis = 1)
 
-#Préparation du split :
+#Préparation du split (explo des données et options de pipeline)
 #(méthode courante d'évaluation):
 y = df['RainTomorrow_encode']
 x = df.drop('RainTomorrow_encode', axis = 1)
 
-#reshape de y
+#reshape de y (explo des données et options de pipeline)
 y = np.array(y)
 y.reshape(-1, 1)
 y = y.astype(float)
 
-#préparation des resampling
+#préparation des resampling (explo des données et options de pipeline)
 #OverSampling SMOTE':
 smo = SMOTE()
 x_sm, y_sm = smo.fit_resample(x, y)
-
 df_sm = x_sm
 df_sm = df_sm.assign(RainTomorrow_encode = y_sm)
 
-#undersampling random
+#undersampling random (explo des données et options de pipeline)
 rUs = RandomUnderSampler()
 x_ru, y_ru = rUs.fit_resample(x, y)
-
-df_ru = x_ru
+df_ru = x_ru 
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
-#normalisation
+#normalisation (explo des données et options de pipeline)
 x_norm = x
 numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 name_columns_numerics = x_norm.select_dtypes(include=numerics).columns  
@@ -196,17 +195,17 @@ elif rad == "Exploration des données brutes":
   st.markdown("Etude de la distribution des variables numériques - boxsplot :")
 
   #création de sous dataframes
-  df_minmaxtemp = df.iloc[:, 1:3]
-  df_wind = df.iloc[:, 10:12]
-  df_humidity = df.iloc[:, 12:14]
-  df_pressure = df.iloc[:, 14:16]
-  df_cloud = df.iloc[:, 16:18]
-  df_temp = df.iloc[:, 18:20]
-  df_rainfall_evaporation = df.iloc[:, 3:5]
-  df_evaporation_sunshine = df.iloc[:, 4:6]
+  df_minmaxtemp = df.loc[:, ['MinTemp', 'MaxTemp']] 
+  df_wind = df.loc[:, ['WindSpeed9am', 'WindSpeed3pm']]
+  df_humidity = df.loc[:, ['Humidity9am', 'Humidity3pm']]
+  df_pressure = df.loc[:, ['Pressure9am', 'Pressure3pm']]
+  df_cloud = df.loc[:, ['Cloud9am', 'Cloud3pm']]
+  df_temp = df.loc[:, ['Temp9am', 'Temp3pm']]
+  df_rainfall_evaporation = df.loc[:, ['Rainfall', 'Evaporation']]
+  df_evaporation_sunshine = df.loc[:, ['Evaporation', 'Sunshine']]
   choice = st.selectbox('Sélectionnez les catégorielles à étudier :', 
                         ('températures min et max et vitesse du vent', 
-                        #mis de côté car pb affichage incompris'couverture nuageuse (matin et après midi) et températures (matin et après midi)',
+                       'couverture nuageuse (matin et après midi) et températures (matin et après midi)',
                         'humidité et pressions (matin et après-midi)', 
                         'pluie-évaporation, et évaporation-ensoleillement'
                         ))
@@ -215,17 +214,17 @@ elif rad == "Exploration des données brutes":
     sns.boxplot(data=df_minmaxtemp, color="red", ax=ax1)
     sns.boxplot(data=df_wind, color="green", ax=ax2 )
     ax1.set_title("températures min et max")
-    ax2.set_title("vitesse du vent (9pm et 3 am)")
+    ax2.set_title("vitesse du vent (9 pm et 3 am)")
     fig.set_tight_layout(True)
     st.pyplot(fig)  
-  #if choice == 'couverture nuageuse (matin et après midi) et températures (matin et après midi)':
-   # fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
-    #sns.boxplot(data=df_cloud, color="red", ax=ax1)
-    #sns.boxplot(data=df_temp, color="green", ax=ax2 )
-    #ax1.set_title("couverture nuageuse (9am, 3pm)")
-    #ax2.set_title("températures (9am, 3pm)")
-    #fig.set_tight_layout(True)
-    #st.pyplot(fig)
+  if choice == 'couverture nuageuse (matin et après midi) et températures (matin et après midi)':
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    sns.boxplot(data=df_cloud, color="red", ax=ax1)
+    sns.boxplot(data=df_temp, color="green", ax=ax2 )
+    ax1.set_title("couverture nuageuse (9am, 3pm)")
+    ax2.set_title("températures (9am, 3pm)")
+    fig.set_tight_layout(True)
+    st.pyplot(fig)
   if choice == 'humidité et pressions (matin et après-midi)':
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
     sns.boxplot(data=df_humidity, color="red", ax=ax1)
