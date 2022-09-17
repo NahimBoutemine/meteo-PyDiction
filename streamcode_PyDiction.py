@@ -370,6 +370,7 @@ elif rad == "Pipeline de préparation des données":
     
 #Si choix 4 :
 if rad == "Evaluation de la performance des modèles pré-sélectionnés":
+  st.header("Evaluation de la performance globale des modèles préselectionnés")
   st.markdown("Comme vu précédemment, le pipeline optimal est : conserver les variables corréllées à RainTomorrow puis méthode de rééchantillonnage SMOTE.")
   st.markdown("Puis le jeu de données est découpé en jeu de test et d'entrainement à hauteur de 20% et 80% respectivement afin de pouvoir évaluer les modèles sur le jeu test.")     
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
@@ -411,7 +412,7 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
     #filename = "KNNbest_pipeline_opti.joblib"
     #model = joblib.load(filename)
 
-  st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle :")
+  st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle sélectionné :")
   
   ##Précision et f1-score : sur x_train (jeu entrainement issu de pipeline optimal) et x_test (jeu test issu du pipeline optimal)
   y_pred_train = model.predict(x_train)
@@ -421,7 +422,7 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
   if index_choice == 'accuracy':      
     acc_train  = accuracy_score(y_train, y_pred_train)
     acc_test  = accuracy_score(y_test, y_pred_test)
-    st.write("acc_train : ", acc_train, "acc_test :", acc_test)
+    st.write("accuracy sur jeu d'entrainement par le pipeline optimal : ", acc_train, "accuracy sur jeu test par le pipeline optimal : :", acc_test)
 
   elif index_choice == 'F1-score' :
     f1score_train = f1_score(y_train, y_pred_train, average='macro')
@@ -445,7 +446,7 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
     plt.ylabel('True Positive Rate');
     plt.xlabel('False Positive Rate');
     st.pyplot(fig);
-    st.write('Le score AUC est de', roc_auc_score, 'interprétation : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
+    st.write('Le score AUC est de', roc_auc_score, 'pour intepréter : plus il est proche de 1 plus le modèle est précis, plus il est proche 0.5 moins le modèle est précis.');
     st.markdown('Le score AUC ici est donc acceptable. ')
     st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
     st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
@@ -459,11 +460,10 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
 
 if rad == "Conclusion et perspectives":
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
-  st.markdown("acc_train :  1.0, acc_test : 0.87.")
-  st.markdown("F1score_train :  1.0 F1score_test : 0.87.")
+  st.markdown("acc_train :  1.0, acc_test : 0.86.")
+  st.markdown("F1score_train :  1.0 F1score_test : 0.86.")
   st.markdown("Mean Absolute Error' ou 'MAE' : 0.13.")
   st.markdown("l'AUC est de : 0.87.")
-
 
   st.text("Limites")
 
@@ -475,9 +475,9 @@ if rad == "Conclusion et perspectives":
 
   st.markdown("Traitement des outliers : nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier, même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix. La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
 
-  st.markdown("Autres modèles : Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
+  st.markdown("Autres modèles : nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
 
-  st.markdown("Nous aurons pu aussi tenter de filter le jeu de données selon ses quartiles, afin d'écarter les ouliers")
+  st.markdown("Nous aurions pu aussi tenter de filter le jeu de données selon ses quartiles, afin d'écarter les ouliers")
 
 
 
