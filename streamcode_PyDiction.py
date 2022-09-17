@@ -34,6 +34,7 @@ from sklearn.decomposition import PCA
 import pickle
 import joblib
 from joblib import dump, load
+import playsound
 
 
 #chargements préliminaires nécessaires :
@@ -459,28 +460,32 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
   st.markdown("Les prédictions sont plutôt bonnes !")
 
 if rad == "Conclusion et perspectives":
+  
+  st.subheader("Conclusion")
+  
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
   st.markdown("acc_train :  1.0, acc_test : 0.86.")
   st.markdown("F1score_train :  1.0 F1score_test : 0.86.")
   st.markdown("Mean Absolute Error' ou 'MAE' : 0.13.")
   st.markdown("l'AUC est de : 0.87.")
 
-  st.text("Limites")
-
-  st.markdown("Tentative de création et prédiction de RainIn3Days")
+  
+  st.subheader("Limites")
 
   st.markdown("Dans l'optique d'enrichir les capacités de notre modèle, nous avons tenté de créer la variable RainIn3Days, en nous servant de Rain_Today.")
   st.markdown("Pour cela, nous avons tenté de processer la variable de RainIn3Days à partir de RainToday, au moyen d’une boucle prenant en compte la date et la localisation (en effet, il y a plusieurs stations météos, et seulement 256 dates qui ne sont pas en doublons : cela signifie qu’il y a plusieurs bulletins météos émis le même jour par ces stations).")
   st.markdown("Malheureusement, nous n'avons pas pu mener cette étude à son terme par manque de temps notamment suite au départ d’une personne de l’équipe.")
 
-  st.markdown("Traitement des outliers : nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier, même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix. La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
+  st.markdown("Une autre question posée était la question des outliers. Nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier")
+  st.markdown("Même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix.")
+  st.markdown("Nous aurions pu aussi tenter de filter le jeu de données selon ses quartiles. Malheureusement, nous n'avons pas réussi à résoudre nos problèmes de code à temps.")
+  st.markdown("La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
 
-  st.markdown("Autres modèles : nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
+  st.markdown("Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
 
-  st.markdown("Nous aurions pu aussi tenter de filter le jeu de données selon ses quartiles, afin d'écarter les ouliers")
-
-
-
+  
+  if st.checkbox("cliquez pour connaitre notre opinion sur l'utilité de joblib :"):
+    playsound.playsound('Jean-Pierre Coffe - Mais cest dla MERDE - Version courte.mp3')
 
 
 
