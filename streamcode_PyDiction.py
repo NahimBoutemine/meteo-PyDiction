@@ -371,9 +371,6 @@ elif rad == "Pipeline de préparation des données":
   if st.checkbox("Cocher pour afficher notre conclusion quant à la normalisation et aux méthodes de réduction de dimensions:"):
     st.markdown("Les méthodes de normalisation ou de réduction de dimensions n'ayant pas amené d'amélioration des résultats de performances des modèles, nous ne les avons donc pas conservées. ")
     
-  #elif choice2 == 'Aucune normalisation':
-    #affectation de x et y
-  '''  
 #Si choix 4 :
 if rad == "Machine Learning : KNN":
   st.markdown("Comme vu précédemment, le pipeline optimal est : conserver les variables corréllées à RainTomorrow puis méthode de rééchantillonnage SMOTE.")
@@ -385,8 +382,12 @@ if rad == "Machine Learning : KNN":
   st.subheader("knn optimisé")
 
   #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps sinon app lente)
-  filename = "KNNbest_pipeline_opti.joblib"
-  model = joblib.load(filename)
+  #filename = "KNNbest_pipeline_opti.joblib"
+  #model = joblib.load(filename)
+  
+  #entrainement du meilleur knn sur les jeux d'entrainement et de test
+  model = KNeighborsClassifier(metric='manhattan', n_neighbors=26, weights='distance') #mettre ici le meilleur nbr_voisins trouvé plus haut
+  model.fit(x_train, y_train)
 
   ##Précision et f1-score : sur x_train (jeu entrainement issu de pipeline optimal) et x_test (jeu test issu du pipeline optimal)
   y_pred_train = model.predict(x_train)
@@ -435,22 +436,15 @@ if rad == "Machine Learning : KNN":
   #résultats :
   st.markdown("Les prédictions sont plutôt bonnes !")
   st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
-'''    
+
 #Si choix 5 
 if rad == "Machine Learning : DTC":
     
-  #model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+  #entrainement du meilleur DTC sur les jeux entrainement et test issus du pipeline optimal
   st.subheader("DTC optimisé")
-  model2 = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
-  model2.fit(x_train,y_train)
+  model = DecisionTreeClassifier(criterion = 'entropy', max_depth = 7, min_samples_leaf = 40, random_state = 123)
+  model.fit(x_train,y_train)
       
-  #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
-  filename = "DTCbest.joblib"
-  joblib.dump(model2, filename)
-
-  #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
-  model = joblib.load(filename)
-
   ##Précision et f1-score :
   y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
@@ -499,18 +493,11 @@ if rad == "Machine Learning : DTC":
 #Si choix 6
 if rad == "Machine Learning : Log Reg":
 
-  #   model = LogisticRegression(C=0.01, penalty= 'l2')
+  #entrainement du meilleur logreg sur les jeux entrainement et test issus du pipeline optimal
   st.subheader("logreg optimisé")
   model = LogisticRegression(C=0.01, penalty= 'l2')
   model.fit(x_train,y_train)
       
-  #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
-  filename = "logregbest.joblib"
-  joblib.dump(model, filename)
-
-  #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
-  model = joblib.load(filename)
-
   ##Précision et f1-score :
   y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
@@ -559,18 +546,11 @@ if rad == "Machine Learning : Log Reg":
 #Si choix 7
 if rad == "Machine Learning : RFC":
      
-  #   model optimisé = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
+  #entrainement du meilleur RFC sur les jeux entrainement et test issus du pipeline optimal
   st.subheader("RFC optimisé")
   model = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
   model.fit(x_train,y_train)
       
-  #sauvegarde joblib premier entrainement puis en com pour ne pas refaire perdre du temps (interet de svgde joblib)
-  filename = "RFCbest.joblib"
-  joblib.dump(model, filename)
-
-  #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps)
-  model = joblib.load(filename)
-
   ##Précision et f1-score :
   y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
