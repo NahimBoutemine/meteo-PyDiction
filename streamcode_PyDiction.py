@@ -34,7 +34,7 @@ from sklearn.decomposition import PCA
 import pickle
 import joblib
 from joblib import dump, load
-import playsound
+import os
 
 
 #chargements préliminaires nécessaires :
@@ -485,8 +485,7 @@ if rad == "Conclusion et perspectives":
 
   
   if st.checkbox("cliquez pour connaitre notre opinion sur l'utilité de joblib :"):
-    playsound.playsound('Jean-Pierre Coffe - Mais cest dla MERDE - Version courte.mp3')
-
+    os.system("mpg123 " + 'Jean-Pierre Coffe - Mais cest dla MERDE - Version courte.mp3')
 
 
 
