@@ -69,10 +69,10 @@ df = df.drop(labels = ['RainTomorrow', 'RainToday'], axis = 1)
 
 #-encodage des restantes:     
 le = preprocessing.LabelEncoder()
-df_nonencode = df#sauvegarde du df pour l'affichage ultérieur
-for var in df.select_dtypes(include='object').columns:
+df_nonencode = df#sauvegarde du df pour l'affichage ultérieur pour montrer affichage 
+for var in df.select_dtypes(include='object').columns:#encodage
   df[var] = le.fit_transform(df[var])
-df_encode = df#stockage à ce stade du df aux variables encodées
+df_encode = df#stockage pour une figure ultérieure
 
 #Préparation du split (explo des données et options de pipeline)
 #(méthode courante d'évaluation):
@@ -101,7 +101,7 @@ df_ru = x_ru
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
 #normalisation (pour graphe de explo des données et options de pipeline)
-x_norm = x
+x_norm = x#initialiser x_norm
 numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 name_columns_numerics = x_norm.select_dtypes(include=numerics).columns  
 #créer, Entrainer et transformer directement les colonnes numériques de x_norm
@@ -386,11 +386,11 @@ if rad == "Machine Learning : KNN":
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
   
+  df = pd.read_csv("weatherAUS.csv")
+  df = df.dropna()
   df = df.drop(['day','month','Location', 'year'], axis = 1)
   df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-  df_bourrin = df.dropna()
-  df_bourrin.shape
-  y = df_bourrin['RainTomorrow_encode']
+  y = df['RainTomorrow_encode']
   x = df_bourrin.drop('RainTomorrow_encode', axis = 1)
 
   y = np.array(y)
