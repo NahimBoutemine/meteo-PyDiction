@@ -400,10 +400,10 @@ if rad == "Machine Learning : KNN":
   #y.reshape(-1, 1)
   #y = y.astype(float)
 
-  smo = SMOTE()
-  x_sm, y_sm = smo.fit_resample(x, y)
+  #smo = SMOTE()
+  #x_sm, y_sm = smo.fit_resample(x, y)
   print('Classes échantillon SMOTE :', dict(pd.Series(y_sm).value_counts()))
-  x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+  #x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
  
 
     
@@ -415,7 +415,7 @@ if rad == "Machine Learning : KNN":
   model = joblib.load(filename)
 
   ##Précision et f1-score :
-  y_pred_train = model.predict(x_train)
+  #y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
   
   st.markdown("Maintenant que l'entrainement du modele est chargé, étudions les indicateurs de performance du modèle :")
@@ -424,7 +424,7 @@ if rad == "Machine Learning : KNN":
 
   if choice4 == 'accuracy':
       
-      acc_train  = accuracy_score(y_train, y_pred_train)
+      #acc_train  = accuracy_score(y_train, y_pred_train)
       acc_test  = accuracy_score(y_test, y_pred_test)
       st.write("acc_train : ", acc_train, "acc_test :", acc_test)
       
