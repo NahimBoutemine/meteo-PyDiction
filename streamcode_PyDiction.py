@@ -463,12 +463,18 @@ if rad == "Conclusion et perspectives":
   
   st.subheader("Conclusion")
   
-  st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes. Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
+  st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes."(
+  st.markdown("Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
+  st.markdown("Au final, deux algorithmes offrent des performances satisfaisantes à la fois en terme de métriques et de temps d'execution sont: KNN et Régression Logistique") 
+  st.markdown("Nous n'avons pas eu recours à un stockage des entrainements via joblib en raison du relatif court temps d'execution de nos modèles, et des problèmes de connexion et d'instabilité du streamlit que cela engendrait")
+  st.markdown("A titre d'indication, nous listons ci dessous les métriques du KNN.")
+    
   st.markdown("acc_train :  1.0, acc_test : 0.86.")
   st.markdown("F1score_train :  1.0 F1score_test : 0.86.")
   st.markdown("Mean Absolute Error' ou 'MAE' : 0.13.")
   st.markdown("l'AUC est de : 0.87.")
 
+  st.markdown("Les performances sont tout à fait acceptables, et nous permettent de répondre à la problématique")
   
   st.subheader("Limites")
 
@@ -481,11 +487,9 @@ if rad == "Conclusion et perspectives":
   st.markdown("Nous aurions pu aussi tenter de filter le jeu de données selon ses quartiles. Malheureusement, nous n'avons pas réussi à résoudre nos problèmes de code à temps.")
   st.markdown("La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
 
-  st.markdown("Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.  De même pour la pluie dans trois jours.")
+  st.markdown("Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.")
 
   
-  if st.checkbox("cliquez pour connaitre notre opinion sur l'utilité de joblib :"):
-    os.system("mpg123 " + 'Jean-Pierre Coffe - Mais cest dla MERDE - Version courte.mp3')
 
 
 
