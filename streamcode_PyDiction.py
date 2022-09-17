@@ -57,8 +57,10 @@ df['year'] = df['year'].astype(int)
 df['month'] = df['month'].astype(int)
 df['day'] = df['day'].astype(int)
 
-#on élimine la colonne Date, désormais inutile et dont l'information a été conservée.
+#on élimine les variables enlevées dans le pipeline optimal : date plus les variables non explicatives non corrélées : :  .
 df = df.drop('Date', axis = 1)
+df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
+df = df.drop(['day','month','Location', 'year'], axis = 1)
 
 ##-Renommer pour lisibilité les booléénnes : 
 df['RainToday_encode'] = df['RainToday']
@@ -71,10 +73,6 @@ df_nonencode = df#sauvegarde du df pour l'affichage ultérieur
 for var in df.select_dtypes(include='object').columns:
   df[var] = le.fit_transform(df[var])
 df_encode = df#stockage à ce stade du df aux variables encodées
-
-#suppression des variables non explicatives non corrélées :
-df = df.drop(['WindDir3pm','Temp9am','WindDir9am'], axis = 1)
-df = df.drop(['day','month','Location', 'year'], axis = 1)
 
 #Préparation du split (explo des données et options de pipeline)
 #(méthode courante d'évaluation):
@@ -93,26 +91,22 @@ x_sm, y_sm = smo.fit_resample(x, y)
 df_sm = x_sm
 df_sm = df_sm.assign(RainTomorrow_encode = y_sm)
 
+#split des x et y issus de l'oversampling SMOTE
+x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
+
 #undersampling random (explo des données et options de pipeline)
 rUs = RandomUnderSampler()
 x_ru, y_ru = rUs.fit_resample(x, y)
 df_ru = x_ru 
 df_ru = df_ru.assign(RainTomorrow_encode = y_ru)
 
-#normalisation (explo des données et options de pipeline)
+#normalisation (pour graphe de explo des données et options de pipeline)
 x_norm = x
 numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 name_columns_numerics = x_norm.select_dtypes(include=numerics).columns  
 #créer, Entrainer et transformer directement les colonnes numériques de x_norm
 scaler =  StandardScaler()
 x_norm[name_columns_numerics] = scaler.fit_transform(x_norm[name_columns_numerics])
-
-#les variables définitives
-x_def = 0
-y_def = 0
-
-#split des x et y issus de l'oversampling SMOTE
-x_train, x_test, y_train, y_test = train_test_split(x_sm, y_sm, test_size=0.20, random_state=42)
 
 #Affichages des points clés de compréhension pour chaque étape du projet :
 
@@ -158,7 +152,11 @@ if rad == "Introduction : Le projet et ses créateurs":
 
 #Si choix 2 :
 elif rad == "Exploration des données brutes":
-  
+    fig, ax = plt.subplots()    
+    sns.pieplot(data=df_full.loc[:, ['WindGustDir']])
+    ax.set_title("Directions des vents")
+    fig.set_tight_layout(True)
+    st.pyplot(fig)
   #Exploration des données brutes :
   st.header("Exploration des données brutes : préparer la suite...")
   st.markdown("Avant la modélisation, une présélection de modèles à tester est classiquement faite en fonction de critères sur le jeu de données exploré, ainsi que des sources bibliographiques. Le traitement des données avant la modélisation peut se faire de différentes manières, soit obligatoirement : élimination ou remplacement des données manquantes et des doublons, encodage des catégorielles, éventuellement: normalisation, rééchantilonnage, réduction du nombre de variables. Afin de déterminer la méthode amenant à un jeu de qualité optimale et donc des performances optimales, une exploration thématique des données brutes est nécessaire.")
