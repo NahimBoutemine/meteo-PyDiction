@@ -392,12 +392,12 @@ if rad == "Machine Learning : KNN":
   if model_choice == 'KNN optimisé':
     model = model1
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
-  model.fit(x_train, y_train)
+    model.fit(x_train, y_train)
   
   elif model_choice == 'DTC optimisé':
     model = model2
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
-  model.fit(x_train, y_train)
+    model.fit(x_train, y_train)
   
   elif model_choice == 'log reg optimisé':
     model = model3
