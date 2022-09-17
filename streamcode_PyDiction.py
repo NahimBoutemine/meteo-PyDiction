@@ -373,7 +373,7 @@ elif rad == "Pipeline de préparation des données":
     
   #elif choice2 == 'Aucune normalisation':
     #affectation de x et y
-    
+  '''  
 #Si choix 4 :
 if rad == "Machine Learning : KNN":
   st.markdown("Comme vu précédemment, le pipeline optimal est : conserver les variables corréllées à RainTomorrow puis méthode de rééchantillonnage SMOTE.")
@@ -435,7 +435,7 @@ if rad == "Machine Learning : KNN":
   #résultats :
   st.markdown("Les prédictions sont plutôt bonnes !")
   st.markdown("Il y a un meilleur classement des positifs (classe 1). Le f1-score est correct également.")
-    
+'''    
 #Si choix 5 
 if rad == "Machine Learning : DTC":
     
