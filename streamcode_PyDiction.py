@@ -378,7 +378,7 @@ if rad == "Machine Learning : KNN":
   st.markdown("Pour chacun des 4 modèles à tester selon nos recherches et la méthode de Scikit Learn, le modèle est optimisé par gridsearch puis entrainé sur le jeu traité par le pipeline optimal puis évalué")
   st.markdown("Nous commençons par KNN qui est le modèle sélectionné au final, les autres modèles sont évalués sur les pages suivantes (voir le menu)")
   
-  model_choice = st.selectbox(('KNN optimisé', 'DTC optimisé', 'log reg optimisé', 'RFC optimisé'))
+  model_choice = st.selectbox('choisir le modèle à charger, ('KNN optimisé', 'DTC optimisé', 'log reg optimisé', 'RFC optimisé'))
   st.subheader("vous avez choisi de charger")
   st.write(model_choice)
 
