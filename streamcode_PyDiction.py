@@ -143,6 +143,9 @@ if rad == "Introduction : Le projet et ses créateurs":
     st.image(Richard, caption= "Richard, anciennement assistant de recherche en spectrométrie infrarouge, en reconversion dans la data science", width = 200)
     Nahim = Image.open('Nahim.png')
     st.image(Nahim, width = 200, caption="Nahim, anciennement ingénieur environnement et formateur en sciences, en reconversion dans l'informatique (data science, web) et les maths appliquées ")
+    Adama = Image.open('Cthulhu.jpg')
+    st.image(Adama, width = 200, caption="Mamadou, étudiant en physique, a rencontré un empechement. Depuis, il est perdu dans le temps et l'espace.")
+
 
 #Si choix 2 :
 elif rad == "Exploration des données brutes":
@@ -172,7 +175,7 @@ elif rad == "Exploration des données brutes":
     sns.heatmap(df_full.isnull(), cbar=False)
     st.pyplot(fig)  
   if st.checkbox("Cocher pour afficher le pourcentage de valeurs manquantes pour chacune des variables"):
-    percent_missing_df_full = df_full.isnull().sum() * 100 / len(df)
+    percent_missing_df_full = df_full.isnull().sum() * 100 / len(df_full)
     st.write(percent_missing_df_full)    
 
   #Etude de la distribution des variables pour étudier l'intérêt de la normalisation :
@@ -387,26 +390,37 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
   model4 = RandomForestClassifier(max_depth = 8, n_estimators = 200, criterion = 'gini', max_features = 'sqrt')
   
   model = model1#initialisation du modèle (il faut un premier choix initial, changeable ensuite)
+  filename1 = "KNNbest_pipeline_opti.joblib"
+  model1 = joblib.load(filename1)
+
+  filename2 = "DTCbest_pipeline_opti.joblib"
+  model2 = joblib.load(filename2)
+
+  filename3 = "LogRegbest_pipeline_opti.joblib"
+  model3 = joblib.load(filename3)
+
+  filename4 = "RForest_pipeline_opti.joblib"
+  model4 = joblib.load(filename4)
   
   if model_choice == 'KNN optimisé':
     model = model1
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
-    model.fit(x_train, y_train)
+    #model.fit(x_train, y_train)
   
   elif model_choice == 'DTC optimisé':
     model = model2
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
-    model.fit(x_train, y_train)
+    #model.fit(x_train, y_train)
   
   elif model_choice == 'log reg optimisé':
     model = model3
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
-    model.fit(x_train, y_train)
+    #model.fit(x_train, y_train)
     
   elif model_choice == 'RFC optimisé':
     model = model4
     #entrainement du meilleur modèle sur les jeux d'entrainement et de test issus du pipeline optimal
-    model.fit(x_train, y_train)
+    #model.fit(x_train, y_train)
     
     #code précédent non fonctionnel (import torp lent du fichier joblib) : 
     #import du modele entrainé sauvgdé plutôt que de le reentrainer (gain de temps sinon app lente)
@@ -418,7 +432,7 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
   ##Précision et f1-score : sur x_train (jeu entrainement issu de pipeline optimal) et x_test (jeu test issu du pipeline optimal)
   y_pred_train = model.predict(x_train)
   y_pred_test = model.predict(x_test) 
-  index_choice = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve','MAE'))
+  index_choice = st.selectbox('Choisissez une métrique ?',('accuracy','F1-score','AUC et ROC Curve'))
 
   if index_choice == 'accuracy':      
     acc_train  = accuracy_score(y_train, y_pred_train)
@@ -452,12 +466,14 @@ if rad == "Evaluation de la performance des modèles pré-sélectionnés":
     st.markdown("Le classement des vrais positifs est cependant moins bon que le classement des vrais négatifs")
     st.markdown('Les scores d accuracy (précision globale) et de f1-score (sensible à la précision de prédiction de chaque classe) sur les jeux d entrainement et de test sont :  ')
 
-  elif index_choice == 'MAE' :
-    MAE = mae(y_test, y_pred_test)
-    st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
+  #elif index_choice == 'MAE' :
+  #  MAE = mae(y_test, y_pred_test)
+  #  st.write("La 'Mean Absolute Error' ou 'MAE' est de : " + str(MAE), ', plus elle est basse plus le modèle est précis. Notre modèle a donc ici une précision correcte, ce paramètre d erreur est cohérent et confirme le score de précision. ')
 
   #résultats :
   st.markdown("Les prédictions sont plutôt bonnes !")
+  
+  st.markdown("La MAE a été désactivée, car elle ne sert à rien dans le cadre de problèmes de classifications. On la laisse donc en tant que trace")
 
 if rad == "Conclusion et perspectives":
   
@@ -466,7 +482,7 @@ if rad == "Conclusion et perspectives":
   st.markdown("Nous avons pu sélectionner les variables les plus pertinentes grâce aux tests statistiques. Des modèles de classification simples offrent des performances similaires à celles offertes par des modèles ensemblistes.")
   st.markdown("Au vu de la répartition de la population cible, un resampling par oversampling SMOTE est nécessaire et son efficacité a été montrée. Ainsi, nous confirmons notre capacité à prédire Rain-Tomorrow avec une marge d'erreur acceptable.")
   st.markdown("Au final, deux algorithmes offrent des performances satisfaisantes à la fois en terme de métriques et de temps d/'execution sont: KNN et Régression Logistique.") 
-  st.markdown("Nous n'avons pas eu recours à un stockage des entrainements via joblib en raison du relatif court temps d'execution de nos modèles, et des problèmes de connexion et d'instabilité du streamlit que cela engendrait")
+  st.markdown("Finalement, nous avons pu recourir au stockage des entrainements des différents via joblib, appelés gràce à ce script exécuté localement, au prix de temps d'execution allongés, de problèmes de connexion, et d'instabilité du streamlit")
   st.markdown("A titre d'indication, nous listons ci dessous les métriques du KNN.")
     
   st.markdown("acc_train :  1.0, acc_test : 0.86.")
@@ -483,9 +499,8 @@ if rad == "Conclusion et perspectives":
   st.markdown("Malheureusement, nous n'avons pas pu mener cette étude à son terme par manque de temps notamment suite au départ d’une personne de l’équipe.")
 
   st.markdown("Une autre question posée était la question des outliers. Nous n’avons pas vérifié l’hypothèse de l’élimination des outliers en entier")
-  st.markdown("Même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes ainsi que par nos raisons de ce choix.")
   st.markdown("Nous aurions pu aussi tenter de filter le jeu de données selon ses quartiles. Malheureusement, nous n'avons pas réussi à résoudre nos problèmes de code à temps.")
-  st.markdown("La rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
+  st.markdown("Même si nous sommes convaincus que les résultats ne seraient pas améliorés par la suppression de ces extrêmes, la rigueur indique tout de même de vérifier cette hypothèse dans une étude ultérieure.")
 
   st.markdown("Nous aurions pu utiliser d’autres modèles tels que les réseaux de neurones, et les méthodes de séries temporelles. A deux personnes au lieu de trois et au vu des alternatives et du nombre de modèles testés, nous sommes satisfaits de la quantité de résultats.")
 
